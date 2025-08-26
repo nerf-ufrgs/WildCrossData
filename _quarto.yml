@@ -1,0 +1,47 @@
+project:
+  execute-dir: project
+  type: book
+
+book:
+  title: "Data Quality Checks"
+  author: "Data Quality Team"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - part: "Data Quality Checks"
+      chapters:
+        - Quarto/00_PRESENTATION_FUNCTIONS.qmd
+        - Quarto/01_COLUMN_CONSISTENCY.qmd
+        - Quarto/02_BLANK_CELLS.qmd
+        - Quarto/03_CHECK_SPECIES.qmd
+        - Quarto/04_CHECK_STRUCTURE.qmd
+        - Quarto/05_CHECK_ID_CAMERA.qmd
+        - Quarto/06_CHECK_DATE.qmd
+        - Quarto/07_CHECK_DUPLICATED_CAMERA_ON_STRUCTURE.qmd
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: superhero
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    self-contained: true
+    sidebar:
+      style: docked
+      contents:
+        - section: "Contents"
+          contents:
+            - index.qmd
+            - part: "Data Quality Checks"
+              contents:
+                - Quarto/00_PRESENTATION_FUNCTIONS.qmd
+                - Quarto/01_COLUMN_CONSISTENCY.qmd
+                - Quarto/02_BLANK_CELLS.qmd
+                - Quarto/03_CHECK_SPECIES.qmd
+                - Quarto/04_CHECK_STRUCTURE.qmd
+                - Quarto/05_CHECK_ID_CAMERA.qmd
+                - Quarto/06_CHECK_DATE.qmd
+                - Quarto/07_CHECK_DUPLICATED_CAMERA_ON_STRUCTURE.qmd

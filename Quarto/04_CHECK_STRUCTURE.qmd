@@ -1,0 +1,258 @@
+---
+title: "Step 4 - Check Structures"
+format: html
+editor: visual
+theme:
+  light: flatly
+  dark: superhero
+---
+
+# Problem description
+
+We must check if the camera trap `Structure_id` provided on the sheet `Camera_trap` is encompassed on the sheets that describe the structures (`Underpasses` and `Overpasses`). These sheets also possess the `Structure_id` field. This column is the link between `Camera_trap` and `Underpasses` / `Overpasses`.
+
+All the listed `Structure_id` provided on the `Camera_trap` sheet must be present on either `Underpasses` or `Overpasses`. The opposite direction is also true, meaning that all the `Structure_id` provided either on `Underpasses` or `Overpasses` must be comprised on `Camera_trap`.
+
+We also have to evaluate if the `Structure_id` present in the `Fencing` spreadsheet is included on the `Underpasses` spreadsheet. We are assuming that there are no fencing for `Overpasses`.
+
+# Problem solving
+
+## Common steps
+
+To solve this issue, we follow some of the first basic steps from previous checks, as using our customized `read_sheet` function that provides the full paths of all .xlsx files available in order to read the species sheet from all files.
+
+```{r}
+#| label: load-functions
+#| echo: true
+
+source("R/FUNCTIONS.R")
+```
+
+Here we read the camera trap sheet from all files. We opted to bring the elements of the structures (field `Structure_id`) to upper case in order to avoid confusions. We also decided do keep only the column `Structure_id` by using the argument .keep.
+
+```{r}
+#| label: read-camera-trap
+#| echo: true
+#| warning: false
+
+ct <- read_sheet(path = "Excel",
+                 sheet = "Camera_trap",
+                    na = c("", "na", "NA")) |>
+  purrr::map(~ .x |>
+               dplyr::mutate(
+                 Structure_id = as.character(stringr::str_to_upper(Structure_id)),
+                 .keep = "none"
+               ))
+```
+
+## Specific steps
+
+### Check if there are blank rows on camera trap sheet
+
+It is important to check if there are blank rows to avoid the system to find errors where there is no data.
+
+```{r}
+#| label: check-blank-rows
+#| echo: true
+
+ct |>
+  purrr::keep(~ nrow(.x) > 0) |> 
+  head(2)
+```
+
+### Check duplicated names between underpasses and overpasses
+
+We wouldn't be able to perform a thorough validation if there are duplicated `Structure_id` between underpasses and overpasses. In that sense, we created two lists called `under` and `over`. We kept on the respective lists solely the datasets that comprise either of these types of structures.
+
+Following this step we load all the underpasses spreadsheets from the files.
+
+```{r}
+#| label: read-structures
+#| echo: true
+
+under <- read_sheet(path = "Excel",
+                    sheet = "Underpasses",
+                    na = c("", "na", "NA")) |>
+  purrr::map(~ .x |>
+               dplyr::mutate(
+                 Structure_id = as.character(stringr::str_to_upper(Structure_id)),
+                 position = "under",
+                 .keep = "none")) |>
+  purrr::keep(~ all(nrow(.x) > 0))
+
+over <- read_sheet(path = "Excel",
+                   sheet = "Overpasses",
+                   na = c("", "na", "NA")) |>
+  purrr::map(~ .x |>
+               dplyr::mutate(
+                 Structure_id = as.character(stringr::str_to_upper(Structure_id)),
+                 position = "over",
+                 .keep = "none")) |>
+  purrr::keep(~ nrow(.x) > 0)
+
+head(under[1])
+head(over[1])
+```
+
+The next step is to merge underpasses and overpasses `Structure_id` from each dataset into a single dataframe.
+
+```{r}
+#| label: merge-structures
+#| echo: true
+
+# Binding under and over in one only list
+under_over <- list()
+
+for (i in names(ct)) {
+  exists_in_under <- i %in% names(under)
+  exists_in_over <- i %in% names(over)
+
+  if (exists_in_under & exists_in_over) {
+    under_over[[i]] <- dplyr::bind_rows(under[[i]], over[[i]])
+  }
+  else if (exists_in_under & exists_in_over == FALSE) {
+    under_over[[i]] <- under[[i]]
+  }
+  else {
+    under_over[[i]] <- over[[i]]
+  }
+}
+
+head(under_over[1])
+```
+
+Now we can check if there are duplicated names for `Structure_id`. This checks if there are duplicates on overpasses, underpasses and the merge of underpasses and overpasses.
+
+```{r}
+#| label: check-duplicates
+#| echo: true
+
+under_over |>
+  dplyr::bind_rows(.id = "Dataset") |>
+  dplyr::count(Dataset, Structure_id, sort = TRUE) |>
+  dplyr::filter(n > 1)
+```
+
+### Check if the structures in Camera Trap sheet are in either Underpasses and Overpasses sheet and vice-versa
+
+#### Camera trap x Crossing structures
+
+Initially, we got from every dataset, the `Structure_id` from their camera trap spreadsheet and the same field from their underpasses and overpasses spreadsheet. We compared the strings from camera traps and underpasses and overpasses. We expect that for every string on `Structure_id` camera trap sheet to be included on either underpasses or overpasses sheet.
+
+```{r}
+#| label: check-camera-trap-vs-passages
+#| echo: true
+
+ct_diff_under_over <- purrr::map(names(ct), function(x){
+
+  a <- ct[[x]]
+  uo <- under_over[[x]]
+
+  base::setdiff(a$Structure_id, uo$Structure_id) |>
+    tibble::enframe(name = "Erro", value = "Structure_id") |>
+    dplyr::mutate(status = "no_under_nor_over",
+           position = "in_ct")
+}) |>
+  purrr::set_names(names(ct)) |>
+  purrr::keep(~ nrow(.x) > 0) |> # discard datasets without errors
+  dplyr::bind_rows(.id = "Dataset")
+
+ct_diff_under_over |>
+  print(n = Inf)
+```
+
+#### Crossing structures x Camera trap
+
+We apply here the same strategy as above, but in the opposite direction.
+
+```{r}
+#| label: check-passages-vs-camera-trap
+#| echo: true
+
+under_over_diff_ct <- purrr::map(names(ct), function(x){
+
+  a <- ct[[x]]
+  uo <- under_over[[x]]
+
+  base::setdiff(uo$Structure_id, a$Structure_id) |>
+    tibble::enframe(name = "Erro", value = "Structure_id") |>
+    dplyr::mutate(status = "not_in_ct") |>
+    dplyr::left_join(under_over[[x]], by = "Structure_id")
+}) |>
+  purrr::set_names(names(ct)) |>
+  purrr::keep(~ nrow(.x) > 0) |>
+  dplyr::bind_rows(.id = "Dataset")
+
+dplyr::bind_rows(ct_diff_under_over, under_over_diff_ct) |>
+  dplyr::arrange(Dataset) |>
+  print(n = Inf)
+```
+
+### Check if fences are present on underpasses
+
+Firstly we read the `Fencing` spreadsheet for every dataset, filtering for only those who have any row filled.
+
+```{r}
+#| label: read-fences
+#| echo: true
+
+fences <- read_sheet(path = "Excel",
+                     sheet = "Fencing",
+                     na = "NA") |>
+  purrr::map(~ .x |>
+               dplyr::mutate(
+                 Structure_id = as.character(stringr::str_to_upper(Structure_id)),
+                 position = "under",
+                 .keep = "none")) |>
+  purrr::keep(~ nrow(.x) > 0)
+```
+
+We then check if all the `Structure_id` listed on the `Fencing` spreadsheet are comprised on the `Structure_id` on the `Underpasses` spreadsheet.
+
+```{r}
+#| label: check-fences-vs-underpasses
+#| echo: true
+
+fences_diff_under <- purrr::map(names(fences), function(x){
+
+  a <- fences[[x]]
+  u <- under[[x]]
+
+  base::setdiff(a$Structure_id, u$Structure_id) |>
+    tibble::enframe(name = "Erro", value = "Structure_id") |>
+    dplyr::mutate(status = "no_under",
+           position = "in_fences")
+}) |>
+  purrr::set_names(names(fences)) |>
+  purrr::keep(~ nrow(.x) > 0) |>
+  dplyr::bind_rows(.id = "Dataset")
+
+fences_diff_under |>
+  print(n = Inf)
+```
+
+We then proceed on the opposite direction, checking if there are `Structure_id` on the `Underpasses` spreadsheet not encompassed on `Fencing`. Obviously, there are passages that could not have been fenced, however, we play it conservatively to check with the authors if this is the case or if they have forgotten to fill the `Fencing` spreadsheet correctly.
+
+```{r}
+#| label: check-underpasses-vs-fences
+#| echo: true
+
+under_fences_diff <- purrr::map(names(fences), function(x){
+
+  a <- fences[[x]]
+  u <- under[[x]]
+
+  base::setdiff(u$Structure_id, a$Structure_id) |>
+    tibble::enframe(name = "Erro", value = "Structure_id") |>
+    dplyr::mutate(status = "no_fences",
+           position = "in_under")
+}) |>
+  purrr::set_names(names(fences)) |>
+  purrr::keep(~ nrow(.x) > 0) |>
+  dplyr::bind_rows(.id = "Dataset")
+
+under_fences_diff |>
+  print(n = Inf)
+```
+
+------------------------------------------------------------------------

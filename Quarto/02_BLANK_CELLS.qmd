@@ -1,0 +1,120 @@
+---
+title: "Step 2 - Check Blank Cells"
+format: html
+editor: visual
+theme:
+  light: flatly
+  dark: superhero
+---
+
+# Problem description
+
+Initially, we asked for all researchers to completely fill all sheets and cells over the file submitted. This was required for us to be sure that the authors didn't forget to fill out some information. We asked that all cells without information should be filled with `NA`.
+
+# Problem solving
+
+## Common steps
+
+To solve this issue, we first load our common function file:
+
+```{r}
+#| label: load-functions
+#| message: false
+
+source("R/FUNCTIONS.R")
+```
+
+To read the spreadsheets we run the `read_sheet` function that is included on our functions file. However, before doing it, we did two preliminary steps: 1) created a blank list object called `list_sheet_dataset` and 2) a vector object `sheets` with the name of all the spreadsheets that must be read sometime in our evaluations.
+
+```{r}
+#| label: read-spreadsheets
+#| message: false
+#| warning: false
+
+list_sheet_dataset <- list()
+
+spreadsheets <- c(
+  "Underpasses",
+  "Overpasses",
+  "Fencing",
+  "Camera_trap",
+  "Species_records_camera",
+  "Author_data"
+)
+
+# we read every sheet for every dataset
+for (spreadsheet in spreadsheets) {
+
+  message(stringr::str_glue("\nStarting sheet {spreadsheet}\n"))
+      list_sheet_dataset[[spreadsheet]] <- read_sheet(
+        path = "Excel",
+        sheet = spreadsheet
+    )
+
+  message(stringr::str_glue("\nFinalizing sheet {spreadsheet}\n"))
+}
+```
+
+## Checking spreadsheets name consistency
+
+Just to be completely sure that all datasets and their respective spreadsheets had been read, we proceed counting the number of datasets and comparing then to the number of datasets found and stored in `list_sheet_dataset`.
+
+```{r}
+#| label: check-consistency
+#| echo: true
+
+number_of_dataset <- list.files(path = "Excel") |>
+  length()
+
+list_sheet_dataset |>
+  purrr::map(~ length(.x) == number_of_dataset)
+```
+
+## Finding all blank sheets
+
+We are going to reduce the number of levels of `list_sheet_dataset` from 2 to 1 using the `list_flatten` function. In this way we will have a large single list which their names will be a combination of the name of the spreadsheet plus the dataset.
+
+We iterate each data frame and create a numerical and incremental `id` to the sheet. We create another index column called `row` that just matches the row that we see in Excel. Then, we create a column that checks if the sum of the indexes is equal to 0. If this is the case ("Uh oh!"), we only have the row that we manually inserted, meaning that the full sheet was not filled - ERROR! The result of this analysis is a vector with the name of the spreadsheets and their respective datasets.
+
+```{r}
+#| label: find-blank-sheets
+#| echo: true
+
+list_sheet_dataset |>
+  purrr::list_flatten() |>
+  purrr::map(~ tibble::rowid_to_column(.x, "id") |>
+        dplyr::add_row(id = 0) |>
+        dplyr::mutate(row = id + 1,
+               in_or_out = dplyr::if_else(sum(id) == 0, "Uh oh!", "OK")) |>
+        dplyr::filter(in_or_out == "Uh oh!") |>
+        dplyr::select(row)
+  ) |>
+  purrr::keep(~ nrow(.x) >= 1) |>
+  names()
+```
+
+## Finding sparse blank cells
+
+For the sake of completeness, we repeat the first part of the last process. Then, we filter for the sheets that are not completely blank (`in_or_out != "Uh oh!"`) and we finally filter for all columns that have some `NA` cells detected. The following step consisted on keeping only the sheets/datasets that had results considering rows missing mandatory information.
+
+```{r}
+#| label: find-sparse-blanks
+#| echo: true
+
+df <- list_sheet_dataset |>
+  purrr::list_flatten() |>
+  purrr::map(~ tibble::rowid_to_column(., "id") |>
+        dplyr::add_row(id = 0) |>
+        dplyr::mutate(row = id + 1,
+               in_or_out = dplyr::if_else(sum(id) == 0, "Uh oh!", "OK")) |>
+        dplyr::filter(in_or_out != "Uh oh!") |>
+        dplyr::filter_all(dplyr::any_vars(is.na(.))) |>
+        dplyr::filter(id != 0) |>
+        dplyr::select(row)
+  ) |>
+  purrr::keep(~ nrow(.x) >= 1)
+
+df[1]
+```
+
+------------------------------------------------------------------------

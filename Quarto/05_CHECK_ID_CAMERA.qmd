@@ -1,0 +1,104 @@
+---
+title: "Step 5 - Check ID on Camera"
+format: html
+editor: visual
+theme:
+  light: flatly
+  dark: superhero
+---
+
+# Problem Description
+
+This document explains the process of verifying camera IDs between two datasets: the camera trap setup data and the species records data. The goal is to identify any mismatches or inconsistencies in camera IDs between these datasets.
+
+# Problem Solving
+
+## Common steps
+
+To solve this issue, we follow some of the first basic steps from previous checks, as using our customized `read_sheet` function that provides the full paths of all .xlsx files available in order to read the species sheet from all files.
+
+```{r}
+#| label: setup
+
+source("R/FUNCTIONS.R")
+```
+
+## Data Loading
+
+We load two datasets from the spreadsheet: 1. Camera trap setup data (`ct`) 2. Species records data (`rec`)
+
+```{r}
+#| label: load-data
+#| echo: true
+#| warning: false
+
+# Read camera trap setup data
+ct <- read_sheet(sheet = "Camera_trap")
+
+# Read species records data
+rec <- read_sheet(sheet = "Species_records_camera")
+```
+
+## Verification Process
+
+The verification process consists of two main checks:
+
+### Records to Camera Trap Check
+
+This check identifies any camera IDs in the species records that don't exist in the camera trap data:
+
+```{r}
+#| label: check-records-to-ct
+#| echo: true
+
+record_to_ct <- purrr::map2(ct, rec, function(c, r) {
+  base::setdiff(r$Camera_id, c$Camera_id) |>
+    tibble::enframe(name = "Error", value = "Camera_id") |>
+    dplyr::mutate(note = "Record without camera on sheet")
+}) |>
+  purrr::discard(~ nrow(.x) == 0) |>
+  dplyr::bind_rows(.id = "Dataset")
+
+head(record_to_ct)
+```
+
+### Camera Trap to Records Check
+
+This check identifies any camera IDs in the camera trap data that don't have corresponding records:
+
+```{r}
+#| label: check-ct-to-records
+#| echo: true
+
+ct_to_record <- purrr::map2(ct, rec, function(c, r) {
+  base::setdiff(c$Camera_id, r$Camera_id) |>
+    tibble::enframe(name = "Error", value = "Camera_id") |>
+    dplyr::mutate(note = "Camera without record on sheet")
+}) |>
+  purrr::discard(~ nrow(.x) == 0) |>
+  dplyr::bind_rows(.id = "Dataset")
+
+head(ct_to_record)
+```
+
+## Output Generation
+
+Finally, we combine both checks and save the results to an Excel file:
+
+```{r}
+#| label: save-output
+#| echo: true
+
+record_to_ct |>
+  dplyr::bind_rows(ct_to_record) |>
+  openxlsx::write.xlsx("Output/check_id_errors.xlsx", asTable = TRUE)
+```
+
+## Results Interpretation
+
+The output file `check_id_errors.xlsx` contains two types of errors:
+
+-   Camera IDs that appear in species records but not in the camera trap data
+-   Camera IDs that appear in the camera trap data but have no corresponding species records
+
+This helps identify potential data entry errors or missing information in either dataset.

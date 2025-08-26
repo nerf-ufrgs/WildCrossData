@@ -1,0 +1,245 @@
+---
+title: "Step 3 - Check Species Validity"
+format: html
+editor: visual
+theme:
+  light: flatly
+  dark: superhero
+---
+
+# Problem description
+
+In databases it is frequent to have a species taxa list. Since most of the lists are filled by humans it is expected that the taxa names have typos and different styles of determining unindentified species notation. In that sense it is necessary to check and correct the taxa name using services specifics to that end.
+
+Since we're checking crossings obtained by camera traps it is normal that some taxa couldn't be identified in species level. This represents a more difficult approach as we have to consider the lowest possible taxonomic level. In this context we have to have solutions that tackle the validity of several ways of filling the species field.
+
+# Problem solving
+
+## Common steps
+
+To solve this issue, we follow some of the first basic steps from previous checks, as using our customized `read_sheet` function that provides the full paths of all .xlsx files available in order to read the species sheet from all files.
+
+```{r}
+#| label: load-functions
+#| echo: true
+
+source("R/FUNCTIONS.R")
+```
+
+```{r}
+#| label: read-species-data
+#| echo: true
+
+spreadsheets <- read_sheet(path = "Excel", results = FALSE)
+
+sp_full <- purrr::map(.x = spreadsheets, function(arquivo){
+  readxl::read_excel(
+    arquivo,
+    sheet = 6,
+    na = c("NA", "na"),
+    col_types = c("guess", "guess", "guess", "date", "guess", "guess", "guess"),
+    col_names = TRUE
+  )
+})
+
+head(sp_full[1][[1]]) # show head of first file
+```
+
+## Specific steps
+
+### Full species
+
+We first start keeping only valid (full) species. In this sense, we are considering only two-worded terms that doesn't have `sp`, `spp`, `ni` and similars, which are commonly used to designate unidentified species.
+
+```{r}
+#| label: filter-full-species
+#| echo: true
+
+species_all_check <- sp_full |>
+  purrr::map(function(x) {
+    x |>
+      dplyr::distinct(Species) |>  # unique values for Species
+      dplyr::mutate(Species = stringr::str_squish(Species)) |> # remove whitespaces
+      dplyr::filter(
+        stringr::str_count(Species, " ") == 1,
+        !stringr::str_detect(stringr::word(Species, 2, 2), "\\."),
+        !stringr::str_detect(stringr::word(Species, 2, 2), "^sp$"),
+        !stringr::str_detect(stringr::word(Species, 2, 2), "^sp(?=\\.)"),
+        !stringr::str_detect(stringr::word(Species, 2, 2), "^spp(?=\\.)"),
+        !stringr::str_detect(stringr::word(Species, 2, 2), "\\("),
+        !stringr::str_detect(stringr::word(Species, 2, 2), "^ni$"),
+        !stringr::str_detect(stringr::word(Species, 2, 2), "^NI$"),
+        !stringr::str_detect(stringr::word(Species, 2, 2), "^NID$"),
+        !stringr::str_detect(Species, "\\/")
+      ) |>
+      dplyr::arrange(Species) |> # alphabetical order
+      dplyr::pull() # vector
+  })
+
+head(species_all_check[1][[1]]) # show head of first list
+```
+
+Since there is a chance that some of the species name have multiple types of spelling considering trailing spaces, we check for names that are similar.
+
+```{r}
+#| label: check-similar-names
+#| echo: true
+
+species_all_check |>
+  purrr::map(function(x){
+    table <- table(x)
+
+    table[table > 1]
+  }) |>
+  purrr::keep(~ any(.x > 1))
+```
+
+Having the full species list, we use the Global Names Verifier API (https://verifier.globalnames.org/) to check the species names. We opted to do it through Integrated Taxonomic Information System (ITIS) which is data source = 3 on the address for the API. We use the package `httr` to help on checking the API.
+
+For each dataset, we checked all full species names. By the end of the code chunk, we unnested the columns `bestResult` and `scoreDetails` that come originally as a data frame from the Global Names Verifier. Following this procedure, we compiled the species results in a single data frame for all species for each dataset.
+
+```{r}
+#| label: verify-species-names
+#| message: false
+
+list_check_globalnames <- list()
+
+for (dataset in names(species_all_check)) {
+
+  species <- species_all_check[[dataset]]
+
+  message(stringr::str_glue("Starting dataset {dataset}"))
+
+  for (sp in species) {
+    sp_ <- stringr::str_replace(sp, " ", "_")
+
+    result <- httr::GET(stringr::str_glue("https://verifier.globalnames.org/api/v1/verifications/{sp_}?data_sources=3")) # the link for the API check
+
+    list_check_globalnames[[dataset]][[sp_]] <- jsonlite::fromJSON(rawToChar(result$content))[["names"]] # save the part that interests us on a list composed by the dataset and the species name
+  }
+  # bind the species list on a single data frame unnesting the columns that are a data frame
+  list_check_globalnames[[dataset]][["all_results"]] <- list_check_globalnames[[dataset]] |>
+    dplyr::bind_rows() |>
+    tidyr::unnest(cols = c(bestResult), names_repair = "unique") |>
+    tidyr::unnest(cols = c(scoreDetails), names_repair = "unique") |>
+    tibble::as_tibble()
+}
+
+list_check_globalnames[[1]][["all_results"]]
+```
+
+The next step consisted in creating a full data frame of all the species from all the datasets. We mapped the `all_results` list from each dataset and then stacked them on a single data frame.
+
+```{r}
+#| label: combine-species-results
+#| echo: true
+
+list_sp <- list_check_globalnames |>
+  purrr::map("all_results") |>
+  dplyr::bind_rows(.id = "dataset") |>
+  janitor::clean_names() |>
+  dplyr::mutate(query = stringr::str_replace_all(name, "_", " "), .after = name)
+
+head(list_sp)
+```
+
+Since we want only the errors, we filtered the column `match_type_4` to show every row in which the result was not "Exact". That means that every species in which the query and the result was not the exact same term were selected to further evaluation.
+
+```{r}
+#| label: filter-species-errors
+#| echo: true
+
+sp_with_errors <- list_sp |>
+  dplyr::filter(match_type_4 != "Exact")
+
+head(sp_with_errors)
+```
+
+After checking the list of species considered not "Exact", we found that some species that were not "Exact" must be whitelisted, since we are sure that the name is valid (for example, checking the List of Brazilian Mammals from the Brazilian Mastozoological Society). They can be appended to the names that were considered as "Exact". This is the last step for the "Full species" inspection.
+
+```{r}
+#| label: create-species-whitelist
+#| echo: true
+
+sp_whitelist <- list_sp |>
+  dplyr::filter(match_type_4 == "Exact") |>
+  dplyr::pull(query) |>
+  append(c("Guerlinguetus brasiliensis", "Guerlinguetus ingrami")) |> # manually insert species that we know that are correct but the API don't think they are.
+  unique() |>
+  sort()
+
+head(sp_whitelist)
+```
+
+### Imprecise taxa
+
+First of all we have to filter for the species that were not on the query for full species - meaning that all of the terms that were not considered as full species still have to be evaluated.
+
+```{r}
+#| label: filter-imprecise-taxa
+#| echo: true
+
+non_species_all_check <- purrr::map2(sp_full, species_all_check, function(x, y){
+  x |>
+    dplyr::distinct(Species) |>
+    dplyr::mutate(Species = stringr::str_squish(Species)) |>
+    dplyr::pull(Species) |>
+    setdiff(y)
+}) |>
+  purrr::compact()
+
+head(non_species_all_check[[1]])
+```
+
+We perform the same approach as we did for the full species, this time for the terms that are not full. By the end, we create a data frame that comprises all terms that were not considered as "Exact" on the query from the API, as well as queries that involved terms as "NI" or "spp".
+
+```{r}
+#| label: verify-imprecise-taxa
+#| message: false
+
+list_non_sp_with_errors <- list()
+
+for (dataset in names(non_species_all_check)) {
+
+  species <- non_species_all_check[[dataset]]
+
+  message(stringr::str_glue("Starting dataset {dataset}"))
+
+  for (sp in species) {
+    sp_ <- sp |>
+      stringr::str_remove_all("[[:punct:]]") |>
+      stringr::str_replace_all(pattern = " ", replacement = "_")
+
+    result <- httr::GET(stringr::str_glue("https://verifier.globalnames.org/api/v1/verifications/{sp_}?data_sources=3")) # the link for the API check
+
+    list_non_sp_with_errors[[dataset]][[sp_]] <- jsonlite::fromJSON(rawToChar(result$content))[["names"]] # save the part that interests us on a list composed by the dataset and the species name
+  }
+  # bind the species list on a single data frame unnesting the columns that are a data frame
+  list_non_sp_with_errors[[dataset]][["all_results"]] <- list_non_sp_with_errors[[dataset]] |>
+    dplyr::bind_rows() |>
+    tibble::as_tibble()
+}
+
+non_sp_with_errors <- list_non_sp_with_errors |>
+  purrr::map("all_results") |>
+  dplyr::bind_rows(.id = "dataset") |>
+  janitor::clean_names() |>
+  dplyr::mutate(query = stringr::str_replace_all(name, "_", " "), .after = name)
+
+head(non_sp_with_errors)
+```
+
+The last step is to put together a full list of problems/errors independently if they are for full species or imprecise taxa. In this step we use the `sp_whitelist` to escape this terms that we think are correct.
+
+```{r}
+#| label: combine-all-errors
+#| message: false
+
+sp_with_errors |>
+  dplyr::select(dataset, query, matched_canonical_simple, match_type = match_type_4) |>
+  dplyr::filter(!query %in% sp_whitelist) |>
+  dplyr::bind_rows(non_sp_with_errors) |>
+  dplyr::arrange(dataset)
+```
+
+------------------------------------------------------------------------

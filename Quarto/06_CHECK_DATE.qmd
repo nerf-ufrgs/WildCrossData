@@ -1,0 +1,192 @@
+---
+title: "Step 6 - Check Date Consistency"
+format: html
+editor: visual
+theme:
+  light: flatly
+  dark: superhero
+---
+
+# Problem Description
+
+This document describes the process of checking date and time consistency in the camera trap dataset. The goal is to identify records with inconsistent sampling periods, future dates, or species records outside the sampling interval.
+
+# Problem Solving
+
+## Common Steps
+
+We start by loading the required functions and packages.
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(hms)
+library(tidyverse)
+source("R/FUNCTIONS.R")
+```
+
+We load the camera trap setup data for further checks.
+
+```{r}
+#| label: load-ct
+#| warning: false
+
+ct <- read_sheet(sheet = "Camera_trap", na = c("NA", "na"))
+```
+
+## Check for Short Sampling Durations
+
+We identify camera deployments with a sampling duration of less than 24 hours (86,400 seconds).
+
+```{r}
+#| label: check-short-duration
+#| warning: false
+
+check_date_before <- map(.x = ct, function(dataset) {
+    dataset |>
+        dttm_update(date_col = "Start_date", time_col = "Start_time") |>
+        dttm_update(date_col = "End_date", time_col = "End_time") |>
+        select(-ends_with("_time")) |>
+        mutate(
+            duration = as.duration(Start_date %--% End_date)
+        ) |>
+        filter(duration < 86400)
+}) |>
+    bind_rows(.id = "dataset") |>
+    select(dataset, Camera_id, Start_date:duration)
+
+check_date_before
+```
+
+## Check for Excessively Long Sampling Durations
+
+We identify deployments with a sampling duration longer than 3 months (7,776,000 seconds).
+
+```{r}
+#| label: check-long-duration
+#| warning: false
+
+check_date_after <- map(.x = ct, function(dataset) {
+    dataset |>
+        dttm_update(date_col = "Start_date", time_col = "Start_time") |>
+        dttm_update(date_col = "End_date", time_col = "End_time") |>
+        select(-ends_with("_time")) |>
+        mutate(
+            duration = as.duration(Start_date %--% End_date)
+        ) |>
+        filter(duration > 7776000)
+}) |>
+    bind_rows(.id = "dataset") |>
+    select(dataset, Camera_id, Start_date:duration)
+
+check_date_after
+```
+
+## Check for Future Dates
+
+We flag deployments with start or end dates set in the future. We defined the threshold date as April 30th, 2025.
+
+```{r}
+#| label: check-future-dates
+#| warning: false
+
+check_date_future <- map(.x = ct, function(dataset) {
+    data_thresh <- "2025-04-30"
+    dataset |>
+        mutate(
+            date_start = ymd(as.character(Start_date)),
+            date_end = ymd(as.character(End_date))
+        ) |>
+        filter(if_any(starts_with("date_"), ~ .x > data_thresh))
+}) |>
+    bind_rows(.id = "dataset") |>
+    select(dataset, Camera_id, date_start:date_end)
+
+check_date_future
+```
+
+## Check Species Records Within Sampling Interval
+
+We load the species records data for cross-checking with camera trap intervals.
+
+```{r}
+#| label: load-species-records
+#| warning: false
+
+rec <- read_sheet(
+  sheet = "Species_records_camera", 
+  na = c("NA", "na")
+  )
+
+datasets <- names(rec)
+```
+
+We check if each species record falls within the sampling interval of the corresponding camera.
+
+```{r}
+#| label: check-records-within-interval
+#| warning: false
+
+species_records_within_ct_date <- list()
+error_log <- tibble(dataset = character(), error_message = character())
+
+for (dataset in datasets) {
+    message(str_glue("Starting dataset {dataset}\n"))
+    tryCatch(
+        {
+            camera <- ct[[dataset]] |>
+                select(Structure_id, Camera_id, Start_date, End_date)
+
+            species_records_within_ct_date[[dataset]] <- rec[[dataset]] |>
+                inner_join(camera, by = c("Camera_id", "Structure_id")) |>
+                mutate(
+                    across(ends_with("date"), as_datetime),
+                    row = row_number(),
+                    check = case_when(
+                        Record_date %within% c(Start_date %--% End_date) ~
+                            "YES",
+                        TRUE ~ "NO"
+                    )
+                ) |>
+                filter(check == "NO") |>
+                select(row, Species, Camera_id, ends_with("date"), check)
+            message(str_glue("Finalizing dataset {dataset}\n"))
+        },
+        error = function(e) {
+            msg <- as.character(e$message)
+            error_log <<- bind_rows(
+                error_log,
+                tibble(dataset = dataset, error_message = msg)
+            )
+            message(str_glue("Error in dataset {dataset}: {msg}\n"))
+            return(NULL)
+        }
+    )
+}
+
+error_log
+```
+
+We summarize and print the number of records outside the sampling interval for each dataset.
+
+```{r}
+#| label: summarize-outside-interval
+#| warning: false
+
+species_records_within_ct_date |>
+    discard(~ nrow(.x) == 0) |>
+    bind_rows(.id = "dataset") |>
+    count(dataset, sort = TRUE) |>
+    print(n = Inf)
+```
+
+We export the records outside the sampling interval to an Excel file.
+
+```{r}
+#| label: export-results 
+#| warning: false
+
+species_records_within_ct_date |> 
+  openxlsx::write.xlsx( "Output/REGISTROS_SP_FORA_DA_DATA.xlsx", asTable = TRUE, colWidths = "auto" )
+```

@@ -1,0 +1,165 @@
+---
+title: "Step 0 - Creating customized functions"
+format: html
+editor: visual
+theme:
+  light: flatly
+  dark: superhero
+---
+
+```{r packages}
+#| include: false
+
+# Loading packages
+library(readxl)
+library(tidyverse)
+```
+
+# Presentation
+
+Blabla
+
+# Functions
+## `read_sheet`
+
+One the first steps of our datapaper was to create functions that are common to several other checks that we will perform.
+
+The primary function concerns to reading the Excel files and their spreadsheets containing the data. Since some other checks didn't need the results of the reading but only the names of the datasets and their paths, we created a function encompassing these issues. The function is called `read_sheet`.
+
+```{r}
+#| echo: true
+read_sheet <- function(path = "Excel", sheet = NULL, na = "", results = TRUE) {
+  excel <- list.files(
+    path = path,
+    pattern = "^\\w.+xlsx$",
+    full.names = TRUE,
+    recursive = TRUE
+  )
+
+  names <- excel |>
+    stringr::str_split("/|\\.") |>
+    purrr::map_vec(2)
+
+  load <- excel |>
+    purrr::set_names(names)
+
+  if (!results) {
+    return(load)
+  }
+
+  column_types <- set_column_types(sheet = sheet)
+
+  result <- load |>
+    purrr::map(function(file) {
+      df <- withCallingHandlers(
+        readxl::read_xlsx(
+          path = file,
+          sheet = sheet,
+          na = na,
+          col_names = TRUE,
+          col_types = column_types
+        )
+      ) |>
+        janitor::remove_empty("rows")
+
+      names(df) <- df |>
+        janitor::clean_names() |>
+        colnames() |>
+        stringr::str_to_sentence()
+
+      return(df)
+    })
+
+  return(result)
+}
+```
+
+The function has four arguments:
+
+-   *path*: the pattern was set to "Excel" as this is the folder where our files are stored.
+-   *sheet*: we put as `NULL` because we may not want to have the full results, therefore, there is no need to read the spreadsheets.
+-   *na*: to define what are the options to read `NA`. Default "".
+-   *results*: we may not want the results but only the paths for the datasets in customized functions (see Column Consistency).
+
+To read the spreadsheets we need to list the files on the folder, by specifying which one is an Excel file. We ask R to return the full names, which include the full path of the file. For the sake of organization we also named the previous vector with the paths of the spreadsheets with the respective names of their main authors. Now we set the names of the paths with the author's names extracted in last step.
+
+Firstly, we retrieve the full path of any .xlsx file found inside the "Excel" folder. The second step consists on splitting the full path into pieces and plucking the second element, as it represents the name of the dataset. Following, we name every full path with the name of the dataset. If we are reading the Excel files with a customized function, we stop here. If not, we read every Excel file of the list considering the `sheet` informed. The results comprise the name of the columns in a specific format, which is initiated by a capital letter followed by lowercase letters with the underscore separator for words.
+
+------------------------------------------------------------------------
+
+## `unique_id`
+
+The function takes two arguments:
+
+- *x*: a data frame from the `Camera_trap` sheet.  
+- *sep*: a string (default `"_"`) used to separate the original `Camera_id` from an appended letter when duplicates are found.
+
+Internally, it adds a helper column `rowid` with to preserve the original row order, then groups the data by `Structure_id` and `Camera_id` and counts how many times each pair appears into a column called `double`. Within each group it saves the original `Camera_id` as `Camera_id_orig`, assigns a sequential index `Dup_id` and constructs `Dup_form_name`: if `double` equals 1 it keeps the original `Camera_id`, otherwise it appends the separator and a letter from `LETTERS` based on `Dup_id`. After ungrouping, it selects the helper columns (`rowid`, `Camera_id_orig`, `Dup_form_name`, `double`) and left-joins them back onto the original data by `rowid`, then updates `Camera_id` to `Dup_form_name` when present, relocates `Camera_id_orig` immediately after `Camera_id`, and drops the temporary columns.
+
+The practical effect is to ensure that within each `Structure_id`–`Camera_id` group any repeated camera IDs become unique by appending letters, while preserving the original ID in `Camera_id_orig` and returning the full updated data frame.
+
+```{r}
+unique_id <- function(x, sep = "_") {
+  x_with_id <- x |>
+    tibble::rowid_to_column()
+  
+  x_with_id |>
+    dplyr::group_by(Structure_id, Camera_id) |>
+    dplyr::add_count(Structure_id, Camera_id, name = "double") |>
+    dplyr::mutate(
+      Camera_id_orig = Camera_id,
+      Dup_id = dplyr::row_number(Camera_id),
+      Dup_form_name = dplyr::if_else(
+        condition = double == 1,
+        true = Camera_id,
+        false = stringr::str_c(Camera_id, sep, LETTERS[Dup_id])
+      )
+    ) |>
+    dplyr::ungroup() |>
+    dplyr::select(rowid, Camera_id_orig, Dup_form_name, double) |>
+    dplyr::left_join(x_with_id, ., by = "rowid") |>
+    dplyr::mutate(
+      Camera_id = dplyr::if_else(
+        !is.na(Dup_form_name),
+        Dup_form_name,
+        Camera_id
+      )
+    ) |>
+    dplyr::relocate(Camera_id_orig, .after = Camera_id) |>
+    dplyr::select(-Dup_form_name, -rowid)
+}
+```
+
+------------------------------------------------------------------------
+
+## `dttm_update`
+
+The function takes three arguments:
+
+- *x*: a data frame containing date and time columns.
+- *date_col*: the name (string) of the column that stores the date part.
+- *time_col*: the name (string) of the column that stores the time part.
+
+Internally, we update the original date column using `lubridate:::update_datetime()`, combining the existing date with hours, minutes, and seconds extracted from the time column via `lubridate::hour()`, `lubridate::minute()`, and `lubridate::second()`.  
+
+The practical effect is to merge the date information from one column with the time information from another, producing a complete datetime object in the specified date column and returning the updated data frame.
+
+```{r}
+dttm_update <- function(x, date_col, time_col) {
+
+  date_sym <- rlang::sym(date_col)
+  time_sym <- rlang::sym(time_col)
+  
+  x |>
+    dplyr::mutate(
+      !!date_sym := lubridate:::update_datetime(
+        !!date_sym,
+        hour = lubridate::hour(!!time_sym),
+        minute = lubridate::minute(!!time_sym),
+        second = lubridate::second(!!time_sym)
+      )
+    )
+}
+```
+
+***

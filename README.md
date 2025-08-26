@@ -1,3 +1,3 @@
-# WildCrossData-Scripts
+# WildCrossData
 
-PRECISAMOS ESCREVER
+Scripts and Quarto files from the evaluation of the spreadsheets.

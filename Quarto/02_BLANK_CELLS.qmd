@@ -44,12 +44,11 @@ spreadsheets <- c(
 
 # we read every sheet for every dataset
 for (spreadsheet in spreadsheets) {
-
   message(stringr::str_glue("\nStarting sheet {spreadsheet}\n"))
-      list_sheet_dataset[[spreadsheet]] <- read_sheet(
-        path = "Excel",
-        sheet = spreadsheet
-    )
+  list_sheet_dataset[[spreadsheet]] <- read_sheet(
+    path = "Example",
+    sheet = spreadsheet
+  )
 
   message(stringr::str_glue("\nFinalizing sheet {spreadsheet}\n"))
 }
@@ -63,7 +62,7 @@ Just to be completely sure that all datasets and their respective spreadsheets h
 #| label: check-consistency
 #| echo: true
 
-number_of_dataset <- list.files(path = "Excel") |>
+number_of_dataset <- list.files(path = "Example") |>
   length()
 
 list_sheet_dataset |>
@@ -82,12 +81,15 @@ We iterate each data frame and create a numerical and incremental `id` to the sh
 
 list_sheet_dataset |>
   purrr::list_flatten() |>
-  purrr::map(~ tibble::rowid_to_column(.x, "id") |>
-        dplyr::add_row(id = 0) |>
-        dplyr::mutate(row = id + 1,
-               in_or_out = dplyr::if_else(sum(id) == 0, "Uh oh!", "OK")) |>
-        dplyr::filter(in_or_out == "Uh oh!") |>
-        dplyr::select(row)
+  purrr::map(
+    ~ tibble::rowid_to_column(.x, "id") |>
+      dplyr::add_row(id = 0) |>
+      dplyr::mutate(
+        row = id + 1,
+        in_or_out = dplyr::if_else(sum(id) == 0, "Uh oh!", "OK")
+      ) |>
+      dplyr::filter(in_or_out == "Uh oh!") |>
+      dplyr::select(row)
   ) |>
   purrr::keep(~ nrow(.x) >= 1) |>
   names()
@@ -103,14 +105,17 @@ For the sake of completeness, we repeat the first part of the last process. Then
 
 df <- list_sheet_dataset |>
   purrr::list_flatten() |>
-  purrr::map(~ tibble::rowid_to_column(., "id") |>
-        dplyr::add_row(id = 0) |>
-        dplyr::mutate(row = id + 1,
-               in_or_out = dplyr::if_else(sum(id) == 0, "Uh oh!", "OK")) |>
-        dplyr::filter(in_or_out != "Uh oh!") |>
-        dplyr::filter_all(dplyr::any_vars(is.na(.))) |>
-        dplyr::filter(id != 0) |>
-        dplyr::select(row)
+  purrr::map(
+    ~ tibble::rowid_to_column(., "id") |>
+      dplyr::add_row(id = 0) |>
+      dplyr::mutate(
+        row = id + 1,
+        in_or_out = dplyr::if_else(sum(id) == 0, "Uh oh!", "OK")
+      ) |>
+      dplyr::filter(in_or_out != "Uh oh!") |>
+      dplyr::filter_all(dplyr::any_vars(is.na(.))) |>
+      dplyr::filter(id != 0) |>
+      dplyr::select(row)
   ) |>
   purrr::keep(~ nrow(.x) >= 1)
 

@@ -48,7 +48,7 @@ After we zeroing the warnings, we are able to check if R successfully bind the r
 #Underpasses ----
 source("R/FUNCTIONS.R")
 
-under_q <- purrr::quietly(function(file){
+under_q <- purrr::quietly(function(file) {
   readxl::read_excel(
     file,
     col_types = col_types[["Underpasses"]]$Type,
@@ -59,7 +59,7 @@ under_q <- purrr::quietly(function(file){
     janitor::remove_empty("rows")
 })
 
-under_all_outputs <- read_sheet(path = "Excel", results = FALSE) |>
+under_all_outputs <- read_sheet(path = "Example", results = FALSE) |>
   purrr::map(under_q)
 
 under_warns <- under_all_outputs |>

@@ -13,11 +13,11 @@ book:
         - Quarto/00_PRESENTATION_FUNCTIONS.qmd
         - Quarto/01_COLUMN_CONSISTENCY.qmd
         - Quarto/02_BLANK_CELLS.qmd
-        - Quarto/03_CHECK_SPECIES.qmd
-        - Quarto/04_CHECK_STRUCTURE.qmd
-        - Quarto/05_CHECK_ID_CAMERA.qmd
-        - Quarto/06_CHECK_DATE.qmd
-        - Quarto/07_CHECK_DUPLICATED_CAMERA_ON_STRUCTURE.qmd
+        - Quarto/03_SPECIES.qmd
+        - Quarto/04_STRUCTURE.qmd
+        - Quarto/05_ID_CAMERA.qmd
+        - Quarto/06_DATE.qmd
+        - Quarto/07_DUPLICATED_CT.qmd
 
 format:
   html:
@@ -40,8 +40,8 @@ format:
                 - Quarto/00_PRESENTATION_FUNCTIONS.qmd
                 - Quarto/01_COLUMN_CONSISTENCY.qmd
                 - Quarto/02_BLANK_CELLS.qmd
-                - Quarto/03_CHECK_SPECIES.qmd
-                - Quarto/04_CHECK_STRUCTURE.qmd
-                - Quarto/05_CHECK_ID_CAMERA.qmd
-                - Quarto/06_CHECK_DATE.qmd
-                - Quarto/07_CHECK_DUPLICATED_CAMERA_ON_STRUCTURE.qmd
+                - Quarto/03_SPECIES.qmd
+                - Quarto/04_STRUCTURE.qmd
+                - Quarto/05_ID_CAMERA.qmd
+                - Quarto/06_DATE.qmd
+                - Quarto/07_DUPLICATED_CT.qmd

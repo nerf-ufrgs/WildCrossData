@@ -20,15 +20,21 @@ library(tidyverse)
 Blabla
 
 # Functions
+
 ## `read_sheet`
 
 One the first steps of our datapaper was to create functions that are common to several other checks that we will perform.
 
 The primary function concerns to reading the Excel files and their spreadsheets containing the data. Since some other checks didn't need the results of the reading but only the names of the datasets and their paths, we created a function encompassing these issues. The function is called `read_sheet`.
 
-```{r}
+```{r read-sheet}
 #| echo: true
-read_sheet <- function(path = "Excel", sheet = NULL, na = "", results = TRUE) {
+read_sheet <- function(
+  path = "Example",
+  sheet = NULL,
+  na = "",
+  results = TRUE
+) {
   excel <- list.files(
     path = path,
     pattern = "^\\w.+xlsx$",
@@ -91,18 +97,18 @@ Firstly, we retrieve the full path of any .xlsx file found inside the "Excel" fo
 
 The function takes two arguments:
 
-- *x*: a data frame from the `Camera_trap` sheet.  
-- *sep*: a string (default `"_"`) used to separate the original `Camera_id` from an appended letter when duplicates are found.
+-   *x*: a data frame from the `Camera_trap` sheet.\
+-   *sep*: a string (default `"_"`) used to separate the original `Camera_id` from an appended letter when duplicates are found.
 
 Internally, it adds a helper column `rowid` with to preserve the original row order, then groups the data by `Structure_id` and `Camera_id` and counts how many times each pair appears into a column called `double`. Within each group it saves the original `Camera_id` as `Camera_id_orig`, assigns a sequential index `Dup_id` and constructs `Dup_form_name`: if `double` equals 1 it keeps the original `Camera_id`, otherwise it appends the separator and a letter from `LETTERS` based on `Dup_id`. After ungrouping, it selects the helper columns (`rowid`, `Camera_id_orig`, `Dup_form_name`, `double`) and left-joins them back onto the original data by `rowid`, then updates `Camera_id` to `Dup_form_name` when present, relocates `Camera_id_orig` immediately after `Camera_id`, and drops the temporary columns.
 
 The practical effect is to ensure that within each `Structure_id`–`Camera_id` group any repeated camera IDs become unique by appending letters, while preserving the original ID in `Camera_id_orig` and returning the full updated data frame.
 
-```{r}
+```{r unique-id}
 unique_id <- function(x, sep = "_") {
   x_with_id <- x |>
     tibble::rowid_to_column()
-  
+
   x_with_id |>
     dplyr::group_by(Structure_id, Camera_id) |>
     dplyr::add_count(Structure_id, Camera_id, name = "double") |>
@@ -136,20 +142,19 @@ unique_id <- function(x, sep = "_") {
 
 The function takes three arguments:
 
-- *x*: a data frame containing date and time columns.
-- *date_col*: the name (string) of the column that stores the date part.
-- *time_col*: the name (string) of the column that stores the time part.
+-   *x*: a data frame containing date and time columns.
+-   *date_col*: the name (string) of the column that stores the date part.
+-   *time_col*: the name (string) of the column that stores the time part.
 
-Internally, we update the original date column using `lubridate:::update_datetime()`, combining the existing date with hours, minutes, and seconds extracted from the time column via `lubridate::hour()`, `lubridate::minute()`, and `lubridate::second()`.  
+Internally, we update the original date column using `lubridate:::update_datetime()`, combining the existing date with hours, minutes, and seconds extracted from the time column via `lubridate::hour()`, `lubridate::minute()`, and `lubridate::second()`.
 
 The practical effect is to merge the date information from one column with the time information from another, producing a complete datetime object in the specified date column and returning the updated data frame.
 
-```{r}
+```{r dttm-update}
 dttm_update <- function(x, date_col, time_col) {
-
   date_sym <- rlang::sym(date_col)
   time_sym <- rlang::sym(time_col)
-  
+
   x |>
     dplyr::mutate(
       !!date_sym := lubridate:::update_datetime(
@@ -162,4 +167,4 @@ dttm_update <- function(x, date_col, time_col) {
 }
 ```
 
-***
+------------------------------------------------------------------------

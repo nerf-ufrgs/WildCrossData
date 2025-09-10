@@ -4,27 +4,7 @@
     "href": "index.html",
     "title": "Datapaper WildCrossData Latin America",
     "section": "",
-    "text": "0.1 Welcome\nThis book documents the data quality checks performed on the camera trap data. Each chapter describes a specific check and its implementation.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Datapaper WildCrossData Latin America</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#chapters",
-    "href": "index.html#chapters",
-    "title": "Datapaper WildCrossData Latin America",
-    "section": "0.2 Chapters",
-    "text": "0.2 Chapters\n\nColumn Consistency - Checks for consistency in column types across spreadsheets.\nBlank Cells - Identifies blank cells and sheets in the data.\nSpecies Validity - Validates species names using the Global Names Verifier API.\nStructure Checks - Verifies consistency between camera trap and structure data\nCamera ID Verification - Ensures camera IDs are properly linked across datasets.\nCamera Date Checks - Checks several possibilities for anomalous dates.\nCamera ID Duplicated on Structure - Tests if there is a duplicated camera IDs for a given structure.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Datapaper WildCrossData Latin America</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Datapaper WildCrossData Latin America",
-    "section": "0.3 About",
-    "text": "0.3 About\nThis book is part of the data quality assurance process for the camera trap dataset. Each check is implemented in R and documented using Quarto.",
+    "text": "Welcome\nThis book documents the data quality checks performed on the camera trap data. Each chapter describes a specific check and its implementation.\n\n\nChapters\n\nCustom Functions - Reusable custom functions for data checks.\nColumn Consistency - Checks for consistency in column types across spreadsheets.\nBlank Cells - Identifies blank cells and sheets in the data.\nSpecies Validity - Validates species names using the Global Names Verifier API.\nStructure Checks - Verifies consistency between camera trap and structure data\nCamera ID Verification - Ensures camera IDs are properly linked across datasets.\nCamera Date Checks - Checks several possibilities for anomalous dates.\nCamera ID Duplicated on Structure - Tests if there is a duplicated camera IDs for a given structure.\n\n\n\nAbout\nThis book is part of the data quality assurance process for the camera trap dataset. Each check is implemented in R and documented using Quarto.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Datapaper WildCrossData Latin America</span>"
     ]

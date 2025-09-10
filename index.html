@@ -3808,7 +3808,7 @@ vertical-align: -.125em;
 
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -4077,17 +4077,7 @@ vertical-align: -.125em;
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome"><span class="header-section-number">0.1</span> Welcome</a></li>
-  <li><a href="#chapters" id="toc-chapters" class="nav-link" data-scroll-target="#chapters"><span class="header-section-number">0.2</span> Chapters</a></li>
-  <li><a href="#about" id="toc-about" class="nav-link" data-scroll-target="#about"><span class="header-section-number">0.3</span> About</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -4123,24 +4113,25 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="welcome" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="welcome"><span class="header-section-number">0.1</span> Welcome</h2>
+<section id="welcome" class="level3">
+<h3 class="anchored" data-anchor-id="welcome">Welcome</h3>
 <p>This book documents the data quality checks performed on the camera trap data. Each chapter describes a specific check and its implementation.</p>
 </section>
-<section id="chapters" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="chapters"><span class="header-section-number">0.2</span> Chapters</h2>
-<ol type="1">
-<li><a href="Quarto/01_COLUMN_CONSISTENCY">Column Consistency</a> - Checks for consistency in column types across spreadsheets.</li>
-<li><a href="Quarto/02_BLANK_CELLS">Blank Cells</a> - Identifies blank cells and sheets in the data.</li>
-<li><a href="Quarto/03_CHECK_SPECIES">Species Validity</a> - Validates species names using the Global Names Verifier API.</li>
-<li><a href="Quarto/04_CHECK_STRUCTURE">Structure Checks</a> - Verifies consistency between camera trap and structure data</li>
-<li><a href="Quarto/05_CHECK_ID_CAMERA">Camera ID Verification</a> - Ensures camera IDs are properly linked across datasets.</li>
-<li><a href="Quarto/06_CHECK_DATE">Camera Date Checks</a> - Checks several possibilities for anomalous dates.</li>
-<li><a href="Quarto/07_CHECK_DUPLICATED_CAMERA_ON_STRUCTURE">Camera ID Duplicated on Structure</a> - Tests if there is a duplicated camera IDs for a given structure.</li>
+<section id="chapters" class="level3">
+<h3 class="anchored" data-anchor-id="chapters">Chapters</h3>
+<ol start="2" type="1">
+<li><a href="./Quarto/00_PRESENTATION_FUNCTIONS.html">Custom Functions</a> - Reusable custom functions for data checks.</li>
+<li><a href="Quarto/01_COLUMN_CONSISTENCY.html">Column Consistency</a> - Checks for consistency in column types across spreadsheets.</li>
+<li><a href="Quarto/02_BLANK_CELLS.html">Blank Cells</a> - Identifies blank cells and sheets in the data.</li>
+<li><a href="Quarto/03_SPECIES.html">Species Validity</a> - Validates species names using the Global Names Verifier API.</li>
+<li><a href="Quarto/04_STRUCTURE.html">Structure Checks</a> - Verifies consistency between camera trap and structure data</li>
+<li><a href="Quarto/05_ID_CAMERA.html">Camera ID Verification</a> - Ensures camera IDs are properly linked across datasets.</li>
+<li><a href="Quarto/06_DATE.html">Camera Date Checks</a> - Checks several possibilities for anomalous dates.</li>
+<li><a href="Quarto/07_DUPLICATED_CT.html">Camera ID Duplicated on Structure</a> - Tests if there is a duplicated camera IDs for a given structure.</li>
 </ol>
 </section>
-<section id="about" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="about"><span class="header-section-number">0.3</span> About</h2>
+<section id="about" class="level3">
+<h3 class="anchored" data-anchor-id="about">About</h3>
 <p>This book is part of the data quality assurance process for the camera trap dataset. Each check is implemented in R and documented using Quarto.</p>
 
 

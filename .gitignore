@@ -17,3 +17,5 @@ Revisao.Rproj
 /Quarto/
 /R/
 /support/
+
+**/*.quarto_ipynb

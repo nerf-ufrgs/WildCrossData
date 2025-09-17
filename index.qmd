@@ -14,14 +14,14 @@ This book documents the data quality checks performed on the camera trap data. E
 
 ### Chapters
 
-2.  [Custom Functions](Quarto/00_PRESENTATION_FUNCTIONS.qmd) - Reusable custom functions for data checks.
-3.  [Column Consistency](Quarto/01_COLUMN_CONSISTENCY.html) - Checks for consistency in column types across spreadsheets.
-4.  [Blank Cells](Quarto/02_BLANK_CELLS.html) - Identifies blank cells and sheets in the data.
-5.  [Species Validity](Quarto/03_SPECIES.html) - Validates species names using the Global Names Verifier API.
-6.  [Structure Checks](Quarto/04_STRUCTURE.html) - Verifies consistency between camera trap and structure data
-7.  [Camera ID Verification](Quarto/05_ID_CAMERA.html) - Ensures camera IDs are properly linked across datasets.
-8.  [Camera Date Checks](Quarto/06_DATE.html) - Checks several possibilities for anomalous dates.
-9.  [Camera ID Duplicated on Structure](Quarto/07_DUPLICATED_CT.html) - Tests if there is a duplicated camera IDs for a given structure.
+2.  [Custom Functions](Quarto/00_presentation_functions.html) - Reusable custom functions for data checks.
+3.  [Column Consistency](Quarto/01_column_consistency.html) - Checks for consistency in column types across spreadsheets.
+4.  [Blank Cells](Quarto/02_blank_cells.html) - Identifies blank cells and sheets in the data.
+5.  [Species Validity](Quarto/03_species.html) - Validates species names using the Global Names Verifier API.
+6.  [Structure Checks](Quarto/04_structure.html) - Verifies consistency between camera trap and structure data
+7.  [Camera ID Verification](Quarto/05_id_camera.html) - Ensures camera IDs are properly linked across datasets.
+8.  [Camera Date Checks](Quarto/06_date.html) - Checks several possibilities for anomalous dates.
+9.  [Camera ID Duplicated on Structure](Quarto/07_duplicated_ct.html) - Tests if there is a duplicated camera IDs for a given structure.
 
 ### About
 

@@ -14,7 +14,7 @@ This book documents the data quality checks performed on the camera trap data. E
 
 ### Chapters
 
-2.  [Custom Functions](Quarto/00_presentation_functions.html) - Reusable custom functions for data checks.
+2.  [Custom Functions](Quarto/00_presentation_functions.html) - Creates reusable custom functions for data checks.
 3.  [Column Consistency](Quarto/01_column_consistency.html) - Checks for consistency in column types across spreadsheets.
 4.  [Blank Cells](Quarto/02_blank_cells.html) - Identifies blank cells and sheets in the data.
 5.  [Species Validity](Quarto/03_species.html) - Validates species names using the Global Names Verifier API.
@@ -22,6 +22,9 @@ This book documents the data quality checks performed on the camera trap data. E
 7.  [Camera ID Verification](Quarto/05_id_camera.html) - Ensures camera IDs are properly linked across datasets.
 8.  [Camera Date Checks](Quarto/06_date.html) - Checks several possibilities for anomalous dates.
 9.  [Camera ID Duplicated on Structure](Quarto/07_duplicated_ct.html) - Tests if there is a duplicated camera IDs for a given structure.
+10. [Structure Measurements](Quarto/08_measurements.html) - Verifies the consistency of measurements fields.
+11. [Structure Coordinates Parameters](Quarto/09_structure_coords_parameters.html) - Tests if the coordinates parameters such as UTM zones and parameters are correctly provided.
+12. [Structure Locations](Quarto/10_structure_location.html) - Checks if the structures provided are within a distance of a road, railroad or pipeline.
 
 ### About
 

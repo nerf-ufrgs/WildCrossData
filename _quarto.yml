@@ -19,6 +19,8 @@ book:
         - Quarto/06_date.qmd
         - Quarto/07_duplicated_ct.qmd
         - Quarto/08_measurements.qmd
+        - Quarto/09_structure_coords_parameters.qmd
+        - Quarto/10_structure_location.qmd
 
 format:
   html:

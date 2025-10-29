@@ -2,7 +2,7 @@
 title: "Datapaper WildCrossData Latin America"
 number-sections: false
 toc: false
-# editor: visual
+editor: source
 theme:
   light: flatly
   dark: superhero
@@ -25,6 +25,7 @@ This book documents the data quality checks performed on the camera trap data. E
 10. [Structure Measurements](Quarto/08_measurements.html) - Verifies the consistency of measurements fields.
 11. [Structure Coordinates Parameters](Quarto/09_structure_coords_parameters.html) - Tests if the coordinates parameters such as UTM zones and parameters are correctly provided.
 12. [Structure Locations](Quarto/10_structure_location.html) - Checks if the structures provided are within a distance of a road, railroad or pipeline.
+13. [Structure Camera Record Criteria](Quarto/11_record_criteria.qmd) - Verifies if the records are comprised whithin the record criteria provided.
 
 ### About
 

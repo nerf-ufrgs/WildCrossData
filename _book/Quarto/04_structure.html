@@ -830,6 +830,75 @@ $Example2
 2 Example1     1 &lt;NA&gt;         no_fences in_under</code></pre>
 </div>
 </div>
+</section>
+<section id="check-if-structure-exists-in-species-records-and-camera-trap" class="level4" data-number="6.2.2.5">
+<h4 data-number="6.2.2.5" class="anchored" data-anchor-id="check-if-structure-exists-in-species-records-and-camera-trap"><span class="header-section-number">6.2.2.5</span> Check if structure exists in ‘species records’ and ‘camera trap’</h4>
+<p>Here we need to test if all strucutures (<code>Structure_id</code>) listed on the <code>Species_records_camera</code> sheet are comprised on the <code>Camera_trap</code> sheet. We first read the species records spreadsheet.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rec <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"Excel"</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Species_records_camera"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"na"</span>, <span class="st">"NA"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> .x <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">Structure_id =</span> <span class="fu">as.character</span>(stringr<span class="sc">::</span><span class="fu">str_to_upper</span>(Structure_id)),</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">.keep =</span> <span class="st">"none"</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expecting date in D103 / R103C4: got '11/25:2021'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expecting date in D106 / R106C4: got '11:30/21'</code></pre>
+</div>
+</div>
+<p>And now we perform, for each dataset, the difference between the values found for <code>Structure_id</code> in species records versus camera trap sheets. The result given is the name of the strucutures that are listed on species records sheet that were not found on the camera trap sheet.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if structure exists in 'species records' and 'camera trap'</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">&lt;-</span> <span class="fu">names</span>(ct)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>datasets <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(nm) {</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      record <span class="ot">&lt;-</span> rec[[nm]]</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      camera <span class="ot">&lt;-</span> ct[[nm]]</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      diff_val <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">setdiff</span>(</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>        record[[<span class="st">"Structure_id"</span>]],</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>        camera[[<span class="st">"Structure_id"</span>]]</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>      tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">dataset =</span> nm,</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">value =</span> diff_val</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 21 × 1
+   dataset 
+   &lt;chr&gt;   
+ 1 Example1
+ 2 Example2
+ 3 Example3
+ 4 Example4
+ 5 Example5
+ 6 Example6
+ 7 Example7
+ 8 Example8
+ 9 Example2
+10 Example3
+# ℹ 11 more rows</code></pre>
+</div>
+</div>
 <hr>
 
 

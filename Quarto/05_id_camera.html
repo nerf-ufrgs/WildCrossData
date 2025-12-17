@@ -399,6 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Check Species Record Criteria</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -527,8 +533,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="record-structure-and-camera-check" class="level4" data-number="7.2.3.3">
-<h4 data-number="7.2.3.3" class="anchored" data-anchor-id="record-structure-and-camera-check"><span class="header-section-number">7.2.3.3</span> Record Structure and Camera check</h4>
+<section id="record-structure-to-camera" class="level4" data-number="7.2.3.3">
+<h4 data-number="7.2.3.3" class="anchored" data-anchor-id="record-structure-to-camera"><span class="header-section-number">7.2.3.3</span> Record Structure To Camera</h4>
 <p>This process performs a data audit by iterating through the lists of records and camera trap data. For each corresponding dataset, an <code>anti_join</code> operation finds rows in the records data that do not have a match in the camera trap data, using <code>Structure_id</code> and <code>Camera_id</code> as the composite key. In other words, the code identifies record entries for a specific structure and camera that are not listed in the corresponding camera trap data.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -542,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"dataset"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 732 × 5
+<pre><code># A tibble: 1,209 × 5
    dataset  Structure_id Camera_id Species              Record_date        
    &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;                &lt;dttm&gt;             
  1 Example1 BC1(galeria) cam1      Procyon cancrivorus  NA                 
@@ -555,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Example1 BC1(galeria) cam2      Aramides sp.         2022-08-28 13:27:00
  9 Example1 BC1(galeria) cam2      Aramides sp.         2022-08-29 10:41:00
 10 Example1 BC1(galeria) cam3      Aramides sp.         2022-09-09 13:13:00
-# ℹ 722 more rows</code></pre>
+# ℹ 1,199 more rows</code></pre>
 </div>
 </div>
 

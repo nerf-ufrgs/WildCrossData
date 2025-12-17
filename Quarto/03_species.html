@@ -399,6 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Check Species Record Criteria</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -574,7 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>list_check_globalnames[[<span class="dv">1</span>]][[<span class="st">"all_results"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 64 × 75
+<pre><code># A tibble: 96 × 110
    id    name  cardinality matchType...4 dataSourceId...5 dataSourceTitleShort…¹
    &lt;chr&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;chr&gt;                 
  1 270f… Aram…           2 Exact                        3 ITIS                  
@@ -587,9 +593,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 4345… Cryp…           2 Exact                        3 ITIS                  
  9 3b28… Cuni…           2 Exact                        3 ITIS                  
 10 a089… Cyan…           2 Exact                        3 ITIS                  
-# ℹ 54 more rows
+# ℹ 86 more rows
 # ℹ abbreviated name: ¹​dataSourceTitleShort...6
-# ℹ 69 more variables: curation...7 &lt;chr&gt;, recordId...8 &lt;chr&gt;,
+# ℹ 104 more variables: curation...7 &lt;chr&gt;, recordId...8 &lt;chr&gt;,
 #   outlink...9 &lt;chr&gt;, entryDate...10 &lt;chr&gt;, sortScore...11 &lt;dbl&gt;,
 #   matchedNameID...12 &lt;chr&gt;, matchedName...13 &lt;chr&gt;,
 #   matchedCardinality...14 &lt;int&gt;, matchedCanonicalSimple...15 &lt;chr&gt;,
@@ -609,7 +615,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 143
+<pre><code># A tibble: 6 × 178
   dataset  id              name  query cardinality match_type_4 data_source_id_5
   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                   &lt;int&gt;
 1 Example1 270f98a4-840c-… Aram… Aram…           2 Exact                       3
@@ -618,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 Example1 fe40eafd-8adb-… Cara… Cara…           2 Exact                       3
 5 Example1 5b42a2c7-767f-… Cerd… Cerd…           2 Exact                       3
 6 Example1 53c82c2e-a688-… Coen… Coen…           2 Exact                       3
-# ℹ 136 more variables: data_source_title_short_6 &lt;chr&gt;, curation_7 &lt;chr&gt;,
+# ℹ 171 more variables: data_source_title_short_6 &lt;chr&gt;, curation_7 &lt;chr&gt;,
 #   record_id_8 &lt;chr&gt;, outlink_9 &lt;chr&gt;, entry_date_10 &lt;chr&gt;,
 #   sort_score_11 &lt;dbl&gt;, matched_name_id_12 &lt;chr&gt;, matched_name_13 &lt;chr&gt;,
 #   matched_cardinality_14 &lt;int&gt;, matched_canonical_simple_15 &lt;chr&gt;,
@@ -637,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sp_with_errors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 143
+<pre><code># A tibble: 6 × 178
   dataset  id              name  query cardinality match_type_4 data_source_id_5
   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                   &lt;int&gt;
 1 Example1 46334ffe-8d29-… Guer… Guer…           2 PartialExact                3
@@ -646,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 Example3 c6eeb584-9cf4-… Dico… Dico…           2 PartialExact                3
 5 Example3 81a8d8a4-a90b-… Paux… Paux…           2 PartialExact                3
 6 Example4 15638204-393b-… Sylv… Sylv…           2 Fuzzy                       3
-# ℹ 136 more variables: data_source_title_short_6 &lt;chr&gt;, curation_7 &lt;chr&gt;,
+# ℹ 171 more variables: data_source_title_short_6 &lt;chr&gt;, curation_7 &lt;chr&gt;,
 #   record_id_8 &lt;chr&gt;, outlink_9 &lt;chr&gt;, entry_date_10 &lt;chr&gt;,
 #   sort_score_11 &lt;dbl&gt;, matched_name_id_12 &lt;chr&gt;, matched_name_13 &lt;chr&gt;,
 #   matched_cardinality_14 &lt;int&gt;, matched_canonical_simple_15 &lt;chr&gt;,
@@ -775,7 +781,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 127 × 12
+<pre><code># A tibble: 177 × 12
    dataset  query      matched_canonical_si…¹ match_type id    name  cardinality
    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;                  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;       &lt;int&gt;
  1 Example1 Não ident… &lt;NA&gt;                   NoMatch    &lt;NA&gt;  &lt;NA&gt;           NA
@@ -788,7 +794,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Example1 Mammalia   &lt;NA&gt;                   Exact      9fd2… Mamm…           1
  9 Example1 Aramides … &lt;NA&gt;                   Exact      2c8c… Aram…           0
 10 Example1 Cricetidae &lt;NA&gt;                   Exact      5561… Cric…           1
-# ℹ 117 more rows
+# ℹ 167 more rows
 # ℹ abbreviated name: ¹​matched_canonical_simple
 # ℹ 5 more variables: best_result &lt;df[,27]&gt;, data_sources_num &lt;int&gt;,
 #   data_sources_ids &lt;list&gt;, curation &lt;chr&gt;, best_results &lt;list&gt;</code></pre>

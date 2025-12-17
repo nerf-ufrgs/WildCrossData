@@ -399,6 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Check Species Record Criteria</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -679,7 +685,7 @@ $Example2
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 182 × 5
+<pre><code># A tibble: 183 × 5
    Dataset   Erro Structure_id      status            position
    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;             &lt;chr&gt;   
  1 Example1     1 BC1 (GALERIA)     no_under_nor_over in_ct   
@@ -702,7 +708,7 @@ $Example2
 18 Example3    17 AR59              no_under_nor_over in_ct   
 19 Example3    18 AR60              no_under_nor_over in_ct   
 20 Example3    19 AR61              no_under_nor_over in_ct   
-# ℹ 162 more rows</code></pre>
+# ℹ 163 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -730,30 +736,30 @@ $Example2
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 202 × 5
+<pre><code># A tibble: 207 × 5
    Dataset   Erro Structure_id  status            position
    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt;   
  1 Example1     1 BC1 (GALERIA) no_under_nor_over in_ct   
  2 Example1     1 BC1 (GALERIA) no_under_nor_over in_ct   
- 3 Example1     1 &lt;NA&gt;          not_in_ct         under   
- 4 Example1     2 BCS1          not_in_ct         under   
- 5 Example1     3 BCS2          not_in_ct         under   
- 6 Example1     4 PAEREA        not_in_ct         over    
- 7 Example1     1 &lt;NA&gt;          not_in_ct         under   
- 8 Example1     2 BCS1          not_in_ct         under   
- 9 Example1     3 BCS2          not_in_ct         under   
-10 Example1     4 PAEREA        not_in_ct         over    
-11 Example3     1 KM 437        no_under_nor_over in_ct   
-12 Example3     2 AR08          no_under_nor_over in_ct   
-13 Example3     3 AR10          no_under_nor_over in_ct   
-14 Example3     4 KM 158        no_under_nor_over in_ct   
-15 Example3     5 KM 192        no_under_nor_over in_ct   
-16 Example3     6 KM 248        no_under_nor_over in_ct   
-17 Example3     7 KM 636,7      no_under_nor_over in_ct   
-18 Example3     8 KM 701        no_under_nor_over in_ct   
-19 Example3     9 KM 770        no_under_nor_over in_ct   
-20 Example3    10 KM 98,3       no_under_nor_over in_ct   
-# ℹ 182 more rows</code></pre>
+ 3 Example1     1 BC1 (GALERIA) no_under_nor_over in_ct   
+ 4 Example1     1 &lt;NA&gt;          not_in_ct         under   
+ 5 Example1     2 BCS1          not_in_ct         under   
+ 6 Example1     3 BCS2          not_in_ct         under   
+ 7 Example1     4 PAEREA        not_in_ct         over    
+ 8 Example1     1 &lt;NA&gt;          not_in_ct         under   
+ 9 Example1     2 BCS1          not_in_ct         under   
+10 Example1     3 BCS2          not_in_ct         under   
+11 Example1     4 PAEREA        not_in_ct         over    
+12 Example1     1 &lt;NA&gt;          not_in_ct         under   
+13 Example1     2 BCS1          not_in_ct         under   
+14 Example1     3 BCS2          not_in_ct         under   
+15 Example1     4 PAEREA        not_in_ct         over    
+16 Example3     1 KM 437        no_under_nor_over in_ct   
+17 Example3     2 AR08          no_under_nor_over in_ct   
+18 Example3     3 AR10          no_under_nor_over in_ct   
+19 Example3     4 KM 158        no_under_nor_over in_ct   
+20 Example3     5 KM 192        no_under_nor_over in_ct   
+# ℹ 187 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -796,11 +802,12 @@ $Example2
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
+<pre><code># A tibble: 3 × 5
   Dataset   Erro Structure_id  status   position 
   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    
 1 Example1     1 BC1 (GALERIA) no_under in_fences
-2 Example1     1 BC1 (GALERIA) no_under in_fences</code></pre>
+2 Example1     1 BC1 (GALERIA) no_under in_fences
+3 Example1     1 BC1 (GALERIA) no_under in_fences</code></pre>
 </div>
 </div>
 <p>We then proceed on the opposite direction, checking if there are <code>Structure_id</code> on the <code>Underpasses</code> spreadsheet not encompassed on <code>Fencing</code>. Obviously, there are passages that could not have been fenced, however, we play it conservatively to check with the authors if this is the case or if they have forgotten to fill the <code>Fencing</code> spreadsheet correctly.</p>
@@ -823,11 +830,12 @@ $Example2
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
+<pre><code># A tibble: 3 × 5
   Dataset   Erro Structure_id status    position
   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;   
 1 Example1     1 &lt;NA&gt;         no_fences in_under
-2 Example1     1 &lt;NA&gt;         no_fences in_under</code></pre>
+2 Example1     1 &lt;NA&gt;         no_fences in_under
+3 Example1     1 &lt;NA&gt;         no_fences in_under</code></pre>
 </div>
 </div>
 </section>
@@ -57322,7 +57330,7 @@ $Example2
 <span id="cb18838-20"><a href="#cb18838-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27 × 2
+<pre><code># A tibble: 28 × 2
    dataset  value                     
    &lt;chr&gt;    &lt;chr&gt;                     
  1 Example1 BC1(GALERIA)              
@@ -57335,7 +57343,7 @@ $Example2
  8 Example3 PRÓXIMO À OAC/ ESTACA 6555
  9 Example3 OAC75 KM 400              
 10 Example3 OAC 53                    
-# ℹ 17 more rows</code></pre>
+# ℹ 18 more rows</code></pre>
 </div>
 </div>
 <hr>

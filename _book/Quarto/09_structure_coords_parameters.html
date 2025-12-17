@@ -399,6 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Check Species Record Criteria</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -609,24 +615,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 × 5
-   Dataset  Position Datum      Utm_zone     n
-   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;int&gt;
- 1 Example3 Under    SIRGAS2000 20S        144
- 2 Example3 Under    SIRGAS2000 21          12
- 3 Example5 Over     SIRGAS2000 21J          4
- 4 Example7 Under    SIRGAS2000 22K         32
- 5 Example2 Over     WGS 84     &lt;NA&gt;        21
- 6 Example1 Under    WGS84      &lt;NA&gt;        24
- 7 Example4 Under    WGS84      16J          4
- 8 Example4 Under    WGS84      &lt;NA&gt;        30
- 9 Example6 Over     WGS84      24L          9
-10 Example6 Over     WGS84      &lt;NA&gt;         6
-11 Example8 Over     WGS84      &lt;NA&gt;         9
-12 Example8 Under    WGS84      &lt;NA&gt;         6
-13 Example9 Over     WGS84      18S         25
-14 Example1 Over     &lt;NA&gt;       &lt;NA&gt;         2
-15 Example1 Under    &lt;NA&gt;       &lt;NA&gt;         4</code></pre>
+<pre><code># A tibble: 20 × 5
+   Dataset   Position Datum      Utm_zone     n
+   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;int&gt;
+ 1 Example3  Under    SIRGAS2000 20S        144
+ 2 Example3  Under    SIRGAS2000 21          12
+ 3 Example5  Over     SIRGAS2000 21J          4
+ 4 Example7  Under    SIRGAS2000 22K         32
+ 5 Example2  Over     WGS 84     &lt;NA&gt;        21
+ 6 Example1  Over     WGS84      &lt;NA&gt;         7
+ 7 Example1  Under    WGS84      &lt;NA&gt;        32
+ 8 Example11 Under    WGS84      &lt;NA&gt;         8
+ 9 Example12 Under    WGS84      &lt;NA&gt;        22
+10 Example13 Over     WGS84      &lt;NA&gt;         8
+11 Example2  Over     WGS84      &lt;NA&gt;        14
+12 Example4  Under    WGS84      16J          4
+13 Example4  Under    WGS84      &lt;NA&gt;        30
+14 Example6  Over     WGS84      24L          9
+15 Example6  Over     WGS84      &lt;NA&gt;         6
+16 Example8  Over     WGS84      &lt;NA&gt;         9
+17 Example8  Under    WGS84      &lt;NA&gt;         6
+18 Example9  Over     WGS84      18S         25
+19 Example1  Over     &lt;NA&gt;       &lt;NA&gt;         2
+20 Example1  Under    &lt;NA&gt;       &lt;NA&gt;         4</code></pre>
 </div>
 </div>
 

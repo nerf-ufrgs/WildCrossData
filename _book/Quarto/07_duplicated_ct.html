@@ -399,6 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Check Species Record Criteria</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -600,20 +606,20 @@ $Example2
 #   Problem4_from &lt;dttm&gt;, Problem4_to &lt;dttm&gt;, Problem5_from &lt;dttm&gt;, …
 
 $Example1
-# A tibble: 435 × 38
-   double Structure_id  Camera_id Camera_id_orig Camera_position Camera_view
-    &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;      
- 1      1 BC1 (galeria) cam1      cam1           Externa         &lt;NA&gt;       
- 2      6 BC1 (galeria) -_A       -              &lt;NA&gt;            &lt;NA&gt;       
- 3      1 BC1 (galeria) VITA_04   VITA_04        Externa         Abertura   
- 4      6 BC1 (galeria) -_B       -              Externa         Abertura   
- 5      6 BC1 (galeria) -_C       -              Externa         Abertura   
- 6      6 BC1 (galeria) -_D       -              Externa         Abertura   
- 7      6 BC1 (galeria) -_E       -              Externa         Abertura   
- 8      6 BC1 (galeria) -_F       -              Externa         Abertura   
- 9      2 BC1 (galeria) VITA_07_A VITA_07        Externa         Abertura   
-10      1 BC1 (galeria) VITA_15   VITA_15        Externa         Abertura   
-# ℹ 425 more rows
+# A tibble: 202 × 38
+   double Structure_id Camera_id Camera_id_orig Camera_position Camera_view
+    &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;      
+ 1      1 PFO01        cam01_1   cam01_1        Borda interna   Interior   
+ 2      1 PFO01        cam02_2   cam02_2        Borda interna   Interior   
+ 3      1 PFO01        cam06_3   cam06_3        Borda interna   Interior   
+ 4      1 PFO01        cam02_4   cam02_4        Borda interna   Interior   
+ 5      1 PFO01        cam02_5   cam02_5        Borda interna   Interior   
+ 6      1 PFO01        cam04_6   cam04_6        Borda interna   Interior   
+ 7      1 PFO01        cam02_8   cam02_8        Borda interna   Interior   
+ 8      1 PFO01        cam02_9   cam02_9        Borda interna   Interior   
+ 9      1 PFO01        cam06_7   cam06_7        Borda interna   Interior   
+10      1 PFO02        cam04_15  cam04_15       Borda interna   Interior   
+# ℹ 192 more rows
 # ℹ 32 more variables: Camera_model &lt;chr&gt;, Camera_setup &lt;chr&gt;,
 #   Camera_vision_photo &lt;chr&gt;, Start_date &lt;dttm&gt;, Start_time &lt;dttm&gt;,
 #   End_date &lt;dttm&gt;, End_time &lt;dttm&gt;, Camera_problem &lt;chr&gt;,
@@ -687,20 +693,20 @@ $Example1
 # ℹ 3,580 more rows
 
 $Example1
-# A tibble: 3,590 × 6
-   Structure_id   Camera_id Species Record_date         Record_criteria Behavior
-   &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;   &lt;dttm&gt;                        &lt;dbl&gt; &lt;chr&gt;   
- 1 P1 (iguaçu)    cam1      Cavia … 2017-05-09 03:59:00              NA Dentro  
- 2 P3 (varzea)    cam1      Aramid… 2017-05-01 08:37:00              NA Dentro  
- 3 P3 (varzea)    cam1      Leopar… 2017-05-05 21:09:00              NA Dentro  
- 4 BC2 (drenagem) cam2      Didelp… 2018-07-30 04:18:00              NA &lt;NA&gt;    
- 5 BC2 (drenagem) cam2      Didelp… 2018-07-30 20:02:00              NA &lt;NA&gt;    
- 6 BC2 (drenagem) cam2      Didelp… 2018-07-31 00:10:00              NA &lt;NA&gt;    
- 7 BC2 (drenagem) cam2      Didelp… 2018-08-01 01:30:00              NA &lt;NA&gt;    
- 8 BC2 (drenagem) cam2      Didelp… 2018-08-01 03:07:00              NA &lt;NA&gt;    
- 9 BC2 (drenagem) cam2      Didelp… 2018-08-02 00:48:00              NA &lt;NA&gt;    
-10 BC2 (drenagem) cam2      Didelp… 2018-08-02 01:09:00              NA &lt;NA&gt;    
-# ℹ 3,580 more rows</code></pre>
+# A tibble: 1,450 × 6
+   Structure_id Camera_id Species   Record_date         Record_criteria Behavior
+   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     &lt;dttm&gt;                        &lt;dbl&gt; &lt;chr&gt;   
+ 1 PFU02        cam05_109 Aramides… 2014-08-06 12:42:21              15 Dentro  
+ 2 PFU06        cam05_167 Aramides… 2014-10-06 13:41:37              15 Dentro  
+ 3 PFU06        cam05_167 Aramides… 2014-10-07 08:47:34              15 Dentro  
+ 4 PFU06        cam03_169 Aramides… 2014-11-28 07:54:43              15 Dentro  
+ 5 PFU06        cam03_169 Aramides… 2014-11-28 08:17:42              15 Dentro  
+ 6 PFU06        cam03_169 Aramides… 2014-12-03 12:37:33              15 Dentro  
+ 7 PFU06        cam03_169 Aramides… 2014-12-05 10:10:09              15 Dentro  
+ 8 PFU06        cam03_169 Aramides… 2014-12-05 12:38:26              15 Dentro  
+ 9 PFU06        cam03_169 Aramides… 2014-12-05 14:26:42              15 Dentro  
+10 PFU06        cam03_169 Aramides… 2014-12-06 10:22:53              15 Dentro  
+# ℹ 1,440 more rows</code></pre>
 </div>
 </div>
 </section>

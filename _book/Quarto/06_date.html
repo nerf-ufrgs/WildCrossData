@@ -399,6 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Check Species Record Criteria</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -493,12 +499,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>check_date_before</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 30
+<pre><code># A tibble: 4 × 30
   dataset  Camera_id Start_date          End_date            Camera_problem
   &lt;chr&gt;    &lt;chr&gt;     &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;         
 1 Example8 cam5      2013-03-28 10:19:00 2013-03-29 00:31:00 Sí            
 2 Example8 cam5      2013-03-28 10:19:00 2013-03-29 00:31:00 Sí            
-3 Example8 cam5      2013-03-28 10:19:00 2013-03-29 00:31:00 Sí            
+3 Example1 cam06_26  2014-08-02 12:30:00 2013-09-01 10:51:00 Não           
+4 Example8 cam5      2013-03-28 10:19:00 2013-03-29 00:31:00 Sí            
 # ℹ 25 more variables: Problem1_from &lt;dttm&gt;, Problem1_to &lt;dttm&gt;,
 #   Problem2_from &lt;dttm&gt;, Problem2_to &lt;dttm&gt;, Problem3_from &lt;dttm&gt;,
 #   Problem3_to &lt;dttm&gt;, Problem4_from &lt;dttm&gt;, Problem4_to &lt;dttm&gt;,
@@ -531,7 +538,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>check_date_after</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32 × 30
+<pre><code># A tibble: 77 × 30
    dataset  Camera_id Start_date          End_date            Camera_problem
    &lt;chr&gt;    &lt;chr&gt;     &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;         
  1 Example4 MX2_004   2018-09-08 14:50:00 2019-09-29 12:21:00 No            
@@ -544,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Example4 MX2_013   2018-08-15 13:55:00 2019-01-27 13:52:00 Sí            
  9 Example4 MX2_014   2018-08-15 14:20:00 2019-03-14 14:24:00 Sí            
 10 Example4 MX2_015   2018-08-15 15:15:00 2019-05-24 13:38:00 No            
-# ℹ 22 more rows
+# ℹ 67 more rows
 # ℹ 25 more variables: Problem1_from &lt;dttm&gt;, Problem1_to &lt;dttm&gt;,
 #   Problem2_from &lt;dttm&gt;, Problem2_to &lt;dttm&gt;, Problem3_from &lt;dttm&gt;,
 #   Problem3_to &lt;dttm&gt;, Problem4_from &lt;dttm&gt;, Problem4_to &lt;dttm&gt;,
@@ -659,15 +666,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  dataset      n
-  &lt;chr&gt;    &lt;int&gt;
-1 Example1   304
-2 Example2     1
-3 Example3     1
-4 Example4   104
-5 Example8    50
-6 Example9    53</code></pre>
+<pre><code># A tibble: 7 × 2
+  dataset       n
+  &lt;chr&gt;     &lt;int&gt;
+1 Example1    304
+2 Example2      1
+3 Example3      1
+4 Example4    104
+5 Example8     50
+6 Example9     53
+7 Example13    38</code></pre>
 </div>
 </div>
 <p>Finally, we export the records outside the sampling interval to an Excel file.</p>

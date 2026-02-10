@@ -1,0 +1,448 @@
+---
+title: "Check Photos"
+format: html
+theme:
+  dark: superhero
+  light: flatly
+---
+
+## Problem Description
+
+We verify whether the delivered photos and videos match the expected records in the Excel sheets. We standardize the media structure, copy found files into specific folders (`ct`, `under`, `over`), generate a partial-match report, and remove media that remain in the root without a correct destination.
+
+## Problem Solving
+
+Pipeline: (1) load helpers and check folder names versus Excel sheets; (2) stage raw media into a standard structure; (3) inventory media under `Media`; (4) apply matching functions between sheets and files; (5) export partial matches and clean stray files.
+
+### Common steps
+
+These steps get the ground ready: we load shared utilities, list the incoming folders, and immediately compare their names with the Excel sheets. If something is off, we find out before spending time on matching. That early sanity check keeps the rest of the workflow focused on pairing files, not fixing misconfigured inputs.
+
+#### Load helper functions
+
+Here we simply source `R/FUNCTIONS.R` to bring in shared helpers (`read_sheet`, string utilities, logging). By centralizing those functions, the notebook stays lean and consistent with the R script. Nothing else happens besides preparing the environment for the next chunks.
+
+```{r}
+#| label: setup
+source("R/FUNCTIONS.R")
+```
+
+#### Check folder names vs. Excel sheets
+
+Next, we list the folders under `Example/12` and compare those names to the Excel sheet names. Using `waldo::compare`, any mismatch is surfaced right away, so we can align folder and sheet names before matching files. This symmetry avoids silent skips caused by small naming drifts.
+
+```{r}
+#| label: check-folder-names
+folders <- list.dirs(path = "Example/12", recursive = FALSE)
+
+names_folders <- folders |>
+  stringr::str_split_i(pattern = "\\/", 3)
+
+names_excel <- read_sheet(path = "Example/12", results = FALSE) |>
+  names()
+
+names_folders |>
+  waldo::compare(names_excel)
+```
+
+### Stage raw media
+
+Here we scan every file under the incoming folders, keep only images or videos, and infer dataset and media type from the path and MIME type. Then we create the standardized destination folders and copy the files there. Executing this chunk once sets up a clean media tree for the later matching steps.
+
+```{r}
+#| label: stage-media
+#| warning: false
+
+files <- list.files(folders, full.names = TRUE, recursive = TRUE)
+
+df <- tibble::tibble(file = files) |>
+  dplyr::mutate(type = mime::guess_type(file)) |>
+  dplyr::filter(stringr::str_detect(type, "^image/|^video")) |>
+  dplyr::mutate(
+    dataset = stringr::str_split_i(file, pattern = "\\/", 3),
+    media_type = stringr::str_split_i(type, pattern = "\\/", 1),
+    folder = stringr::str_glue("Example/Media/{dataset}/{media_type}/"),
+    filename = stringr::str_glue("{folder}{basename(file)}")
+  )
+
+folders_to_create <- df$folder |>
+  unique()
+
+for (folder in folders_to_create) {
+  dir.create(path = folder, recursive = TRUE)
+}
+
+file.copy(from = df$file, to = df$filename, recursive = TRUE)
+```
+
+### Inventory media under `Media`
+
+Now we read everything under `Example/Media`, capturing the dataset from the path and the filename itself. The listing becomes a tibble, then we split it by dataset to form `media_list`, a named list of per-dataset media. This is the on-disk ground truth we will compare against the Excel expectations.
+
+```{r}
+#| label: media-inventory
+media_files <- list.files(
+  path = "Example/Media",
+  recursive = TRUE,
+  full.names = TRUE
+) |>
+  dplyr::as_tibble() |>
+  dplyr::mutate(
+    dataset = stringr::word(value, 3, 3, sep = "\\/"),
+    file = basename(value)
+  )
+
+media_list <- split(media_files, media_files$dataset)
+```
+
+### Matching functions
+
+In this step, we define the helpers that drive validation, data loading, matching, and cleanup. Each function focuses on one responsibility so the main flow stays readable. We also explain how we detect exact vs. near matches using `stringdist`.
+
+#### Validate allowed sources and load the right sheet
+
+We begin by validating the requested source and mapping it to the proper Excel sheet with `case_match`. If the source is unknown, we stop immediately; otherwise we load the sheet so the rest of the code can stay agnostic to sheet naming. This keeps the pipeline predictable from the first step.
+
+```{r}
+#| label: helpers-validate-load
+validate_source <- function(source, allowed = c("ct", "under", "over")) {
+  if (!source %in% allowed) {
+    cli::cli_abort(
+      "Source {source} is not an accepted value. Accepted values are 'ct', 'under', 'over'"
+    )
+  }
+}
+
+load_source_data <- function(source) {
+  source <- as.character(source)
+
+  sheet_name <- dplyr::case_match(
+    source,
+    "ct" ~ "Camera_trap",
+    "under" ~ "Underpasses",
+    "over" ~ "Overpasses",
+    .default = NA_character_
+  )
+
+  if (is.na(sheet_name)) {
+    cli::cli_abort("Source {source} is not mapped to a sheet.")
+  }
+
+  # Drop previous derived outputs to avoid loading non-source workbooks
+  file.remove(list.files(
+    path = "Example/12",
+    pattern = "^check_names_photos_.*\\.xlsx$",
+    full.names = TRUE
+  ))
+
+  read_sheet(
+    path = "Example/12",
+    sheet = sheet_name,
+    na = c("NA", "-")
+  )
+}
+```
+
+#### Check dataset-name consistency
+
+Here we confirm that every dataset present in the Excel sheets also exists in the media inventory. If one side is missing a dataset, we abort rather than silently skipping it. That safeguard keeps disk contents and spreadsheet expectations aligned.
+
+```{r}
+#| label: helpers-consistency
+ensure_dataset_names_match <- function(datasets, media_list) {
+  datasets_not_in_common <- dplyr::setdiff(names(datasets), names(media_list))
+
+  if (length(datasets_not_in_common) != 0) {
+    cli::cli_abort(
+      "There are different datasets between media folder and Excel sheets."
+    )
+  }
+}
+```
+
+#### Extract filenames from the sheet
+
+Continuing, we pull the expected filenames from the appropriate column (`Camera_vision_photo` for `ct`, `Structure_photo` otherwise). We keep only distinct, non-missing values so the matching targets are clean. Using tidy evaluation (`col_sym`) lets us pick the right column without hard-coding elsewhere.
+
+```{r}
+#| label: helpers-extract
+extract_filenames_on_sheet <- function(df, source) {
+  column <- if (source == "ct") "Camera_vision_photo" else "Structure_photo"
+  col_sym <- rlang::sym(column)
+
+  df |>
+    dplyr::distinct(dplyr::across(dplyr::all_of(column))) |>
+    dplyr::filter(!is.na(!!col_sym)) |>
+    dplyr::pull(!!col_sym)
+}
+```
+
+#### Prepare media candidates
+
+Now we prune out media files that are already sitting in a source-specific folder. By filtering any path containing `/source/`, we restrict the next steps to files that still need placement. That keeps us from re-processing what was matched before.
+
+```{r}
+#| label: helpers-candidates
+media_candidates <- function(dataset_media, source) {
+  dataset_media |>
+    dplyr::filter(!stringr::str_detect(value, glue::glue("\\/{source}\\/")))
+}
+```
+
+#### Compute string distances (exact and near matches)
+
+Here we compare the sheet filenames to the media filenames using Levenshtein distance (`stringdistmatrix`). A distance of zero signals an exact match; small distances flag near matches we might want to inspect. We keep the result as a tibble and add a logical `match_exactly` column that downstream steps can consume.
+
+```{r}
+#| label: helpers-stringdist
+stringdist_table <- function(filenames_on_sheet, media) {
+  stringdist::stringdistmatrix(
+    filenames_on_sheet,
+    media,
+    method = "lv",
+    useNames = "strings"
+  ) |>
+    as.data.frame() |>
+    tibble::rownames_to_column("sheet") |>
+    dplyr::as_tibble() |>
+    dplyr::mutate(
+      match_exactly = dplyr::if_any(dplyr::where(is.numeric), ~ . == 0)
+    )
+}
+```
+
+#### Build and prune match candidates
+
+Next we reshape the distance table to long form, calculate simple heuristics (same name without extension, case-insensitive match, distance between 1 and 5), and order the candidates. Then we filter out ambiguous pairs that collide on sheet/file combinations. The goal is to surface solid candidates while trimming noisy duplicates.
+
+```{r}
+#| label: helpers-candidates-build
+build_match_candidates <- function(df_stringdist) {
+  df_stringdist |>
+    tidyr::pivot_longer(
+      cols = -c(sheet, match_exactly),
+      names_to = "file",
+      values_to = "stringdist"
+    ) |>
+    dplyr::mutate(
+      match_file_no_extension = sheet == tools::file_path_sans_ext(file),
+      match_file_diff_capitalization = stringr::str_to_upper(sheet) ==
+        stringr::str_to_upper(file),
+      match_partially = dplyr::if_any(
+        dplyr::where(is.numeric),
+        ~ dplyr::between(., 1, 5)
+      )
+    ) |>
+    dplyr::relocate(match_exactly, .after = stringdist) |>
+    dplyr::arrange(desc(match_file_no_extension), file)
+}
+
+dedupe_matches <- function(match_candidates, files_to_exclude = character()) {
+  filtered_candidates <- match_candidates |>
+    dplyr::filter(!file %in% files_to_exclude)
+
+  dup_sheet_file <- filtered_candidates |>
+    dplyr::filter(
+      match_file_no_extension == TRUE |
+        match_file_diff_capitalization == TRUE
+    ) |>
+    dplyr::select(sheet, file)
+
+  filtered_candidates |>
+    dplyr::mutate(
+      keep = dplyr::case_when(
+        match_file_no_extension == FALSE &
+          match_file_diff_capitalization == FALSE &
+          sheet %in% dup_sheet_file$sheet ~
+          "REMOVE",
+        match_file_no_extension == FALSE &
+          match_file_diff_capitalization == FALSE &
+          file %in% dup_sheet_file$file ~
+          "REMOVE",
+        TRUE ~ "KEEP"
+      )
+    ) |>
+    dplyr::filter(keep == "KEEP") |>
+    dplyr::select(-keep)
+}
+```
+
+#### Copy exact matches
+
+Here we handle the zero-distance hits: we create the destination folder if it does not exist, map sheet entries to real files, and copy them while preserving timestamps. If no exact matches are found, we return an empty tibble so the flow continues gracefully.
+
+```{r}
+#| label: helpers-copy
+copy_exact_matches <- function(
+  df_stringdist,
+  media_without_source,
+  target_dir
+) {
+  media_match_exactly <- df_stringdist |>
+    dplyr::filter(match_exactly == TRUE)
+
+  if (nrow(media_match_exactly) == 0) {
+    return(tibble::tibble(file = character(), full_path_to_copy = character()))
+  }
+
+  if (!dir.exists(target_dir)) {
+    dir.create(target_dir, recursive = TRUE)
+  }
+
+  files_found_in_sheet <- df_stringdist |>
+    dplyr::filter(match_exactly == TRUE) |>
+    dplyr::pull(sheet) |>
+    tibble::enframe(value = "file") |>
+    dplyr::inner_join(media_without_source, by = "file") |>
+    dplyr::mutate(full_path_to_copy = glue::glue("{target_dir}/{file}"))
+
+  file.copy(
+    from = files_found_in_sheet$value,
+    to = files_found_in_sheet$full_path_to_copy,
+    overwrite = FALSE,
+    copy.date = TRUE
+  )
+
+  files_found_in_sheet
+}
+```
+
+#### Process each dataset
+
+For each dataset and source, we extract the expected filenames, gather candidate media, compute distances, copy any exact matches, and return a curated candidate table with the copied files excluded. This per-dataset step stitches together all the helper logic into a single pass.
+
+```{r}
+#| label: helpers-process
+process_dataset <- function(df, dataset_name, source, media_list) {
+  cli::cli_alert_info("Processing dataset {dataset_name}.")
+
+  filenames_on_sheet <- extract_filenames_on_sheet(df, source)
+
+  if (length(filenames_on_sheet) == 0) {
+    return(tibble::tibble())
+  }
+
+  media_without_source <- media_candidates(media_list[[dataset_name]], source)
+
+  if (nrow(media_without_source) == 0) {
+    return(tibble::tibble())
+  }
+
+  media <- media_without_source |>
+    dplyr::distinct(file) |>
+    dplyr::pull(file)
+
+  df_stringdist <- stringdist_table(filenames_on_sheet, media)
+
+  files_copied <- copy_exact_matches(
+    df_stringdist,
+    media_without_source,
+    glue::glue("Example/Media/{dataset_name}/{source}")
+  )
+
+  match_candidates <- build_match_candidates(df_stringdist)
+
+  dedupe_matches(match_candidates, files_to_exclude = files_copied$file)
+}
+```
+
+#### Orchestrate matching per source
+
+Finally, `check_match_media` validates the source, loads the sheet, checks dataset names, iterates over non-empty datasets, and binds the results while tagging the source. Each source flows through the same validated routine, keeping the main pipeline slim and repeatable.
+
+```{r}
+#| label: helpers-check
+check_match_media <- function(source = NULL) {
+  validate_source(source)
+  cli::cli_alert("Starting source {source}")
+
+  datasets <- load_source_data(source)
+  ensure_dataset_names_match(datasets, media_list)
+
+  datasets_with_content <- datasets |>
+    purrr::keep(~ nrow(.x) > 0)
+
+  res <- purrr::imap(
+    datasets_with_content,
+    ~ process_dataset(.x, .y, source, media_list)
+  )
+
+  res |>
+    purrr::keep(~ nrow(.x) > 0) |>
+    dplyr::bind_rows(.id = "dataset") |>
+    dplyr::mutate(source = source, .after = dataset)
+}
+```
+
+### Run the full matching
+
+To wrap up, we run `check_match_media` for each source, export an Excel report of partial matches, and remove files that remain at the root (image or video) but should now sit under `ct`, `under`, or `over`. Reporting stays inside `save_partial_matches`, while housekeeping lives in `cleanup_media_root`. The wrapper returns results invisibly so you can inspect them later without cluttering the rendered output.
+
+```{r}
+#| label: run-matching
+#| warning: false
+save_partial_matches <- function(result) {
+  filtered_results <- result |>
+    purrr::map(
+      ~ .x |>
+        dplyr::filter(
+          match_exactly == FALSE,
+          match_partially == TRUE
+        )
+    ) |>
+    dplyr::bind_rows() |>
+    tidyr::nest(.by = dataset) |>
+    dplyr::arrange(dataset) |>
+    dplyr::mutate(data = purrr::set_names(data, dataset)) |>
+    dplyr::pull(data)
+
+  filtered_results |>
+    openxlsx2::write_xlsx(
+      stringr::str_glue(
+        "Output/Example_check_names_photos_{lubridate::today()}.xlsx"
+      ),
+      as_table = TRUE,
+      overwrite = TRUE
+    )
+
+  return(filtered_results)
+}
+
+cleanup_media_root <- function(result, media_tbl, sources) {
+  sources_regex <- glue::glue_collapse(sources, "|")
+
+  files_to_delete <- result |>
+    purrr::map(
+      ~ .x |>
+        dplyr::filter(
+          match_exactly == TRUE,
+        ) |>
+        dplyr::distinct(sheet, .keep_all = TRUE) |>
+        dplyr::select(dataset, file = sheet)
+    ) |>
+    dplyr::bind_rows() |>
+    dplyr::inner_join(media_tbl, by = c("dataset", "file")) |>
+    dplyr::filter(
+      !stringr::str_detect(value, glue::glue("\\/{sources_regex}\\/"))
+    ) |>
+    dplyr::pull(value)
+
+  file.remove(files_to_delete)
+}
+
+run_check_match_media <- function(
+  sources = c("ct", "under", "over"),
+  media_tbl = media_files
+) {
+  result <- purrr::map(purrr::set_names(sources), function(source) {
+    check_match_media(source)
+  })
+
+  save_partial_matches(result)
+  cleanup_media_root(result, media_tbl, sources)
+
+  return(result)
+}
+
+run_check_match_media()
+```

@@ -26,7 +26,7 @@ This book documents the data quality checks performed on the camera trap data. E
 11. [Structure Coordinates Parameters](Quarto/09_structure_coords_parameters.html) - Tests if the coordinates parameters such as UTM zones and parameters are correctly provided.
 12. [Structure Locations](Quarto/10_structure_location.html) - Checks if the structures provided are within a distance of a road, railroad or pipeline.
 13. [Structure Camera Record Criteria](Quarto/11_record_criteria.qmd) - Verifies if the records are comprised whithin the record criteria provided.
-14. [Photo Verification](Quarto/12_photos.qmd) - Checks if the photos/videos filenames from camera traps and structures attributed in the spreadsheets exist on the media package provided.
+14. [Photo Verification](Quarto/12_photo.qmd) - Checks if the photos/videos filenames from camera traps and structures attributed in the spreadsheets exist on the media package provided.
 
 ### About
 

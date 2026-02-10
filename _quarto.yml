@@ -23,7 +23,7 @@ book:
         - Quarto/09_structure_coords_parameters.qmd
         - Quarto/10_structure_location.qmd
         - Quarto/11_record_criteria.qmd
-        - Quarto/12_photos.qmd
+        - Quarto/12_photo.qmd
 
 format:
   html:
@@ -34,4 +34,5 @@ format:
     toc-depth: 3
     number-sections: true
     code-fold: show
+    code-overflow: wrap
     # embed-resources: true

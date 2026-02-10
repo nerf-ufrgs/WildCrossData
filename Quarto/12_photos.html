@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2b762d6eed5d016e804f4003944f3325.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-91f0d6284b8c046f9427d9db374fe1da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9f0f484d8475f964e2c759eb5beca33e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-91f0d6284b8c046f9427d9db374fe1da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -417,13 +417,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#problem-description" id="toc-problem-description" class="nav-link active" data-scroll-target="#problem-description"><span class="header-section-number">14.1</span> Problem Description</a></li>
-  <li><a href="#problem-solving" id="toc-problem-solving" class="nav-link" data-scroll-target="#problem-solving"><span class="header-section-number">14.2</span> Problem Solving</a>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><span class="header-section-number">14.2</span> Solution</a>
   <ul class="collapse">
   <li><a href="#common-steps" id="toc-common-steps" class="nav-link" data-scroll-target="#common-steps"><span class="header-section-number">14.2.1</span> Common steps</a></li>
-  <li><a href="#stage-raw-media" id="toc-stage-raw-media" class="nav-link" data-scroll-target="#stage-raw-media"><span class="header-section-number">14.2.2</span> Stage raw media</a></li>
-  <li><a href="#inventory-media-under-media" id="toc-inventory-media-under-media" class="nav-link" data-scroll-target="#inventory-media-under-media"><span class="header-section-number">14.2.3</span> Inventory media under <code>Media</code></a></li>
-  <li><a href="#matching-functions" id="toc-matching-functions" class="nav-link" data-scroll-target="#matching-functions"><span class="header-section-number">14.2.4</span> Matching functions</a></li>
-  <li><a href="#run-the-full-matching" id="toc-run-the-full-matching" class="nav-link" data-scroll-target="#run-the-full-matching"><span class="header-section-number">14.2.5</span> Run the full matching</a></li>
+  <li><a href="#functions-to-organize-media" id="toc-functions-to-organize-media" class="nav-link" data-scroll-target="#functions-to-organize-media"><span class="header-section-number">14.2.2</span> Functions to organize media</a></li>
+  <li><a href="#functions-to-compare-names-and-generate-reports" id="toc-functions-to-compare-names-and-generate-reports" class="nav-link" data-scroll-target="#functions-to-compare-names-and-generate-reports"><span class="header-section-number">14.2.3</span> Functions to compare names and generate reports</a></li>
+  <li><a href="#initial-comparison-of-dataset-names" id="toc-initial-comparison-of-dataset-names" class="nav-link" data-scroll-target="#initial-comparison-of-dataset-names"><span class="header-section-number">14.2.4</span> Initial comparison of dataset names</a></li>
+  <li><a href="#optional-organization-of-raw-media" id="toc-optional-organization-of-raw-media" class="nav-link" data-scroll-target="#optional-organization-of-raw-media"><span class="header-section-number">14.2.5</span> Optional organization of raw media</a></li>
+  <li><a href="#media-inventory" id="toc-media-inventory" class="nav-link" data-scroll-target="#media-inventory"><span class="header-section-number">14.2.6</span> Media inventory</a></li>
+  <li><a href="#intermediate-outputs-preview" id="toc-intermediate-outputs-preview" class="nav-link" data-scroll-target="#intermediate-outputs-preview"><span class="header-section-number">14.2.7</span> Intermediate outputs preview</a></li>
+  <li><a href="#run-the-checker" id="toc-run-the-checker" class="nav-link" data-scroll-target="#run-the-checker"><span class="header-section-number">14.2.8</span> Run the checker</a></li>
+  <li><a href="#results-summary" id="toc-results-summary" class="nav-link" data-scroll-target="#results-summary"><span class="header-section-number">14.2.9</span> Results summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -453,17 +457,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="problem-description" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="problem-description"><span class="header-section-number">14.1</span> Problem Description</h2>
-<p>We verify whether the delivered photos and videos match the expected records in the Excel sheets. We standardize the media structure, copy found files into specific folders (<code>ct</code>, <code>under</code>, <code>over</code>), generate a partial-match report, and remove media that remain in the root without a correct destination.</p>
+<p>This script validates the consistency between the photo/video filenames in the spreadsheets and the files present in the media folders. It also organizes media by dataset and type, identifies exact and partial matches, and generates a review spreadsheet.</p>
 </section>
-<section id="problem-solving" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="problem-solving"><span class="header-section-number">14.2</span> Problem Solving</h2>
-<p>Pipeline: (1) load helpers and check folder names versus Excel sheets; (2) stage raw media into a standard structure; (3) inventory media under <code>Media</code>; (4) apply matching functions between sheets and files; (5) export partial matches and clean stray files.</p>
+<section id="solution" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="solution"><span class="header-section-number">14.2</span> Solution</h2>
+<p>We follow a staged workflow: (1) check whether dataset folder names match Excel filenames; (2) organize raw files into <code>Example/Media/{dataset}/{image|video}</code> (optional); (3) build a media inventory; (4) compare names between spreadsheets and files using <code>stringdist</code>; (5) copy exact matches to <code>Example/Media/{dataset}/{ct|under|over}</code>; (6) save a report of partial matches to <code>Example/12/Output</code>; (7) remove duplicates from the media root.</p>
 <section id="common-steps" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="common-steps"><span class="header-section-number">14.2.1</span> Common steps</h3>
-<p>These steps get the ground ready: we load shared utilities, list the incoming folders, and immediately compare their names with the Excel sheets. If something is off, we find out before spending time on matching. That early sanity check keeps the rest of the workflow focused on pairing files, not fixing misconfigured inputs.</p>
-<section id="load-helper-functions" class="level4" data-number="14.2.1.1">
-<h4 data-number="14.2.1.1" class="anchored" data-anchor-id="load-helper-functions"><span class="header-section-number">14.2.1.1</span> Load helper functions</h4>
-<p>Here we simply source <code>R/FUNCTIONS.R</code> to bring in shared helpers (<code>read_sheet</code>, string utilities, logging). By centralizing those functions, the notebook stays lean and consistent with the R script. Nothing else happens besides preparing the environment for the next chunks.</p>
+<p>First, we load the project’s utility functions. They include <code>read_sheet</code>, used to read the spreadsheets.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -471,93 +472,142 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="check-folder-names-vs.-excel-sheets" class="level4" data-number="14.2.1.2">
-<h4 data-number="14.2.1.2" class="anchored" data-anchor-id="check-folder-names-vs.-excel-sheets"><span class="header-section-number">14.2.1.2</span> Check folder names vs.&nbsp;Excel sheets</h4>
-<p>Next, we list the folders under <code>Example/12</code> and compare those names to the Excel sheet names. Using <code>waldo::compare</code>, any mismatch is surfaced right away, so we can align folder and sheet names before matching files. This symmetry avoids silent skips caused by small naming drifts.</p>
+<section id="functions-to-organize-media" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="functions-to-organize-media"><span class="header-section-number">14.2.2</span> Functions to organize media</h3>
+<p>Below we define one function per step of the media organization process. Each function has a single responsibility, which makes the pipeline easier to debug and reuse.</p>
+<section id="list_dataset_folders" class="level4" data-number="14.2.2.1">
+<h4 data-number="14.2.2.1" class="anchored" data-anchor-id="list_dataset_folders"><span class="header-section-number">14.2.2.1</span> <code>list_dataset_folders()</code></h4>
+<p>Lists only the first-level folders under the given <code>media_path</code>. These folders represent datasets that should match the Excel filenames.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>folders <span class="ot">&lt;-</span> <span class="fu">list.dirs</span>(<span class="at">path =</span> <span class="st">"Example/12"</span>, <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>names_folders <span class="ot">&lt;-</span> folders <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_split_i</span>(<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>, <span class="dv">3</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>names_excel <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="at">path =</span> <span class="st">"Example/12"</span>, <span class="at">results =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>names_folders <span class="sc">|&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  waldo<span class="sc">::</span><span class="fu">compare</span>(names_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>list_dataset_folders <span class="ot">&lt;-</span> <span class="cf">function</span>(media_path) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(media_path)) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="st">"Folder {media_path} not found."</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list.dirs</span>(<span class="at">path =</span> media_path, <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>✔ No differences</code></pre>
-</div>
 </div>
 </section>
-</section>
-<section id="stage-raw-media" class="level3" data-number="14.2.2">
-<h3 data-number="14.2.2" class="anchored" data-anchor-id="stage-raw-media"><span class="header-section-number">14.2.2</span> Stage raw media</h3>
-<p>Here we scan every file under the incoming folders, keep only images or videos, and infer dataset and media type from the path and MIME type. Then we create the standardized destination folders and copy the files there. Executing this chunk once sets up a clean media tree for the later matching steps.</p>
+<section id="list_excel_dataset_names" class="level4" data-number="14.2.2.2">
+<h4 data-number="14.2.2.2" class="anchored" data-anchor-id="list_excel_dataset_names"><span class="header-section-number">14.2.2.2</span> <code>list_excel_dataset_names()</code></h4>
+<p>Reads the Excel files in a directory and returns their names without extensions. We use this to validate the dataset list.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(folders, <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">file =</span> files) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">type =</span> mime<span class="sc">::</span><span class="fu">guess_type</span>(file)) <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(type, <span class="st">"^image/|^video"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">dataset =</span> stringr<span class="sc">::</span><span class="fu">str_split_i</span>(file, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>, <span class="dv">3</span>),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_type =</span> stringr<span class="sc">::</span><span class="fu">str_split_i</span>(type, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>, <span class="dv">1</span>),</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">folder =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"Example/Media/{dataset}/{media_type}/"</span>),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">filename =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"{folder}{basename(file)}"</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>folders_to_create <span class="ot">&lt;-</span> df<span class="sc">$</span>folder <span class="sc">|&gt;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (folder <span class="cf">in</span> folders_to_create) {</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="at">path =</span> folder, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="at">from =</span> df<span class="sc">$</span>file, <span class="at">to =</span> df<span class="sc">$</span>filename, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>list_excel_dataset_names <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">path =</span> <span class="st">"Example/12"</span>) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_sheet</span>(<span class="at">path =</span> path, <span class="at">results =</span> <span class="cn">FALSE</span>, <span class="at">recurse =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[46] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[61] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[76] TRUE</code></pre>
-</div>
 </div>
 </section>
-<section id="inventory-media-under-media" class="level3" data-number="14.2.3">
-<h3 data-number="14.2.3" class="anchored" data-anchor-id="inventory-media-under-media"><span class="header-section-number">14.2.3</span> Inventory media under <code>Media</code></h3>
-<p>Now we read everything under <code>Example/Media</code>, capturing the dataset from the path and the filename itself. The listing becomes a tibble, then we split it by dataset to form <code>media_list</code>, a named list of per-dataset media. This is the on-disk ground truth we will compare against the Excel expectations.</p>
+<section id="extract_dataset_from_path" class="level4" data-number="14.2.2.3">
+<h4 data-number="14.2.2.3" class="anchored" data-anchor-id="extract_dataset_from_path"><span class="header-section-number">14.2.2.3</span> <code>extract_dataset_from_path()</code></h4>
+<p>Extracts the dataset name from a full file path. The <code>dataset_index</code> lets you control which path segment should be interpreted as the dataset name.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>media_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"Example/Media"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">recursive =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">dataset =</span> stringr<span class="sc">::</span><span class="fu">word</span>(value, <span class="dv">3</span>, <span class="dv">3</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>),</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="fu">basename</span>(value)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>media_list <span class="ot">&lt;-</span> <span class="fu">split</span>(media_files, media_files<span class="sc">$</span>dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>extract_dataset_from_path <span class="ot">&lt;-</span> <span class="cf">function</span>(path, <span class="at">dataset_index =</span> <span class="dv">3</span>) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_split_i</span>(path, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>, dataset_index)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="matching-functions" class="level3" data-number="14.2.4">
-<h3 data-number="14.2.4" class="anchored" data-anchor-id="matching-functions"><span class="header-section-number">14.2.4</span> Matching functions</h3>
-<p>In this step, we define the helpers that drive validation, data loading, matching, and cleanup. Each function focuses on one responsibility so the main flow stays readable. We also explain how we detect exact vs.&nbsp;near matches using <code>stringdist</code>.</p>
-<section id="validate-allowed-sources-and-load-the-right-sheet" class="level4" data-number="14.2.4.1">
-<h4 data-number="14.2.4.1" class="anchored" data-anchor-id="validate-allowed-sources-and-load-the-right-sheet"><span class="header-section-number">14.2.4.1</span> Validate allowed sources and load the right sheet</h4>
-<p>We begin by validating the requested source and mapping it to the proper Excel sheet with <code>case_match</code>. If the source is unknown, we stop immediately; otherwise we load the sheet so the rest of the code can stay agnostic to sheet naming. This keeps the pipeline predictable from the first step.</p>
+<section id="organize_media_files" class="level4" data-number="14.2.2.4">
+<h4 data-number="14.2.2.4" class="anchored" data-anchor-id="organize_media_files"><span class="header-section-number">14.2.2.4</span> <code>organize_media_files()</code></h4>
+<p>Builds the mapping between raw media files and their standardized destinations in <code>Example/Media/{dataset}/{image|video}</code>. When <code>execute = TRUE</code>, it creates the folders and copies the files.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>organize_media_files <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_path =</span> <span class="st">"Example/12"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_root =</span> <span class="st">"Example/Media"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataset_index =</span> <span class="dv">3</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (execute <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">dir.exists</span>(media_root)) {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dir.create</span>(media_root, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  folders <span class="ot">&lt;-</span> <span class="fu">list_dataset_folders</span>(media_path)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(folders, <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">file =</span> files) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">type =</span> mime<span class="sc">::</span><span class="fu">guess_type</span>(file)) <span class="sc">|&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(type, <span class="st">"^image/|^video"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">dataset =</span> <span class="fu">extract_dataset_from_path</span>(file, <span class="at">dataset_index =</span> dataset_index),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">media_type =</span> stringr<span class="sc">::</span><span class="fu">str_split_i</span>(type, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>, <span class="dv">1</span>),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">folder =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"{media_root}/{dataset}/{media_type}/"</span>),</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">filename =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"{folder}{basename(file)}"</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (execute) {</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">walk</span>(<span class="fu">unique</span>(df<span class="sc">$</span>folder), <span class="sc">~</span> <span class="fu">dir.create</span>(.x, <span class="at">recursive =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file.copy</span>(<span class="at">from =</span> df<span class="sc">$</span>file, <span class="at">to =</span> df<span class="sc">$</span>filename, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="functions-to-compare-names-and-generate-reports" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="functions-to-compare-names-and-generate-reports"><span class="header-section-number">14.2.3</span> Functions to compare names and generate reports</h3>
+<p>Now we define one function per comparison step: inventory, validation, matching, and output generation.</p>
+<section id="build_media_inventory" class="level4" data-number="14.2.3.1">
+<h4 data-number="14.2.3.1" class="anchored" data-anchor-id="build_media_inventory"><span class="header-section-number">14.2.3.1</span> <code>build_media_inventory()</code></h4>
+<p>Scans <code>Example/Media</code> and constructs three structures: the full file list, the list excluding <code>ct/under/over</code>, and a split list of already classified media.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>build_media_inventory <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_root =</span> <span class="st">"Example/Media"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sources =</span> <span class="fu">c</span>(<span class="st">"ct"</span>, <span class="st">"under"</span>, <span class="st">"over"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(media_root)) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Media folder {media_root} not found. Run organize_media_files() with execute = TRUE first."</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  media_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> media_root,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">recursive =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">dataset =</span> stringr<span class="sc">::</span><span class="fu">word</span>(value, <span class="dv">3</span>, <span class="dv">3</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">media_type =</span> stringr<span class="sc">::</span><span class="fu">word</span>(value, <span class="dv">4</span>, <span class="dv">4</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">/"</span>),</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">file =</span> <span class="fu">basename</span>(value)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  media_files_types <span class="ot">&lt;-</span> media_files <span class="sc">|&gt;</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(media_type <span class="sc">%in%</span> sources)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  media_files_types_list <span class="ot">&lt;-</span> media_files_types <span class="sc">|&gt;</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    (\(df) <span class="fu">split</span>(df, df<span class="sc">$</span>dataset))() <span class="sc">|&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(\(df) <span class="fu">split</span>(df, df<span class="sc">$</span>media_type))</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  media_anti_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">anti_join</span>(media_files, media_files_types)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  media_list <span class="ot">&lt;-</span> <span class="fu">split</span>(media_anti_join, media_anti_join<span class="sc">$</span>dataset)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_files =</span> media_files,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_list =</span> media_list,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_files_types_list =</span> media_files_types_list</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="validate_source" class="level4" data-number="14.2.3.2">
+<h4 data-number="14.2.3.2" class="anchored" data-anchor-id="validate_source"><span class="header-section-number">14.2.3.2</span> <code>validate_source()</code></h4>
+<p>Confirms that the requested source is one of the accepted values.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -567,407 +617,721 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Source {source} is not an accepted value. Accepted values are 'ct', 'under', 'over'"</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>load_source_data <span class="ot">&lt;-</span> <span class="cf">function</span>(source) {</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  source <span class="ot">&lt;-</span> <span class="fu">as.character</span>(source)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  sheet_name <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">case_match</span>(</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    source,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ct"</span> <span class="sc">~</span> <span class="st">"Camera_trap"</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"under"</span> <span class="sc">~</span> <span class="st">"Underpasses"</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"over"</span> <span class="sc">~</span> <span class="st">"Overpasses"</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="cn">NA_character_</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(sheet_name)) {</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="st">"Source {source} is not mapped to a sheet."</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Drop previous derived outputs to avoid loading non-source workbooks</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.remove</span>(<span class="fu">list.files</span>(</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="st">"Example/12"</span>,</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern =</span> <span class="st">"^check_names_photos_.*</span><span class="sc">\\</span><span class="st">.xlsx$"</span>,</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_sheet</span>(</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="st">"Example/12"</span>,</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> sheet_name,</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-"</span>)</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="check-dataset-name-consistency" class="level4" data-number="14.2.4.2">
-<h4 data-number="14.2.4.2" class="anchored" data-anchor-id="check-dataset-name-consistency"><span class="header-section-number">14.2.4.2</span> Check dataset-name consistency</h4>
-<p>Here we confirm that every dataset present in the Excel sheets also exists in the media inventory. If one side is missing a dataset, we abort rather than silently skipping it. That safeguard keeps disk contents and spreadsheet expectations aligned.</p>
+<section id="load_source_data" class="level4" data-number="14.2.3.3">
+<h4 data-number="14.2.3.3" class="anchored" data-anchor-id="load_source_data"><span class="header-section-number">14.2.3.3</span> <code>load_source_data()</code></h4>
+<p>Loads the appropriate sheet based on the <code>source</code> and returns a named list of datasets.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ensure_dataset_names_match <span class="ot">&lt;-</span> <span class="cf">function</span>(datasets, media_list) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  datasets_not_in_common <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">setdiff</span>(<span class="fu">names</span>(datasets), <span class="fu">names</span>(media_list))</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>load_source_data <span class="ot">&lt;-</span> <span class="cf">function</span>(source, <span class="at">path =</span> <span class="st">"Example/12"</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  source <span class="ot">&lt;-</span> <span class="fu">as.character</span>(source)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(datasets_not_in_common) <span class="sc">!=</span> <span class="dv">0</span>) {</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"There are different datasets between media folder and Excel sheets."</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  sheet_name <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">case_match</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    source,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ct"</span> <span class="sc">~</span> <span class="st">"Camera_trap"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"under"</span> <span class="sc">~</span> <span class="st">"Underpasses"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"over"</span> <span class="sc">~</span> <span class="st">"Overpasses"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(sheet_name)) {</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="st">"Source {source} is not mapped to a sheet."</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_sheet</span>(</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> path,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> sheet_name,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-"</span>),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">recurse =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="extract-filenames-from-the-sheet" class="level4" data-number="14.2.4.3">
-<h4 data-number="14.2.4.3" class="anchored" data-anchor-id="extract-filenames-from-the-sheet"><span class="header-section-number">14.2.4.3</span> Extract filenames from the sheet</h4>
-<p>Continuing, we pull the expected filenames from the appropriate column (<code>Camera_vision_photo</code> for <code>ct</code>, <code>Structure_photo</code> otherwise). We keep only distinct, non-missing values so the matching targets are clean. Using tidy evaluation (<code>col_sym</code>) lets us pick the right column without hard-coding elsewhere.</p>
+<section id="ensure_dataset_names_match" class="level4" data-number="14.2.3.4">
+<h4 data-number="14.2.3.4" class="anchored" data-anchor-id="ensure_dataset_names_match"><span class="header-section-number">14.2.3.4</span> <code>ensure_dataset_names_match()</code></h4>
+<p>Checks whether dataset names in the Excel sheets match the dataset folders found in the media inventory.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>extract_filenames_on_sheet <span class="ot">&lt;-</span> <span class="cf">function</span>(df, source) {</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  column <span class="ot">&lt;-</span> <span class="cf">if</span> (source <span class="sc">==</span> <span class="st">"ct"</span>) <span class="st">"Camera_vision_photo"</span> <span class="cf">else</span> <span class="st">"Structure_photo"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  col_sym <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">sym</span>(column)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">distinct</span>(dplyr<span class="sc">::</span><span class="fu">across</span>(dplyr<span class="sc">::</span><span class="fu">all_of</span>(column))) <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="sc">!!</span>col_sym)) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(<span class="sc">!!</span>col_sym)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ensure_dataset_names_match <span class="ot">&lt;-</span> <span class="cf">function</span>(datasets, media_list) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(media_list) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Media inventory is empty. Make sure media files were copied to the Media folder."</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  datasets_not_in_common <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">setdiff</span>(<span class="fu">names</span>(datasets), <span class="fu">names</span>(media_list))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(datasets_not_in_common) <span class="sc">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"There are different datasets between media folder and Excel sheets."</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="prepare-media-candidates" class="level4" data-number="14.2.4.4">
-<h4 data-number="14.2.4.4" class="anchored" data-anchor-id="prepare-media-candidates"><span class="header-section-number">14.2.4.4</span> Prepare media candidates</h4>
-<p>Now we prune out media files that are already sitting in a source-specific folder. By filtering any path containing <code>/source/</code>, we restrict the next steps to files that still need placement. That keeps us from re-processing what was matched before.</p>
+<section id="extract_filenames_on_sheet" class="level4" data-number="14.2.3.5">
+<h4 data-number="14.2.3.5" class="anchored" data-anchor-id="extract_filenames_on_sheet"><span class="header-section-number">14.2.3.5</span> <code>extract_filenames_on_sheet()</code></h4>
+<p>Returns the unique list of filenames referenced in the spreadsheet for a given source.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>media_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset_media, source) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  dataset_media <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">/{source}</span><span class="sc">\\</span><span class="st">/"</span>)))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>extract_filenames_on_sheet <span class="ot">&lt;-</span> <span class="cf">function</span>(df, source) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  column <span class="ot">&lt;-</span> <span class="cf">if</span> (source <span class="sc">==</span> <span class="st">"ct"</span>) <span class="st">"Camera_vision_photo"</span> <span class="cf">else</span> <span class="st">"Structure_photo"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  col_sym <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">sym</span>(column)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">distinct</span>(dplyr<span class="sc">::</span><span class="fu">across</span>(dplyr<span class="sc">::</span><span class="fu">all_of</span>(column))) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="sc">!!</span>col_sym)) <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(<span class="sc">!!</span>col_sym)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="compute-string-distances-exact-and-near-matches" class="level4" data-number="14.2.4.5">
-<h4 data-number="14.2.4.5" class="anchored" data-anchor-id="compute-string-distances-exact-and-near-matches"><span class="header-section-number">14.2.4.5</span> Compute string distances (exact and near matches)</h4>
-<p>Here we compare the sheet filenames to the media filenames using Levenshtein distance (<code>stringdistmatrix</code>). A distance of zero signals an exact match; small distances flag near matches we might want to inspect. We keep the result as a tibble and add a logical <code>match_exactly</code> column that downstream steps can consume.</p>
+<section id="media_candidates" class="level4" data-number="14.2.3.6">
+<h4 data-number="14.2.3.6" class="anchored" data-anchor-id="media_candidates"><span class="header-section-number">14.2.3.6</span> <code>media_candidates()</code></h4>
+<p>Filters out files that are already inside the source-specific folders (<code>ct</code>, <code>under</code>, <code>over</code>).</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stringdist_table <span class="ot">&lt;-</span> <span class="cf">function</span>(filenames_on_sheet, media) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  stringdist<span class="sc">::</span><span class="fu">stringdistmatrix</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    filenames_on_sheet,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    media,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lv"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">useNames =</span> <span class="st">"strings"</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">"sheet"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_exactly =</span> dplyr<span class="sc">::</span><span class="fu">if_any</span>(dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric), <span class="sc">~</span> . <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>media_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset_media, source) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dataset_media <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">/{source}</span><span class="sc">\\</span><span class="st">/"</span>)))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="build-and-prune-match-candidates" class="level4" data-number="14.2.4.6">
-<h4 data-number="14.2.4.6" class="anchored" data-anchor-id="build-and-prune-match-candidates"><span class="header-section-number">14.2.4.6</span> Build and prune match candidates</h4>
-<p>Next we reshape the distance table to long form, calculate simple heuristics (same name without extension, case-insensitive match, distance between 1 and 5), and order the candidates. Then we filter out ambiguous pairs that collide on sheet/file combinations. The goal is to surface solid candidates while trimming noisy duplicates.</p>
+<section id="stringdist_table" class="level4" data-number="14.2.3.7">
+<h4 data-number="14.2.3.7" class="anchored" data-anchor-id="stringdist_table"><span class="header-section-number">14.2.3.7</span> <code>stringdist_table()</code></h4>
+<p>Builds a distance matrix between sheet filenames and media filenames, and flags rows with any exact match.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>build_match_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(df_stringdist) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  df_stringdist <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(sheet, match_exactly),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">"file"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"stringdist"</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_file_no_extension =</span> sheet <span class="sc">==</span> tools<span class="sc">::</span><span class="fu">file_path_sans_ext</span>(file),</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_file_diff_capitalization =</span> stringr<span class="sc">::</span><span class="fu">str_to_upper</span>(sheet) <span class="sc">==</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        stringr<span class="sc">::</span><span class="fu">str_to_upper</span>(file),</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_partially =</span> dplyr<span class="sc">::</span><span class="fu">if_any</span>(</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric),</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">~</span> dplyr<span class="sc">::</span><span class="fu">between</span>(., <span class="dv">1</span>, <span class="dv">5</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">relocate</span>(match_exactly, <span class="at">.after =</span> stringdist) <span class="sc">|&gt;</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(match_file_no_extension), file)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>dedupe_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(match_candidates, <span class="at">files_to_exclude =</span> <span class="fu">character</span>()) {</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  filtered_candidates <span class="ot">&lt;-</span> match_candidates <span class="sc">|&gt;</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>file <span class="sc">%in%</span> files_to_exclude)</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  dup_sheet_file <span class="ot">&lt;-</span> filtered_candidates <span class="sc">|&gt;</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>      match_file_no_extension <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        match_file_diff_capitalization <span class="sc">==</span> <span class="cn">TRUE</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(sheet, file)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  filtered_candidates <span class="sc">|&gt;</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">keep =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>          match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>          sheet <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>sheet <span class="sc">~</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>          <span class="st">"REMOVE"</span>,</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>        match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>          match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>          file <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>file <span class="sc">~</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>          <span class="st">"REMOVE"</span>,</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"KEEP"</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(keep <span class="sc">==</span> <span class="st">"KEEP"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>keep)</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stringdist_table <span class="ot">&lt;-</span> <span class="cf">function</span>(filenames_on_sheet, media) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  stringdist<span class="sc">::</span><span class="fu">stringdistmatrix</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    filenames_on_sheet,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    media,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lv"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">useNames =</span> <span class="st">"strings"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">"sheet"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_exactly =</span> dplyr<span class="sc">::</span><span class="fu">if_any</span>(dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric), <span class="sc">~</span> . <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="copy-exact-matches" class="level4" data-number="14.2.4.7">
-<h4 data-number="14.2.4.7" class="anchored" data-anchor-id="copy-exact-matches"><span class="header-section-number">14.2.4.7</span> Copy exact matches</h4>
-<p>Here we handle the zero-distance hits: we create the destination folder if it does not exist, map sheet entries to real files, and copy them while preserving timestamps. If no exact matches are found, we return an empty tibble so the flow continues gracefully.</p>
+<section id="build_match_candidates" class="level4" data-number="14.2.3.8">
+<h4 data-number="14.2.3.8" class="anchored" data-anchor-id="build_match_candidates"><span class="header-section-number">14.2.3.8</span> <code>build_match_candidates()</code></h4>
+<p>Converts the matrix to long format and computes matching flags for partial and case-insensitive matches.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>copy_exact_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  df_stringdist,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  media_without_source,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  target_dir</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>) {</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  media_match_exactly <span class="ot">&lt;-</span> df_stringdist <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(match_exactly <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(media_match_exactly) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">file =</span> <span class="fu">character</span>(), <span class="at">full_path_to_copy =</span> <span class="fu">character</span>()))</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(target_dir)) {</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dir.create</span>(target_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  files_found_in_sheet <span class="ot">&lt;-</span> df_stringdist <span class="sc">|&gt;</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(match_exactly <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(sheet) <span class="sc">|&gt;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">enframe</span>(<span class="at">value =</span> <span class="st">"file"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(media_without_source, <span class="at">by =</span> <span class="st">"file"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">full_path_to_copy =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{target_dir}/{file}"</span>))</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.copy</span>(</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> files_found_in_sheet<span class="sc">$</span>value,</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> files_found_in_sheet<span class="sc">$</span>full_path_to_copy,</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">overwrite =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">copy.date =</span> <span class="cn">TRUE</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  files_found_in_sheet</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>build_match_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(df_stringdist) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  df_stringdist <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(sheet, match_exactly),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">"file"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"stringdist"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_file_no_extension =</span> sheet <span class="sc">==</span> tools<span class="sc">::</span><span class="fu">file_path_sans_ext</span>(file),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_file_diff_capitalization =</span> stringr<span class="sc">::</span><span class="fu">str_to_upper</span>(sheet) <span class="sc">==</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        stringr<span class="sc">::</span><span class="fu">str_to_upper</span>(file),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_partially =</span> dplyr<span class="sc">::</span><span class="fu">if_any</span>(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric),</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">~</span> dplyr<span class="sc">::</span><span class="fu">between</span>(., <span class="dv">1</span>, <span class="dv">5</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">relocate</span>(match_exactly, <span class="at">.after =</span> stringdist) <span class="sc">|&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(match_file_no_extension), file)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="process-each-dataset" class="level4" data-number="14.2.4.8">
-<h4 data-number="14.2.4.8" class="anchored" data-anchor-id="process-each-dataset"><span class="header-section-number">14.2.4.8</span> Process each dataset</h4>
-<p>For each dataset and source, we extract the expected filenames, gather candidate media, compute distances, copy any exact matches, and return a curated candidate table with the copied files excluded. This per-dataset step stitches together all the helper logic into a single pass.</p>
+<section id="get_media_type_files" class="level4" data-number="14.2.3.9">
+<h4 data-number="14.2.3.9" class="anchored" data-anchor-id="get_media_type_files"><span class="header-section-number">14.2.3.9</span> <code>get_media_type_files()</code></h4>
+<p>Returns the list of files already placed in a given <code>source</code> folder for a dataset.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>process_dataset <span class="ot">&lt;-</span> <span class="cf">function</span>(df, dataset_name, source, media_list) {</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  cli<span class="sc">::</span><span class="fu">cli_alert_info</span>(<span class="st">"Processing dataset {dataset_name}."</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  filenames_on_sheet <span class="ot">&lt;-</span> <span class="fu">extract_filenames_on_sheet</span>(df, source)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(filenames_on_sheet) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tibble<span class="sc">::</span><span class="fu">tibble</span>())</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  media_without_source <span class="ot">&lt;-</span> <span class="fu">media_candidates</span>(media_list[[dataset_name]], source)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(media_without_source) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tibble<span class="sc">::</span><span class="fu">tibble</span>())</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> media_without_source <span class="sc">|&gt;</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">distinct</span>(file) <span class="sc">|&gt;</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(file)</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  df_stringdist <span class="ot">&lt;-</span> <span class="fu">stringdist_table</span>(filenames_on_sheet, media)</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  files_copied <span class="ot">&lt;-</span> <span class="fu">copy_exact_matches</span>(</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    df_stringdist,</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    media_without_source,</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Example/Media/{dataset_name}/{source}"</span>)</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  match_candidates <span class="ot">&lt;-</span> <span class="fu">build_match_candidates</span>(df_stringdist)</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dedupe_matches</span>(match_candidates, <span class="at">files_to_exclude =</span> files_copied<span class="sc">$</span>file)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>get_media_type_files <span class="ot">&lt;-</span> <span class="cf">function</span>(media_files_types_list, dataset, source) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>dataset <span class="sc">%in%</span> <span class="fu">names</span>(media_files_types_list)) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">character</span>())</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>source <span class="sc">%in%</span> <span class="fu">names</span>(media_files_types_list[[dataset]])) {</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">character</span>())</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  media_files_types_list[[dataset]][[source]]<span class="sc">$</span>file</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="orchestrate-matching-per-source" class="level4" data-number="14.2.4.9">
-<h4 data-number="14.2.4.9" class="anchored" data-anchor-id="orchestrate-matching-per-source"><span class="header-section-number">14.2.4.9</span> Orchestrate matching per source</h4>
-<p>Finally, <code>check_match_media</code> validates the source, loads the sheet, checks dataset names, iterates over non-empty datasets, and binds the results while tagging the source. Each source flows through the same validated routine, keeping the main pipeline slim and repeatable.</p>
+<section id="dedupe_matches" class="level4" data-number="14.2.3.10">
+<h4 data-number="14.2.3.10" class="anchored" data-anchor-id="dedupe_matches"><span class="header-section-number">14.2.3.10</span> <code>dedupe_matches()</code></h4>
+<p>Removes redundant candidate pairs, keeping only the most informative combinations.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">source =</span> <span class="cn">NULL</span>) {</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">validate_source</span>(source)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  cli<span class="sc">::</span><span class="fu">cli_alert</span>(<span class="st">"Starting source {source}"</span>)</span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dedupe_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(match_candidates, <span class="at">files_to_exclude =</span> <span class="fu">character</span>()) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  filtered_candidates <span class="ot">&lt;-</span> match_candidates <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>file <span class="sc">%in%</span> files_to_exclude)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  datasets <span class="ot">&lt;-</span> <span class="fu">load_source_data</span>(source)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ensure_dataset_names_match</span>(datasets, media_list)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  datasets_with_content <span class="ot">&lt;-</span> datasets <span class="sc">|&gt;</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">imap</span>(</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    datasets_with_content,</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> <span class="fu">process_dataset</span>(.x, .y, source, media_list)</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  res <span class="sc">|&gt;</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"dataset"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">source =</span> source, <span class="at">.after =</span> dataset)</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  dup_sheet_file <span class="ot">&lt;-</span> filtered_candidates <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      match_file_no_extension <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        match_file_diff_capitalization <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(sheet, file)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  filtered_candidates <span class="sc">|&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">keep =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>          match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>          sheet <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>sheet <span class="sc">~</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>          <span class="st">"REMOVE"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>          match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>          file <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>file <span class="sc">~</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">"REMOVE"</span>,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"KEEP"</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(keep <span class="sc">==</span> <span class="st">"KEEP"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>keep)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="copy_exact_matches" class="level4" data-number="14.2.3.11">
+<h4 data-number="14.2.3.11" class="anchored" data-anchor-id="copy_exact_matches"><span class="header-section-number">14.2.3.11</span> <code>copy_exact_matches()</code></h4>
+<p>Copies files whose names match exactly into the source-specific folder and returns the list of copied files.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>copy_exact_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  df_stringdist,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  media_without_source,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  target_dir,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  media_match_exactly <span class="ot">&lt;-</span> df_stringdist <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(match_exactly <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(media_match_exactly) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">file =</span> <span class="fu">character</span>(), <span class="at">full_path_to_copy =</span> <span class="fu">character</span>()))</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (execute <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">dir.exists</span>(target_dir)) {</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dir.create</span>(target_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  files_found_in_sheet <span class="ot">&lt;-</span> df_stringdist <span class="sc">|&gt;</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(match_exactly <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(sheet) <span class="sc">|&gt;</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">enframe</span>(<span class="at">value =</span> <span class="st">"file"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(media_without_source, <span class="at">by =</span> <span class="st">"file"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">full_path_to_copy =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{target_dir}/{file}"</span>))</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (execute) {</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file.copy</span>(</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">from =</span> files_found_in_sheet<span class="sc">$</span>value,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">to =</span> files_found_in_sheet<span class="sc">$</span>full_path_to_copy,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">overwrite =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">copy.date =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  files_found_in_sheet</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="process_dataset" class="level4" data-number="14.2.3.12">
+<h4 data-number="14.2.3.12" class="anchored" data-anchor-id="process_dataset"><span class="header-section-number">14.2.3.12</span> <code>process_dataset()</code></h4>
+<p>Runs the full matching logic for one dataset: prepares candidates, copies exact matches, and returns remaining candidates.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>process_dataset <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  df,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dataset_name,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  source,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  media_list,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  media_files_types_list,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  media_root,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute_copy =</span> <span class="cn">TRUE</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  cli<span class="sc">::</span><span class="fu">cli_alert_info</span>(<span class="st">"Processing dataset {dataset_name}."</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(media_list[[dataset_name]])) {</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Dataset {dataset_name} not found in the media inventory. Check media_root and folder structure."</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  filenames_on_sheet <span class="ot">&lt;-</span> <span class="fu">extract_filenames_on_sheet</span>(df, source)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(filenames_on_sheet) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tibble<span class="sc">::</span><span class="fu">tibble</span>())</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  media_without_source <span class="ot">&lt;-</span> <span class="fu">media_candidates</span>(media_list[[dataset_name]], source)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(media_without_source) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tibble<span class="sc">::</span><span class="fu">tibble</span>())</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> media_without_source <span class="sc">|&gt;</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">distinct</span>(file) <span class="sc">|&gt;</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(file)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>  df_stringdist <span class="ot">&lt;-</span> <span class="fu">stringdist_table</span>(filenames_on_sheet, media)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>  files_copied <span class="ot">&lt;-</span> <span class="fu">copy_exact_matches</span>(</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    df_stringdist,</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    media_without_source,</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>    glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{media_root}/{dataset_name}/{source}"</span>),</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">execute =</span> execute_copy</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>  match_candidates <span class="ot">&lt;-</span> <span class="fu">build_match_candidates</span>(df_stringdist)</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>  files_in_source <span class="ot">&lt;-</span> <span class="fu">get_media_type_files</span>(</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>    media_files_types_list,</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>    dataset_name,</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>    source</span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dedupe_matches</span>(</span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>    match_candidates,</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">files_to_exclude =</span> <span class="fu">c</span>(files_copied<span class="sc">$</span>file, files_in_source)</span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="check_match_media" class="level4" data-number="14.2.3.13">
+<h4 data-number="14.2.3.13" class="anchored" data-anchor-id="check_match_media"><span class="header-section-number">14.2.3.13</span> <code>check_match_media()</code></h4>
+<p>Applies <code>process_dataset()</code> to every dataset for a given source and returns a combined table.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  source,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  media_list,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  media_files_types_list,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  media_root,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"Example/12"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute_copy =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">validate_source</span>(source)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  cli<span class="sc">::</span><span class="fu">cli_alert</span>(<span class="st">"Starting source {source}"</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  datasets <span class="ot">&lt;-</span> <span class="fu">load_source_data</span>(source, <span class="at">path =</span> path)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (strict) {</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ensure_dataset_names_match</span>(datasets, media_list)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  datasets_with_content <span class="ot">&lt;-</span> datasets <span class="sc">|&gt;</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">imap</span>(</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    datasets_with_content,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> <span class="fu">process_dataset</span>(</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>      .x,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>      .y,</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>      source,</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>      media_list,</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>      media_files_types_list,</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>      media_root,</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>      execute_copy</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  res <span class="sc">|&gt;</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"dataset"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">source =</span> source, <span class="at">.after =</span> dataset)</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="save_partial_matches" class="level4" data-number="14.2.3.14">
+<h4 data-number="14.2.3.14" class="anchored" data-anchor-id="save_partial_matches"><span class="header-section-number">14.2.3.14</span> <code>save_partial_matches()</code></h4>
+<p>Writes only the partial matches to an Excel file inside <code>Example/12/Output</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>save_partial_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  result,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_path =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Example/12/Output/SCRIPT12_check_names_photos_{lubridate::today()}.xlsx"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="fu">dirname</span>(output_path))) {</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dir.create</span>(<span class="fu">dirname</span>(output_path), <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  partial_matches <span class="ot">&lt;-</span> result <span class="sc">|&gt;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> .x <span class="sc">|&gt;</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>          match_exactly <span class="sc">==</span> <span class="cn">FALSE</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>          match_partially <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">nest</span>(<span class="at">.by =</span> dataset) <span class="sc">|&gt;</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(dataset) <span class="sc">|&gt;</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">data =</span> purrr<span class="sc">::</span><span class="fu">set_names</span>(data, dataset)) <span class="sc">|&gt;</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(data)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(partial_matches) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  partial_matches <span class="sc">|&gt;</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    openxlsx2<span class="sc">::</span><span class="fu">write_xlsx</span>(</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>      output_path,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">as_table =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">overwrite =</span> <span class="cn">TRUE</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="cleanup_media_root" class="level4" data-number="14.2.3.15">
+<h4 data-number="14.2.3.15" class="anchored" data-anchor-id="cleanup_media_root"><span class="header-section-number">14.2.3.15</span> <code>cleanup_media_root()</code></h4>
+<p>Removes duplicates from the media root after exact matches were copied to source folders.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cleanup_media_root <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  result,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  media_files,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  sources,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  sources_regex <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue_collapse</span>(sources, <span class="st">"|"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  files_to_delete <span class="ot">&lt;-</span> result <span class="sc">|&gt;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> .x <span class="sc">|&gt;</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>          match_exactly <span class="sc">==</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">distinct</span>(sheet, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">select</span>(dataset, <span class="at">file =</span> sheet)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(media_files, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dataset"</span>, <span class="st">"file"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">/{sources_regex}</span><span class="sc">\\</span><span class="st">/"</span>))</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(value)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (execute) {</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file.remove</span>(files_to_delete)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  files_to_delete</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="run_check_match_media" class="level4" data-number="14.2.3.16">
+<h4 data-number="14.2.3.16" class="anchored" data-anchor-id="run_check_match_media"><span class="header-section-number">14.2.3.16</span> <code>run_check_match_media()</code></h4>
+<p>Runs the full pipeline for all sources and returns the combined result invisibly.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>run_check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  sources,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  media_list,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  media_files,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  media_files_types_list,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  media_root,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute_copy =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute_cleanup =</span> <span class="cn">TRUE</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(purrr<span class="sc">::</span><span class="fu">set_names</span>(sources), <span class="cf">function</span>(source) {</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">check_match_media</span>(</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>      source,</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>      media_list,</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>      media_files_types_list,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>      media_root,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">execute_copy =</span> execute_copy</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_partial_matches</span>(result)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cleanup_media_root</span>(result, media_files, sources, <span class="at">execute =</span> execute_cleanup)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(result)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="preview_match_tables" class="level4" data-number="14.2.3.17">
+<h4 data-number="14.2.3.17" class="anchored" data-anchor-id="preview_match_tables"><span class="header-section-number">14.2.3.17</span> <code>preview_match_tables()</code></h4>
+<p>Builds the two intermediate tables used for manual inspection: the wide <code>stringdist</code> matrix and the long candidate table.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>preview_match_tables <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  source,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  dataset_name,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  media_list,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  media_files_types_list,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"Example/12"</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  datasets <span class="ot">&lt;-</span> <span class="fu">load_source_data</span>(source, <span class="at">path =</span> path)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>dataset_name <span class="sc">%in%</span> <span class="fu">names</span>(datasets)) {</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="st">"Dataset {dataset_name} not found in the spreadsheet."</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  media_without_source <span class="ot">&lt;-</span> <span class="fu">media_candidates</span>(media_list[[dataset_name]], source)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> media_without_source <span class="sc">|&gt;</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">distinct</span>(file) <span class="sc">|&gt;</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(file)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  filenames_on_sheet <span class="ot">&lt;-</span> <span class="fu">extract_filenames_on_sheet</span>(</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    datasets[[dataset_name]],</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    source</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>  df_stringdist <span class="ot">&lt;-</span> <span class="fu">stringdist_table</span>(filenames_on_sheet, media)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  match_candidates <span class="ot">&lt;-</span> <span class="fu">build_match_candidates</span>(df_stringdist)</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  files_in_source <span class="ot">&lt;-</span> <span class="fu">get_media_type_files</span>(</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    media_files_types_list,</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    dataset_name,</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    source</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>  match_candidates <span class="ot">&lt;-</span> <span class="fu">dedupe_matches</span>(</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>    match_candidates,</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">files_to_exclude =</span> files_in_source</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">df_stringdist =</span> df_stringdist,</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">match_candidates =</span> match_candidates</span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 </section>
-<section id="run-the-full-matching" class="level3" data-number="14.2.5">
-<h3 data-number="14.2.5" class="anchored" data-anchor-id="run-the-full-matching"><span class="header-section-number">14.2.5</span> Run the full matching</h3>
-<p>To wrap up, we run <code>check_match_media</code> for each source, export an Excel report of partial matches, and remove files that remain at the root (image or video) but should now sit under <code>ct</code>, <code>under</code>, or <code>over</code>. Reporting stays inside <code>save_partial_matches</code>, while housekeeping lives in <code>cleanup_media_root</code>. The wrapper returns results invisibly so you can inspect them later without cluttering the rendered output.</p>
+<section id="initial-comparison-of-dataset-names" class="level3" data-number="14.2.4">
+<h3 data-number="14.2.4" class="anchored" data-anchor-id="initial-comparison-of-dataset-names"><span class="header-section-number">14.2.4</span> Initial comparison of dataset names</h3>
+<p>Here we check whether the folder names in <code>Example</code> match the Excel filenames.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>save_partial_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(result) {</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  filtered_results <span class="ot">&lt;-</span> result <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> .x <span class="sc">|&gt;</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>          match_exactly <span class="sc">==</span> <span class="cn">FALSE</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>          match_partially <span class="sc">==</span> <span class="cn">TRUE</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>() <span class="sc">|&gt;</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">nest</span>(<span class="at">.by =</span> dataset) <span class="sc">|&gt;</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(dataset) <span class="sc">|&gt;</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">data =</span> purrr<span class="sc">::</span><span class="fu">set_names</span>(data, dataset)) <span class="sc">|&gt;</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(data)</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  filtered_results <span class="sc">|&gt;</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    openxlsx2<span class="sc">::</span><span class="fu">write_xlsx</span>(</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_glue</span>(</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Output/Example_check_names_photos_{lubridate::today()}.xlsx"</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">as_table =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">overwrite =</span> <span class="cn">TRUE</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(filtered_results)</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>cleanup_media_root <span class="ot">&lt;-</span> <span class="cf">function</span>(result, media_tbl, sources) {</span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  sources_regex <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue_collapse</span>(sources, <span class="st">"|"</span>)</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  files_to_delete <span class="ot">&lt;-</span> result <span class="sc">|&gt;</span></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> .x <span class="sc">|&gt;</span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>          match_exactly <span class="sc">==</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">distinct</span>(sheet, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">select</span>(dataset, <span class="at">file =</span> sheet)</span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>() <span class="sc">|&gt;</span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(media_tbl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dataset"</span>, <span class="st">"file"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">/{sources_regex}</span><span class="sc">\\</span><span class="st">/"</span>))</span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(value)</span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.remove</span>(files_to_delete)</span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>run_check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">sources =</span> <span class="fu">c</span>(<span class="st">"ct"</span>, <span class="st">"under"</span>, <span class="st">"over"</span>),</span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_tbl =</span> media_files</span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>) {</span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(purrr<span class="sc">::</span><span class="fu">set_names</span>(sources), <span class="cf">function</span>(source) {</span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">check_match_media</span>(source)</span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_partial_matches</span>(result)</span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cleanup_media_root</span>(result, media_tbl, sources)</span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="fu">run_check_match_media</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>media_path <span class="ot">&lt;-</span> <span class="st">"Example/12"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>folders <span class="ot">&lt;-</span> <span class="fu">list_dataset_folders</span>(media_path)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>names_folders <span class="ot">&lt;-</span> <span class="fu">basename</span>(folders)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>names_excel <span class="ot">&lt;-</span> <span class="fu">list_excel_dataset_names</span>(<span class="at">path =</span> media_path)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>waldo<span class="sc">::</span><span class="fu">compare</span>(names_folders, names_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>$ct
-# A tibble: 768 × 9
-   dataset  source sheet   file  stringdist match_exactly match_file_no_extens…¹
-   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;         &lt;lgl&gt;                 
- 1 Example1 ct     PFO01_… PFU0…         17 TRUE          FALSE                 
- 2 Example1 ct     PFO02_… PFU0…         17 TRUE          FALSE                 
- 3 Example1 ct     PFO03_… PFU0…         17 TRUE          FALSE                 
- 4 Example1 ct     PFO04_… PFU0…         17 TRUE          FALSE                 
- 5 Example1 ct     PFO05_… PFU0…         17 TRUE          FALSE                 
- 6 Example1 ct     PFO06_… PFU0…         17 TRUE          FALSE                 
- 7 Example1 ct     PFO07_… PFU0…         21 TRUE          FALSE                 
- 8 Example1 ct     PFU01_… PFU0…         16 TRUE          FALSE                 
- 9 Example1 ct     PFU02_… PFU0…         20 TRUE          FALSE                 
-10 Example1 ct     PFU02_… PFU0…         16 TRUE          FALSE                 
-# ℹ 758 more rows
-# ℹ abbreviated name: ¹​match_file_no_extension
-# ℹ 2 more variables: match_file_diff_capitalization &lt;lgl&gt;,
-#   match_partially &lt;lgl&gt;
-
-$under
-# A tibble: 360 × 9
-   dataset  source sheet   file  stringdist match_exactly match_file_no_extens…¹
-   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;         &lt;lgl&gt;                 
- 1 Example1 under  PFU01.… PFO0…         17 FALSE         FALSE                 
- 2 Example1 under  PFU02.… PFO0…         17 TRUE          FALSE                 
- 3 Example1 under  PFU03.… PFO0…         17 TRUE          FALSE                 
- 4 Example1 under  PFU04.… PFO0…         17 FALSE         FALSE                 
- 5 Example1 under  PFU05.… PFO0…         17 FALSE         FALSE                 
- 6 Example1 under  PFU06.… PFO0…         17 TRUE          FALSE                 
- 7 Example1 under  PFU07.… PFO0…         17 TRUE          FALSE                 
- 8 Example1 under  PFU08.… PFO0…         18 TRUE          FALSE                 
- 9 Example1 under  PFU01.… PFO0…         17 FALSE         FALSE                 
-10 Example1 under  PFU02.… PFO0…         17 TRUE          FALSE                 
-# ℹ 350 more rows
-# ℹ abbreviated name: ¹​match_file_no_extension
-# ℹ 2 more variables: match_file_diff_capitalization &lt;lgl&gt;,
-#   match_partially &lt;lgl&gt;
-
-$over
-# A tibble: 518 × 9
-   dataset  source sheet file    stringdist match_exactly match_file_no_extens…¹
-   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;         &lt;lgl&gt;                 
- 1 Example1 over   PFO1  PFO01_…         21 FALSE         FALSE                 
- 2 Example1 over   PFO2  PFO01_…         21 FALSE         FALSE                 
- 3 Example1 over   PFO3  PFO01_…         21 FALSE         FALSE                 
- 4 Example1 over   PFO4  PFO01_…         21 FALSE         FALSE                 
- 5 Example1 over   PFO5  PFO01_…         21 FALSE         FALSE                 
- 6 Example1 over   PFO6  PFO01_…         21 FALSE         FALSE                 
- 7 Example1 over   PFO7  PFO01_…         21 FALSE         FALSE                 
- 8 Example1 over   PFO1  PFO02_…         21 FALSE         FALSE                 
- 9 Example1 over   PFO2  PFO02_…         21 FALSE         FALSE                 
-10 Example1 over   PFO3  PFO02_…         22 FALSE         FALSE                 
-# ℹ 508 more rows
+<pre><code>`old`: "Example0" "Example1" "Output"
+`new`: "Example0" "Example1"         </code></pre>
+</div>
+</div>
+</section>
+<section id="optional-organization-of-raw-media" class="level3" data-number="14.2.5">
+<h3 data-number="14.2.5" class="anchored" data-anchor-id="optional-organization-of-raw-media"><span class="header-section-number">14.2.5</span> Optional organization of raw media</h3>
+<p>This chunk prepares and executes the copy mapping for files into <code>Example/Media/</code>. If you only want to preview the mapping, set <code>execute = FALSE</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>media_map <span class="ot">&lt;-</span> <span class="fu">organize_media_files</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_path =</span> <span class="st">"Example/12"</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_root =</span> <span class="st">"Example/Media"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataset_index =</span> <span class="dv">3</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute =</span> <span class="cn">TRUE</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in dir.create(.x, recursive = TRUE): 'Example/Media/Example0/image'
+already exists</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in dir.create(.x, recursive = TRUE): 'Example/Media/Example1/image'
+already exists</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in file.copy(from = df$file, to = df$filename, recursive = TRUE):
+'recursive' will be ignored as 'to' is not a single existing directory</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>media_map <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(dataset, media_type, file, filename) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   dataset  media_type file                                            filename 
+   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;                                           &lt;glue&gt;   
+ 1 Example0 image      Example/12/Example0/PNSB01_PNSB_cam1b_21mar.jpg Example/…
+ 2 Example0 image      Example/12/Example0/PNSB01_PNSB_cam1c_02mai.jpg Example/…
+ 3 Example0 image      Example/12/Example0/PNSB01_PNSB_cam1d_13jun.jpg Example/…
+ 4 Example0 image      Example/12/Example0/PNSB01_PNSB_cam1e_23ago.jpg Example/…
+ 5 Example0 image      Example/12/Example0/PNSB01_PNSB_cam1f_12jul.jpg Example/…
+ 6 Example0 image      Example/12/Example0/PNSB01.JPG                  Example/…
+ 7 Example0 image      Example/12/Example0/PNSB02_PNSB_cam2a_02mai.jpg Example/…
+ 8 Example0 image      Example/12/Example0/PNSB02_PNSB_cam2b_13jun.jpg Example/…
+ 9 Example0 image      Example/12/Example0/PNSB02_PNSB_cam2d_12jul.jpg Example/…
+10 Example0 image      Example/12/Example0/PNSB02.jpg                  Example/…</code></pre>
+</div>
+</div>
+</section>
+<section id="media-inventory" class="level3" data-number="14.2.6">
+<h3 data-number="14.2.6" class="anchored" data-anchor-id="media-inventory"><span class="header-section-number">14.2.6</span> Media inventory</h3>
+<p>We now create an inventory of all files already organized under <code>Example/Media/</code>, separating what is in the root from what has already been classified as <code>ct</code>, <code>under</code>, or <code>over</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>media_inventory <span class="ot">&lt;-</span> <span class="fu">build_media_inventory</span>(<span class="at">media_root =</span> <span class="st">"Example/Media"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>media_files <span class="ot">&lt;-</span> media_inventory<span class="sc">$</span>media_files</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>media_list <span class="ot">&lt;-</span> media_inventory<span class="sc">$</span>media_list</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>media_files_types_list <span class="ot">&lt;-</span> media_inventory<span class="sc">$</span>media_files_types_list</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>media_files <span class="sc">|&gt;</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(media_type, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  media_type     n
+  &lt;chr&gt;      &lt;int&gt;
+1 image         47
+2 ct            19
+3 over          10
+4 under          4</code></pre>
+</div>
+</div>
+</section>
+<section id="intermediate-outputs-preview" class="level3" data-number="14.2.7">
+<h3 data-number="14.2.7" class="anchored" data-anchor-id="intermediate-outputs-preview"><span class="header-section-number">14.2.7</span> Intermediate outputs preview</h3>
+<p>To make review easier, the chunk below shows two intermediate outputs: (1) the wide <code>stringdist</code> table with <code>match_exactly</code>; (2) the long table with <code>match_partially</code> and other flags. Adjust <code>example_source</code> or <code>example_dataset</code> as needed.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>example_source <span class="ot">&lt;-</span> <span class="st">"ct"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>example_datasets <span class="ot">&lt;-</span> <span class="fu">load_source_data</span>(example_source)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>example_dataset <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">names</span>(example_datasets), <span class="fu">names</span>(media_list))[<span class="dv">1</span>]</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(example_dataset)) {</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  preview <span class="ot">&lt;-</span> <span class="fu">preview_match_tables</span>(</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> example_source,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">dataset_name =</span> example_dataset,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_list =</span> media_list,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_files_types_list =</span> media_files_types_list</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  preview<span class="sc">$</span>df_stringdist <span class="sc">|&gt;</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  preview<span class="sc">$</span>match_candidates <span class="sc">|&gt;</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 7
+   sheet                   file  stringdist match_exactly match_file_no_extens…¹
+   &lt;chr&gt;                   &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;         &lt;lgl&gt;                 
+ 1 PNSB01_PNSB_cam1b_21ma… PNSB…         20 TRUE          FALSE                 
+ 2 PNSB01_PNSB_cam1c_02ma… PNSB…         20 TRUE          FALSE                 
+ 3 PNSB01_PNSB_cam1d_13ju… PNSB…         20 TRUE          FALSE                 
+ 4 PNSB01_PNSB_cam1e_23ag… PNSB…         20 TRUE          FALSE                 
+ 5 PNSB02_PNSB_cam2a_02ma… PNSB…         21 TRUE          FALSE                 
+ 6 PNSB02_PNSB_cam2b_13ju… PNSB…         20 TRUE          FALSE                 
+ 7 PNSB03_PNSB_cam3b_13ju… PNSB…         20 TRUE          FALSE                 
+ 8 PNSB04_PNSB_cam4c_21ma… PNSB…         20 TRUE          FALSE                 
+ 9 PNSB04_PNSB_cam4d_02ma… PNSB…         21 TRUE          FALSE                 
+10 PNSB04_PNSB_cam4e_13ju… PNSB…         20 TRUE          FALSE                 
+11 PNSB01_PNSB_cam1f_12ju… PNSB…         20 TRUE          FALSE                 
+12 PNSB02_PNSB_cam2d_12ju… PNSB…         20 TRUE          FALSE                 
+13 PNSB03_PNSB_cam3d_12ju… PNSB…         20 TRUE          FALSE                 
+14 PNSB05_PNSB_cam5c_12ju… PNSB…         20 TRUE          FALSE                 
+15 PNSB06_PNSB_cam6a_12ju… PNSB…         20 TRUE          FALSE                 
+16 PNSB01_PNSB_cam1b_21ma… PNSB…         17 TRUE          FALSE                 
+17 PNSB01_PNSB_cam1c_02ma… PNSB…         17 TRUE          FALSE                 
+18 PNSB01_PNSB_cam1d_13ju… PNSB…         18 TRUE          FALSE                 
+19 PNSB01_PNSB_cam1e_23ag… PNSB…         17 TRUE          FALSE                 
+20 PNSB02_PNSB_cam2a_02ma… PNSB…         17 TRUE          FALSE                 
 # ℹ abbreviated name: ¹​match_file_no_extension
 # ℹ 2 more variables: match_file_diff_capitalization &lt;lgl&gt;,
 #   match_partially &lt;lgl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="run-the-checker" class="level3" data-number="14.2.8">
+<h3 data-number="14.2.8" class="anchored" data-anchor-id="run-the-checker"><span class="header-section-number">14.2.8</span> Run the checker</h3>
+<p>Finally, we run the full pipeline. It generates the Excel file with partial matches and removes duplicates from the <code>Example/Media/</code> root. If you only want to simulate cleanup, set <code>execute_cleanup = FALSE</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sources <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ct"</span>, <span class="st">"under"</span>, <span class="st">"over"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">run_check_match_media</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sources =</span> sources,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_list =</span> media_list,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_files =</span> media_files,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_files_types_list =</span> media_files_types_list,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_root =</span> <span class="st">"Example/Media"</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute_copy =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute_cleanup =</span> <span class="cn">TRUE</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="results-summary" class="level3" data-number="14.2.9">
+<h3 data-number="14.2.9" class="anchored" data-anchor-id="results-summary"><span class="header-section-number">14.2.9</span> Results summary</h3>
+<p>This last step summarizes records that remained as candidates (partial matches) or inconsistencies.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>result <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> .x <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        match_exactly <span class="sc">==</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        match_partially <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"source"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 15
+Columns: 9
+$ dataset                        &lt;chr&gt; "Example1", "Example1", "Example1", "Ex…
+$ source                         &lt;chr&gt; "ct", "ct", "ct", "ct", "ct", "ct", "ct…
+$ sheet                          &lt;chr&gt; "DSCF0028 - frame at 0m9s", "DSCF0033 -…
+$ file                           &lt;chr&gt; "DSCF0028 - frame at 0m9s.jpg", "DSCF00…
+$ stringdist                     &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 5, 2, 1, 3, 1, …
+$ match_exactly                  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
+$ match_file_no_extension        &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRU…
+$ match_file_diff_capitalization &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
+$ match_partially                &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRU…</code></pre>
 </div>
 </div>
 

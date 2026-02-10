@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,18 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2b762d6eed5d016e804f4003944f3325.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-3b5a98bb4193874a7cc11e7227e6e501.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-16b27ea61f37165921e5a1069264dd85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3b5a98bb4193874a7cc11e7227e6e501.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -401,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+  <a href="../Quarto/12_photo_new.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
   </div>
 </li>
@@ -481,77 +482,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.2" class="anchored" data-anchor-id="functions"><span class="header-section-number">2.2</span> Functions</h2>
 <section id="read_sheet" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="read_sheet"><span class="header-section-number">2.2.1</span> <code>read_sheet</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/01_column_consistency.html">3 - Check Column Consistency</a>, <a href="../Quarto/02_blank_cells.html">4 - Check Blank Cells</a>, <a href="../Quarto/03_species.html">5 - Check Species Validity</a>, <a href="../Quarto/04_structure.html">6 - Check Structures</a>, <a href="../Quarto/05_id_camera.html">7 - Check ID on Camera</a>, <a href="../Quarto/06_date.html">8 - Check Date Consistency</a>, <a href="../Quarto/07_duplicated_ct.html">9 - Check Duplicated Camera on Structure</a>, <a href="../Quarto/08_measurements.html">10 - Check Measurement Columns</a>, <a href="../Quarto/09_structure_coords_parameters.html">11 - Check Coordinates Parameters</a>, <a href="../Quarto/10_structure_location.html">12 - Check Structure Location</a>, <a href="../Quarto/11_record_criteria.html">13 - Check Species Record Criteria</a>, <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="../Quarto/01_column_consistency.html">3 - Check Column Consistency</a>, <a href="../Quarto/02_blank_cells.html">4 - Check Blank Cells</a>, <a href="../Quarto/03_species.html">5 - Check Species Validity</a>, <a href="../Quarto/04_structure.html">6 - Check Structures</a>, <a href="../Quarto/05_id_camera.html">7 - Check ID on Camera</a>, <a href="../Quarto/06_date.html">8 - Check Date Consistency</a>, <a href="../Quarto/07_duplicated_ct.html">9 - Check Duplicated Camera on Structure</a>, <a href="../Quarto/08_measurements.html">10 - Check Measurement Columns</a>, <a href="../Quarto/09_structure_coords_parameters.html">11 - Check Coordinates Parameters</a>, <a href="../Quarto/10_structure_location.html">12 - Check Structure Location</a>, <a href="../Quarto/11_record_criteria.html">13 - Check Species Record Criteria</a>, <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>One the first steps of our datapaper was to create functions that are common to several other checks that we will perform.</p>
 <p>The primary function concerns to reading the Excel files and their spreadsheets containing the data. Since some other checks didn’t need the results of the reading but only the names of the datasets and their paths, we created a function encompassing these issues. The function is called <code>read_sheet</code>.</p>
-<p>The function has four arguments:</p>
+<p>The function has the following arguments:</p>
 <ul>
 <li><p><em>path</em>: the default was set to “Excel” as this is the folder where our files are stored.</p></li>
 <li><p><em>sheet</em>: we put as <code>NULL</code> because we may not want to have the full results, therefore, there is no need to read the spreadsheets.</p></li>
 <li><p><em>na</em>: to define what are the options to read <code>NA</code>. Default ““.</p></li>
 <li><p><em>results</em>: we may not want the results but only the paths for the datasets in customized functions (see Column Consistency).</p></li>
 <li><p><em>set_col_types</em>: we force R to read the spreadsheets as specific column types (from a support Excel file <code>column_types.xlsx</code>), as option <code>TRUE</code>. In cases when we need R to read all contents, we define it as “text” (option <code>FALSE</code>). Default TRUE.</p></li>
+<li><p><em>recurse</em>: whether to search for Excel files recursively inside the folder. Default TRUE.</p></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>read_sheet <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>read_sheet <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"Excel"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="cn">NULL</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="st">""</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">results =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_col_types =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>) {</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  excel <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> path,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern =</span> <span class="st">"^</span><span class="sc">\\</span><span class="st">w.+xlsx$"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">full.names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">recursive =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  names <span class="ot">&lt;-</span> excel <span class="sc">|&gt;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">"/|</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map_vec</span>(\(x) dplyr<span class="sc">::</span><span class="fu">nth</span>(x, <span class="sc">-</span><span class="dv">2</span>))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  load <span class="ot">&lt;-</span> excel <span class="sc">|&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>results) {</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(load)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (set_col_types) {</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    column_types <span class="ot">&lt;-</span> <span class="fu">set_column_types</span>(<span class="at">sheet =</span> sheet)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    column_types <span class="ot">&lt;-</span> <span class="st">"text"</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> load <span class="sc">|&gt;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(file) {</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      df <span class="ot">&lt;-</span> <span class="fu">withCallingHandlers</span>(</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">path =</span> file,</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">sheet =</span> sheet,</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">na =</span> na,</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">col_types =</span> column_types</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        janitor<span class="sc">::</span><span class="fu">remove_empty</span>(<span class="st">"rows"</span>)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(df) <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">colnames</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        stringr<span class="sc">::</span><span class="fu">str_to_sentence</span>()</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(df)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_col_types =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">recurse =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  excel <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> path,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern =</span> <span class="st">"^</span><span class="sc">\\</span><span class="st">w.+xlsx$"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">full.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">recursive =</span> recurse</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  names <span class="ot">&lt;-</span> excel <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">"/|</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map_vec</span>(\(x) dplyr<span class="sc">::</span><span class="fu">nth</span>(x, <span class="sc">-</span><span class="dv">2</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  load <span class="ot">&lt;-</span> excel <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>results) {</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(load)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (set_col_types) {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    column_types <span class="ot">&lt;-</span> <span class="fu">set_column_types</span>(<span class="at">sheet =</span> sheet)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    column_types <span class="ot">&lt;-</span> <span class="st">"text"</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> load <span class="sc">|&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(file) {</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>      df <span class="ot">&lt;-</span> <span class="fu">withCallingHandlers</span>(</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">path =</span> file,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">sheet =</span> sheet,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">na =</span> na,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">col_types =</span> column_types</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        janitor<span class="sc">::</span><span class="fu">remove_empty</span>(<span class="st">"rows"</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(df) <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">colnames</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        stringr<span class="sc">::</span><span class="fu">str_to_sentence</span>()</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(df)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>To read the spreadsheets we need to list the files on the folder, by specifying which one is an Excel file. We ask R to return the full names, which include the full path of the file. For the sake of organization we also named the previous vector with the paths of the spreadsheets with the respective names of their main authors. Now we set the names of the paths with the author’s names extracted in last step.</p>
+<p>To read the spreadsheets we need to list the files on the folder, by specifying which one is an Excel file. We ask R to return the full names, which include the full path of the file, and we can optionally control whether subfolders should be searched. For the sake of organization we also named the previous vector with the paths of the spreadsheets with the respective names of their main authors. Now we set the names of the paths with the author’s names extracted in last step.</p>
 <p>Firstly, we retrieve the full path of any .xlsx file found inside the “Excel” folder. The second step consists on splitting the full path into pieces and plucking the second element, as it represents the name of the dataset. Following, we name every full path with the name of the dataset. If we are reading the Excel files with a customized function, we stop here. If not, we read every Excel file of the list considering the <code>sheet</code> informed. The results comprise the name of the columns in a specific format, which is initiated by a capital letter followed by lowercase letters with the underscore separator for words.</p>
 <hr>
 </section>
@@ -568,7 +571,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>unique_id <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">sep =</span> <span class="st">"_"</span>) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>unique_id <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">sep =</span> <span class="st">"_"</span>) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  x_with_id <span class="ot">&lt;-</span> x <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">rowid_to_column</span>()</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -596,7 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">relocate</span>(Camera_id_orig, <span class="at">.after =</span> Camera_id) <span class="sc">|&gt;</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Dup_form_name, <span class="sc">-</span>rowid)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <hr>
@@ -615,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dttm_update <span class="ot">&lt;-</span> <span class="cf">function</span>(x, date_col, time_col) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dttm_update <span class="ot">&lt;-</span> <span class="cf">function</span>(x, date_col, time_col) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  date_sym <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">sym</span>(date_col)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  time_sym <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">sym</span>(time_col)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -628,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">second =</span> lubridate<span class="sc">::</span><span class="fu">second</span>(<span class="sc">!!</span>time_sym)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -643,7 +646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>add_epsg <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>add_epsg <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">epsg =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
@@ -666,7 +669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -681,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>set_feature_from_infrastructure <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>set_feature_from_infrastructure <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">|&gt;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">feature =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
@@ -693,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -713,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>calc_nearest_osm_dist <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>calc_nearest_osm_dist <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  x,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature =</span> <span class="fu">c</span>(<span class="st">"highway"</span>, <span class="st">"railway"</span>, <span class="st">"man_made"</span>),</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">crs_metric =</span> <span class="dv">3857</span>,</span>
@@ -822,14 +825,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(result) <span class="ot">&lt;-</span> <span class="st">"nearest_OSM_dist"</span></span>
 <span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <hr>
 </section>
 <section id="sec-validate-source" class="level3" data-number="2.2.7">
 <h3 data-number="2.2.7" class="anchored" data-anchor-id="sec-validate-source"><span class="header-section-number">2.2.7</span> <code>validate_source</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>This function takes the following arguments:</p>
 <ul>
 <li><p><em>source</em>: the media source to be processed. Accepted values are “ct”, “under”, or “over”.</p></li>
@@ -839,85 +842,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>validate_source <span class="ot">&lt;-</span> <span class="cf">function</span>(source, <span class="at">allowed =</span> <span class="fu">c</span>(<span class="st">"ct"</span>, <span class="st">"under"</span>, <span class="st">"over"</span>)) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>validate_source <span class="ot">&lt;-</span> <span class="cf">function</span>(source, <span class="at">allowed =</span> <span class="fu">c</span>(<span class="st">"ct"</span>, <span class="st">"under"</span>, <span class="st">"over"</span>)) {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>source <span class="sc">%in%</span> allowed) {</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Source {source} is not an accepted value. Accepted values are 'ct', 'under', 'over'"</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-load-source-data" class="level3" data-number="2.2.8">
 <h3 data-number="2.2.8" class="anchored" data-anchor-id="sec-load-source-data"><span class="header-section-number">2.2.8</span> <code>load_source_data</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes a single argument:</p>
 <ul>
 <li><em>source</em>: the short code identifying which Excel sheet to load (“ct”, “under”, or “over”).</li>
 </ul>
-<p>It maps the requested source to the correct Excel sheet name using <code>dplyr::case_match</code>, clears any previously generated output files that could be mistaken for source data, and then calls <code>read_sheet</code> to load the spreadsheet. If the source is not mapped, the function aborts. By centralizing this mapping and cleanup, later steps can rely on consistent, fresh inputs for each run.</p>
+<p>It maps the requested source to the correct Excel sheet name using <code>dplyr::case_match</code> and then calls <code>read_sheet</code> with <code>recurse = FALSE</code> to load the spreadsheet. If the source is not mapped, the function aborts. By centralizing the mapping and enforcing non-recursive reads, later steps can rely on consistent inputs for each run.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>load_source_data <span class="ot">&lt;-</span> <span class="cf">function</span>(source) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>load_source_data <span class="ot">&lt;-</span> <span class="cf">function</span>(source) {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  source <span class="ot">&lt;-</span> <span class="fu">as.character</span>(source)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  sheet_name <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">case_match</span>(</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    source,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ct"</span> <span class="sc">~</span> <span class="st">"Camera_trap"</span>,</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"under"</span> <span class="sc">~</span> <span class="st">"Underpasses"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"over"</span> <span class="sc">~</span> <span class="st">"Overpasses"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="cn">NA_character_</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(sheet_name)) {</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="st">"Source {source} is not mapped to a sheet."</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Drop previous derived outputs to avoid loading non-source workbooks</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.remove</span>(<span class="fu">list.files</span>(</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="st">"Example/12"</span>,</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern =</span> <span class="st">"^check_names_photos_.*</span><span class="sc">\\</span><span class="st">.xlsx$"</span>,</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_sheet</span>(</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="st">"Example/12"</span>,</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> sheet_name,</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-"</span>)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"over"</span> <span class="sc">~</span> <span class="st">"Overpasses"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(sheet_name)) {</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="st">"Source {source} is not mapped to a sheet."</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_sheet</span>(</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="st">"Example/12"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">recurse =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> sheet_name,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-"</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-ensure-dataset-names-match" class="level3" data-number="2.2.9">
 <h3 data-number="2.2.9" class="anchored" data-anchor-id="sec-ensure-dataset-names-match"><span class="header-section-number">2.2.9</span> <code>ensure_dataset_names_match</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>This function takes the following arguments:</p>
 <ul>
 <li><p><em>datasets</em>: the list of data frames loaded from the Excel sheets.</p></li>
 <li><p><em>media_list</em>: a named list of media inventories split by dataset.</p></li>
+<li><p><em>first_take</em>: a logical flag (default TRUE) that enforces strict name matching only on the first run.</p></li>
 </ul>
-<p>It compares the dataset names present in the Excel sheets with the names discovered in the media folders. If any dataset exists on one side but not the other, the function aborts. This guard ensures the matching logic only proceeds when both the spreadsheets and disk inventory refer to the same set of datasets.</p>
+<p>It compares the dataset names present in the Excel sheets with the names discovered in the media folders. If <code>first_take</code> is TRUE and any dataset exists on one side but not the other, the function aborts. This guard ensures the matching logic only proceeds when both the spreadsheets and disk inventory refer to the same set of datasets, while allowing later runs to continue after partial processing.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ensure_dataset_names_match <span class="ot">&lt;-</span> <span class="cf">function</span>(datasets, media_list) {</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  datasets_not_in_common <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">setdiff</span>(<span class="fu">names</span>(datasets), <span class="fu">names</span>(media_list))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(datasets_not_in_common) <span class="sc">!=</span> <span class="dv">0</span>) {</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"There are different datasets between media folder and Excel sheets."</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ensure_dataset_names_match <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  datasets,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  media_list,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_take =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  datasets_not_in_common <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">setdiff</span>(<span class="fu">names</span>(datasets), <span class="fu">names</span>(media_list))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (first_take <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(datasets_not_in_common) <span class="sc">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"There are different datasets between media folder and Excel sheets."</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-extract-filenames-on-sheet" class="level3" data-number="2.2.10">
 <h3 data-number="2.2.10" class="anchored" data-anchor-id="sec-extract-filenames-on-sheet"><span class="header-section-number">2.2.10</span> <code>extract_filenames_on_sheet</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>This function takes the following arguments:</p>
 <ul>
 <li><p><em>df</em>: a data frame for a single dataset loaded from the Excel sheet.</p></li>
@@ -927,7 +930,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>extract_filenames_on_sheet <span class="ot">&lt;-</span> <span class="cf">function</span>(df, source) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>extract_filenames_on_sheet <span class="ot">&lt;-</span> <span class="cf">function</span>(df, source) {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  column <span class="ot">&lt;-</span> <span class="cf">if</span> (source <span class="sc">==</span> <span class="st">"ct"</span>) <span class="st">"Camera_vision_photo"</span> <span class="cf">else</span> <span class="st">"Structure_photo"</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  col_sym <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">sym</span>(column)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -935,13 +938,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">distinct</span>(dplyr<span class="sc">::</span><span class="fu">across</span>(dplyr<span class="sc">::</span><span class="fu">all_of</span>(column))) <span class="sc">|&gt;</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="sc">!!</span>col_sym)) <span class="sc">|&gt;</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(<span class="sc">!!</span>col_sym)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-media-candidates" class="level3" data-number="2.2.11">
 <h3 data-number="2.2.11" class="anchored" data-anchor-id="sec-media-candidates"><span class="header-section-number">2.2.11</span> <code>media_candidates</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>This function takes the following arguments:</p>
 <ul>
 <li><p><em>dataset_media</em>: a tibble of media files for a single dataset.</p></li>
@@ -951,16 +954,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>media_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset_media, source) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>media_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset_media, source) {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dataset_media <span class="sc">|&gt;</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">/{source}</span><span class="sc">\\</span><span class="st">/"</span>)))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-stringdist-table" class="level3" data-number="2.2.12">
 <h3 data-number="2.2.12" class="anchored" data-anchor-id="sec-stringdist-table"><span class="header-section-number">2.2.12</span> <code>stringdist_table</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes the following arguments:</p>
 <ul>
 <li><p><em>filenames_on_sheet</em>: a character vector of expected filenames from the Excel sheet.</p></li>
@@ -970,7 +973,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stringdist_table <span class="ot">&lt;-</span> <span class="cf">function</span>(filenames_on_sheet, media) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stringdist_table <span class="ot">&lt;-</span> <span class="cf">function</span>(filenames_on_sheet, media) {</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  stringdist<span class="sc">::</span><span class="fu">stringdistmatrix</span>(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    filenames_on_sheet,</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    media,</span>
@@ -983,13 +986,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">match_exactly =</span> dplyr<span class="sc">::</span><span class="fu">if_any</span>(dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric), <span class="sc">~</span> . <span class="sc">==</span> <span class="dv">0</span>)</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-build-match-candidates" class="level3" data-number="2.2.13">
 <h3 data-number="2.2.13" class="anchored" data-anchor-id="sec-build-match-candidates"><span class="header-section-number">2.2.13</span> <code>build_match_candidates</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes a single argument:</p>
 <ul>
 <li><em>df_stringdist</em>: the tibble returned by <code>stringdist_table</code>.</li>
@@ -998,7 +1001,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>build_match_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(df_stringdist) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>build_match_candidates <span class="ot">&lt;-</span> <span class="cf">function</span>(df_stringdist) {</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  df_stringdist <span class="sc">|&gt;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(sheet, match_exactly),</span>
@@ -1016,23 +1019,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">relocate</span>(match_exactly, <span class="at">.after =</span> stringdist) <span class="sc">|&gt;</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(match_file_no_extension), file)</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-dedupe-matches" class="level3" data-number="2.2.14">
 <h3 data-number="2.2.14" class="anchored" data-anchor-id="sec-dedupe-matches"><span class="header-section-number">2.2.14</span> <code>dedupe_matches</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes the following arguments:</p>
 <ul>
 <li><p><em>match_candidates</em>: the long-form table produced by <code>build_match_candidates</code>.</p></li>
 <li><p><em>files_to_exclude</em>: an optional character vector of filenames to drop from consideration.</p></li>
 </ul>
-<p>It first removes excluded files, then identifies sheet/file pairs with exact or case-insensitive name matches. Using those signals, it marks ambiguous rows for removal so that only the most plausible pairs remain. The output keeps the candidate set clean by eliminating duplicate mappings that could mislead later steps.</p>
+<p>It first removes excluded files, then identifies sheet/file pairs with exact or case-insensitive name matches. Using those signals, it marks ambiguous rows for removal so that only the most plausible pairs remain. When previously processed folders exist (<code>media_files_types_list</code> is not empty), it also removes candidates that are already present under the current source for the dataset. The output keeps the candidate set clean by eliminating duplicate or already-handled mappings that could mislead later steps.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dedupe_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(match_candidates, <span class="at">files_to_exclude =</span> <span class="fu">character</span>()) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dedupe_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(match_candidates, <span class="at">files_to_exclude =</span> <span class="fu">character</span>()) {</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  filtered_candidates <span class="ot">&lt;-</span> match_candidates <span class="sc">|&gt;</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>file <span class="sc">%in%</span> files_to_exclude)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1043,29 +1046,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(sheet, file)</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  filtered_candidates <span class="sc">|&gt;</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">keep =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>          match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>          sheet <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>sheet <span class="sc">~</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>          <span class="st">"REMOVE"</span>,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>          match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>          file <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>file <span class="sc">~</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">"REMOVE"</span>,</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"KEEP"</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(keep <span class="sc">==</span> <span class="st">"KEEP"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>keep)</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (purrr<span class="sc">::</span><span class="fu">is_empty</span>(media_files_types_list)) {</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    filtered_candidates <span class="sc">|&gt;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">keep =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>          match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>            sheet <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>sheet <span class="sc">~</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"REMOVE"</span>,</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>          match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>            match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>            file <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>file <span class="sc">~</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"REMOVE"</span>,</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"KEEP"</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">filter</span>(keep <span class="sc">==</span> <span class="st">"KEEP"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>keep)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    filtered_candidates <span class="sc">|&gt;</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">keep =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>          match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>            match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>            sheet <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>sheet <span class="sc">~</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">"REMOVE"</span>,</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>          match_file_no_extension <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>            match_file_diff_capitalization <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>            file <span class="sc">%in%</span> dup_sheet_file<span class="sc">$</span>file <span class="sc">~</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">"REMOVE"</span>,</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>          sheet <span class="sc">%in%</span> media_files_types_list[[.y]][[source]]<span class="sc">$</span>file <span class="sc">~</span> <span class="st">"REMOVE"</span>,</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"KEEP"</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">filter</span>(keep <span class="sc">==</span> <span class="st">"KEEP"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>keep)</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-copy-exact-matches" class="level3" data-number="2.2.15">
 <h3 data-number="2.2.15" class="anchored" data-anchor-id="sec-copy-exact-matches"><span class="header-section-number">2.2.15</span> <code>copy_exact_matches</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes the following arguments:</p>
 <ul>
 <li><p><em>df_stringdist</em>: the distance table from <code>stringdist_table</code>.</p></li>
@@ -1076,7 +1099,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>copy_exact_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>copy_exact_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  df_stringdist,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  media_without_source,</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  target_dir</span>
@@ -1107,13 +1130,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  files_found_in_sheet</span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-process-dataset" class="level3" data-number="2.2.16">
 <h3 data-number="2.2.16" class="anchored" data-anchor-id="sec-process-dataset"><span class="header-section-number">2.2.16</span> <code>process_dataset</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes the following arguments:</p>
 <ul>
 <li><p><em>df</em>: a data frame for a single dataset coming from the Excel sheet.</p></li>
@@ -1125,7 +1148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>process_dataset <span class="ot">&lt;-</span> <span class="cf">function</span>(df, dataset_name, source, media_list) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>process_dataset <span class="ot">&lt;-</span> <span class="cf">function</span>(df, dataset_name, source, media_list) {</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  cli<span class="sc">::</span><span class="fu">cli_alert_info</span>(<span class="st">"Processing dataset {dataset_name}."</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  filenames_on_sheet <span class="ot">&lt;-</span> <span class="fu">extract_filenames_on_sheet</span>(df, source)</span>
@@ -1155,27 +1178,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  match_candidates <span class="ot">&lt;-</span> <span class="fu">build_match_candidates</span>(df_stringdist)</span>
 <span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dedupe_matches</span>(match_candidates, <span class="at">files_to_exclude =</span> files_copied<span class="sc">$</span>file)</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-check-match-media" class="level3" data-number="2.2.17">
 <h3 data-number="2.2.17" class="anchored" data-anchor-id="sec-check-match-media"><span class="header-section-number">2.2.17</span> <code>check_match_media</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
-<p>The function takes a single argument:</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
+<p>The function takes the following arguments:</p>
 <ul>
-<li><em>source</em>: the source to check (“ct”, “under”, or “over”).</li>
+<li><p><em>source</em>: the source to check (“ct”, “under”, or “over”).</p></li>
+<li><p><em>first_take</em>: a logical flag (default TRUE) passed to <code>ensure_dataset_names_match</code> to enforce strict name checks on the initial run.</p></li>
 </ul>
-<p>It validates the source, loads the corresponding sheet, confirms dataset names, filters out empty datasets, and then processes each dataset with <code>process_dataset</code>. Non-empty results are bound together and tagged with the source, producing a consolidated tibble of match candidates for that source.</p>
+<p>It validates the source, loads the corresponding sheet, confirms dataset names (optionally strict on the first run), filters out empty datasets, and then processes each dataset with <code>process_dataset</code>. Non-empty results are bound together and tagged with the source, producing a consolidated tibble of match candidates for that source.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">source =</span> <span class="cn">NULL</span>) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">source =</span> <span class="cn">NULL</span>, <span class="at">first_take =</span> <span class="cn">TRUE</span>) {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">validate_source</span>(source)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  cli<span class="sc">::</span><span class="fu">cli_alert</span>(<span class="st">"Starting source {source}"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  datasets <span class="ot">&lt;-</span> <span class="fu">load_source_data</span>(source)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ensure_dataset_names_match</span>(datasets, media_list)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ensure_dataset_names_match</span>(datasets, media_list, <span class="at">first_take =</span> first_take)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  datasets_with_content <span class="ot">&lt;-</span> datasets <span class="sc">|&gt;</span></span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
@@ -1189,23 +1213,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"dataset"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">source =</span> source, <span class="at">.after =</span> dataset)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-save-partial-matches" class="level3" data-number="2.2.18">
 <h3 data-number="2.2.18" class="anchored" data-anchor-id="sec-save-partial-matches"><span class="header-section-number">2.2.18</span> <code>save_partial_matches</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes a single argument:</p>
 <ul>
 <li><em>result</em>: the list of match results returned by <code>run_check_match_media</code>.</li>
 </ul>
-<p>It filters each result to keep only partial matches (non-exact but within the partial-match threshold), nests them by dataset, orders them, and writes them to an Excel workbook under <code>Output</code> named with the current date. The function returns the filtered, nested list invisibly so it can be reused without re-reading the file.</p>
+<p>It filters each result to keep only partial matches (non-exact but within the partial-match threshold), nests them by dataset, orders them, and writes them to an Excel workbook under <code>Example/Output/12</code> named with the current date. The function returns the filtered, nested list so it can be reused without re-reading the file.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>save_partial_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(result) {</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  filtered_results <span class="ot">&lt;-</span> result <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>save_partial_matches <span class="ot">&lt;-</span> <span class="cf">function</span>(result) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  partial_res <span class="ot">&lt;-</span> result <span class="sc">|&gt;</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> .x <span class="sc">|&gt;</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
@@ -1219,23 +1243,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">data =</span> purrr<span class="sc">::</span><span class="fu">set_names</span>(data, dataset)) <span class="sc">|&gt;</span></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(data)</span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  filtered_results <span class="sc">|&gt;</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  partial_res <span class="sc">|&gt;</span></span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    openxlsx2<span class="sc">::</span><span class="fu">write_xlsx</span>(</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_glue</span>(</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Output/Example_check_names_photos_{lubridate::today()}.xlsx"</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Example/Output/12/check_names_photos_{lubridate::today()}.xlsx"</span></span>
 <span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>      ),</span>
 <span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">as_table =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">overwrite =</span> <span class="cn">TRUE</span></span>
 <span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(filtered_results)</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(partial_res)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-cleanup-media-root" class="level3" data-number="2.2.19">
 <h3 data-number="2.2.19" class="anchored" data-anchor-id="sec-cleanup-media-root"><span class="header-section-number">2.2.19</span> <code>cleanup_media_root</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes the following arguments:</p>
 <ul>
 <li><p><em>result</em>: the list returned by <code>run_check_match_media</code>.</p></li>
@@ -1246,7 +1270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cleanup_media_root <span class="ot">&lt;-</span> <span class="cf">function</span>(result, media_tbl, sources) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cleanup_media_root <span class="ot">&lt;-</span> <span class="cf">function</span>(result, media_tbl, sources) {</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  sources_regex <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue_collapse</span>(sources, <span class="st">"|"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  files_to_delete <span class="ot">&lt;-</span> result <span class="sc">|&gt;</span></span>
@@ -1266,35 +1290,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(value)</span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.remove</span>(files_to_delete)</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="sec-run-check-match-media" class="level3" data-number="2.2.20">
 <h3 data-number="2.2.20" class="anchored" data-anchor-id="sec-run-check-match-media"><span class="header-section-number">2.2.20</span> <code>run_check_match_media</code></h3>
-<p>The function is used on the following chapters: <a href="../Quarto/12_photos.html">14 - Check Photos</a>.</p>
+<p>The function is used on the following chapters: <a href="12_photos.qmd">14 - Check Photos</a>.</p>
 <p>The function takes the following arguments:</p>
 <ul>
 <li><p><em>sources</em>: a character vector of sources to process. Defaults to <code>c("ct", "under", "over")</code>.</p></li>
-<li><p><em>media_tbl</em>: the media inventory tibble to reference when cleaning up. Defaults to <code>media_files</code>.</p></li>
+<li><p><em>media_files</em>: the media inventory tibble to reference when cleaning up. Defaults to <code>media_files</code>.</p></li>
+<li><p><em>first_take</em>: a logical flag (default TRUE) passed through to <code>check_match_media</code> to enforce strict dataset name checks on the initial run.</p></li>
+<li><p><em>cleanup</em>: a logical flag (default FALSE) controlling whether to remove stray files from the media root after copying exact matches.</p></li>
 </ul>
-<p>It runs <code>check_match_media</code> for each source, writes the partial-match report via <code>save_partial_matches</code>, removes stray files with <code>cleanup_media_root</code>, and returns the list of per-source results. Wrapping the workflow in this function makes the entire matching process repeatable with a single call.</p>
+<p>It runs <code>check_match_media</code> for each source, optionally removes stray files with <code>cleanup_media_root</code>, writes the partial-match report via <code>save_partial_matches</code>, and returns the filtered partial-match list. Wrapping the workflow in this function makes the entire matching process repeatable with a single call.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>run_check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>run_check_match_media <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sources =</span> <span class="fu">c</span>(<span class="st">"ct"</span>, <span class="st">"under"</span>, <span class="st">"over"</span>),</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_tbl =</span> media_files</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>) {</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(purrr<span class="sc">::</span><span class="fu">set_names</span>(sources), <span class="cf">function</span>(source) {</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">check_match_media</span>(source)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_partial_matches</span>(result)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cleanup_media_root</span>(result, media_tbl, sources)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">media_files =</span> media_files,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_take =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">cleanup =</span> <span class="cn">FALSE</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(purrr<span class="sc">::</span><span class="fu">set_names</span>(sources), <span class="cf">function</span>(source) {</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">check_match_media</span>(source, <span class="at">first_take =</span> first_take)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (cleanup <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cleanup_media_root</span>(result, media_files, sources)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  final_result <span class="ot">&lt;-</span> <span class="fu">save_partial_matches</span>(result)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(final_result)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -1367,13 +1398,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,18 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2b762d6eed5d016e804f4003944f3325.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-3b5a98bb4193874a7cc11e7227e6e501.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1ee77f7aad30c1ebb1183d41325c3488.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3b5a98bb4193874a7cc11e7227e6e501.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -111,6 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../styles/fonts.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -401,8 +403,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Quarto/12_photos.html" class="sidebar-item-text sidebar-link">
+  <a href="../Quarto/12_photo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Check Photos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Quarto/13_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Check Problem</span></span></a>
   </div>
 </li>
       </ul>
@@ -458,13 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It was difficult to define acceptable dimensions for the structures. Instead, we opted for a more general approach. We performed a general inspection of all data and summarized the columns. This allows for a visual check. Suspicious data can then be flagged and communicated to the researchers.</p>
 <section id="common-steps" class="level3" data-number="10.2.1">
 <h3 data-number="10.2.1" class="anchored" data-anchor-id="common-steps"><span class="header-section-number">10.2.1</span> Common steps</h3>
-<p>We use our customized <code>read_sheet</code> function to load the camera trap setup data from all available spreadsheets. Hence, we need to load the <code>FUNCTIONS.R</code>.</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/FUNCTIONS.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>We use <code>datapaperchecks::read_sheet</code> to load the camera trap setup data from all available spreadsheets.</p>
 </section>
 <section id="specific-steps" class="level3" data-number="10.2.2">
 <h3 data-number="10.2.2" class="anchored" data-anchor-id="specific-steps"><span class="header-section-number">10.2.2</span> Specific steps</h3>
@@ -474,27 +476,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>under <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="at">sheet =</span> <span class="st">"Underpasses"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"na"</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>under <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">any</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="fu">names</span>(.x), <span class="st">"lenght"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>under <span class="ot">&lt;-</span> datapaperchecks<span class="sc">::</span><span class="fu">read_sheet</span>(<span class="at">sheet =</span> <span class="st">"Underpasses"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"na"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>under <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">any</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="fu">names</span>(.x), <span class="st">"lenght"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>character(0)</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>all_under <span class="ot">&lt;-</span> under <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">discard</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(\(x) dplyr<span class="sc">::</span><span class="fu">select</span>(x, Structure_type<span class="sc">:</span>Waterbody_width)) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"Dataset"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(all_under)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>all_under <span class="ot">&lt;-</span> under <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">discard</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(\(x) dplyr<span class="sc">::</span><span class="fu">select</span>(x, Structure_type<span class="sc">:</span>Waterbody_width)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"Dataset"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(all_under)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Dataset          Structure_type     Structure_cell     Structure_shape   
- Length:355         Length:355         Length:355         Length:355        
+ Length:353         Length:353         Length:353         Length:353        
  Class :character   Class :character   Class :character   Class :character  
  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
                                                                             
@@ -502,21 +504,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                                                                             
                                                                             
  Structure_photo    Structure_age   Structure_height Structure_length
- Length:355         Min.   : 1.00   Min.   : 0.450   Min.   :  0.80  
+ Length:353         Min.   : 1.00   Min.   : 0.450   Min.   :  0.80  
  Class :character   1st Qu.: 5.00   1st Qu.: 1.000   1st Qu.: 12.00  
  Mode  :character   Median :10.00   Median : 2.000   Median : 18.00  
-                    Mean   :13.46   Mean   : 2.314   Mean   : 22.32  
+                    Mean   :13.46   Mean   : 2.306   Mean   : 22.54  
                     3rd Qu.:20.00   3rd Qu.: 3.000   3rd Qu.: 26.00  
                     Max.   :30.00   Max.   :12.000   Max.   :101.60  
-                    NA's   :68      NA's   :30       NA's   :122     
+                    NA's   :66      NA's   :30       NA's   :116     
  Structure_width   Waterbody_width  
  Min.   :  0.500   Min.   :  0.500  
  1st Qu.:  1.200   1st Qu.:  1.300  
  Median :  2.000   Median :  3.000  
- Mean   :  4.882   Mean   :  9.854  
+ Mean   :  4.863   Mean   :  9.854  
  3rd Qu.:  3.000   3rd Qu.:  5.500  
  Max.   :127.000   Max.   :170.000  
- NA's   :31        NA's   :316      </code></pre>
+ NA's   :27        NA's   :314      </code></pre>
 </div>
 </div>
 </section>
@@ -525,27 +527,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>over <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="at">sheet =</span> <span class="st">"Overpasses"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"na"</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>over <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">any</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="fu">names</span>(.x), <span class="st">"lenght"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>over <span class="ot">&lt;-</span> datapaperchecks<span class="sc">::</span><span class="fu">read_sheet</span>(<span class="at">sheet =</span> <span class="st">"Overpasses"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"na"</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>over <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">any</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="fu">names</span>(.x), <span class="st">"lenght"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>character(0)</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>all_over <span class="ot">&lt;-</span> over <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">discard</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(\(x) dplyr<span class="sc">::</span><span class="fu">select</span>(x, Structure_type<span class="sc">:</span>Structure_internal_height)) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"Dataset"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(all_over)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>all_over <span class="ot">&lt;-</span> over <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">discard</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(\(x) dplyr<span class="sc">::</span><span class="fu">select</span>(x, Structure_type<span class="sc">:</span>Structure_internal_height)) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"Dataset"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(all_over)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Dataset          Structure_type     Structure_material Structure_anchor_1
- Length:140         Length:140         Length:140         Length:140        
+ Length:141         Length:141         Length:141         Length:141        
  Class :character   Class :character   Class :character   Class :character  
  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
                                                                             
@@ -553,21 +555,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                                                                             
                                                                             
  Structure_anchor_2 Structure_branch_access Structure_photo    Structure_age   
- Length:140         Length:140              Length:140         Min.   : 1.000  
+ Length:141         Length:141              Length:141         Min.   : 1.000  
  Class :character   Class :character        Class :character   1st Qu.: 1.000  
  Mode  :character   Mode  :character        Mode  :character   Median : 5.000  
-                                                               Mean   : 6.276  
+                                                               Mean   : 6.226  
                                                                3rd Qu.:10.000  
                                                                Max.   :20.000  
                                                                NA's   :35      
- Structure_height Structure_length Structure_width  Structure_internal_height
- Min.   : 4.100   Min.   :  6.00   Min.   : 0.050   Min.   : NA              
- 1st Qu.: 6.555   1st Qu.: 11.66   1st Qu.: 0.375   1st Qu.: NA              
- Median : 7.000   Median : 15.00   Median : 0.500   Median : NA              
- Mean   :12.504   Mean   : 17.10   Mean   : 1.308   Mean   :NaN              
- 3rd Qu.:18.750   3rd Qu.: 20.00   3rd Qu.: 0.500   3rd Qu.: NA              
- Max.   :37.000   Max.   :120.00   Max.   :39.000   Max.   : NA              
- NA's   :2        NA's   :2        NA's   :33       NA's   :140              </code></pre>
+ Structure_height Structure_length Structure_width   Structure_internal_height
+ Min.   : 4.100   Min.   :  6.00   Min.   : 0.0500   Min.   : NA              
+ 1st Qu.: 6.545   1st Qu.: 11.68   1st Qu.: 0.3875   1st Qu.: NA              
+ Median : 7.000   Median : 15.00   Median : 0.5000   Median : NA              
+ Mean   :12.461   Mean   : 16.84   Mean   : 1.3005   Mean   :NaN              
+ 3rd Qu.:18.500   3rd Qu.: 20.00   3rd Qu.: 0.5000   3rd Qu.: NA              
+ Max.   :37.000   Max.   :120.00   Max.   :39.0000   Max.   : NA              
+ NA's   :2        NA's   :2        NA's   :33        NA's   :141              </code></pre>
 </div>
 </div>
 </section>
@@ -576,25 +578,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fence <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="at">sheet =</span> <span class="st">"Fencing"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"na"</span>))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fence <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">any</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="fu">names</span>(.x), <span class="st">"lenght"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fence <span class="ot">&lt;-</span> datapaperchecks<span class="sc">::</span><span class="fu">read_sheet</span>(<span class="at">sheet =</span> <span class="st">"Fencing"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"na"</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fence <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">any</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="fu">names</span>(.x), <span class="st">"lenght"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>character(0)</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>all_fence <span class="ot">&lt;-</span> fence <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">discard</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(\(x) {</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(x, Fence_mesh_size<span class="sc">:</span>Fence_length_b2)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"Dataset"</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(all_fence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>all_fence <span class="ot">&lt;-</span> fence <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">discard</span>(<span class="sc">~</span> <span class="fu">nrow</span>(.x) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(\(x) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(x, Fence_mesh_size<span class="sc">:</span>Fence_length_b2)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"Dataset"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(all_fence)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Dataset          Fence_mesh_size     Fence_height   Fence_length_a1 
@@ -686,13 +688,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

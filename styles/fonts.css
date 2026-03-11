@@ -1,0 +1,31 @@
+/* Global sans-serif typography for the Quarto book */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+:root {
+  --wcd-font-sans: "Inter", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --bs-font-sans-serif: var(--wcd-font-sans);
+  --bs-body-font-family: var(--wcd-font-sans);
+}
+
+body,
+.quarto-title-banner,
+.quarto-title .title,
+.sidebar,
+.sidebar nav,
+.navbar,
+.nav-link,
+.dropdown-menu,
+.table,
+button,
+input,
+select,
+textarea {
+  font-family: var(--wcd-font-sans);
+}
+
+/* Keep inline code readable inside headings/toc in dark mode */
+body.quarto-dark :is(h1, h2, h3, h4, h5, h6, .nav-link) code {
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}

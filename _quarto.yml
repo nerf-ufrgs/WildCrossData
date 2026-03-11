@@ -24,12 +24,14 @@ book:
         - Quarto/10_structure_location.qmd
         - Quarto/11_record_criteria.qmd
         - Quarto/12_photo.qmd
+        - Quarto/13_problem.qmd
 
 format:
   html:
     theme:
       light: flatly
-      dark: superhero
+      dark: darkly
+    css: styles/fonts.css
     toc: true
     toc-depth: 3
     number-sections: true

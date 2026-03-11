@@ -3,9 +3,6 @@ title: "Datapaper WildCrossData Latin America"
 number-sections: false
 toc: false
 editor: source
-theme:
-  dark: superhero
-  light: flatly
 ---
 
 ### Welcome
@@ -27,6 +24,7 @@ This book documents the data quality checks performed on the camera trap data. E
 12. [Structure Locations](Quarto/10_structure_location.html) - Checks if the structures provided are within a distance of a road, railroad or pipeline.
 13. [Structure Camera Record Criteria](Quarto/11_record_criteria.qmd) - Verifies if the records are comprised whithin the record criteria provided.
 14. [Photo Verification](Quarto/12_photo.qmd) - Checks if the photos/videos filenames from camera traps and structures attributed in the spreadsheets exist on the media package provided.
+15. [Problem Check](Quarto/13_problem.qmd) - Validates consistency between camera installation period and problem fields, detecting contradictory records, invalid date ranges, and problem intervals.
 
 ### About
 
